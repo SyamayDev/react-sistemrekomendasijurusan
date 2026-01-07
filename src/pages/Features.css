@@ -1,0 +1,236 @@
+/* ================= FEATURE SECTION ================= */
+.pset {
+  padding-top: 180px;
+  padding-bottom: 80px;
+  margin-top: 80px;
+  background: transparent;
+}
+
+.listar-feature-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.listar-feature-item-wrapper {
+  padding: 0 27px;
+  margin-bottom: 120px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 576px) {
+  .listar-feature-item-wrapper {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .listar-feature-item-wrapper {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+}
+
+/* ================= FEATURE CARD ================= */
+.listar-feature-item {
+  position: relative;
+  min-height: 380px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.listar-feature-item:hover {
+  transform: translateY(-10px);
+}
+
+.listar-feature-item-inner {
+  position: relative;
+  padding: 80px 30px 100px;
+  height: 100%;
+  z-index: 2;
+}
+
+/* ================= BORDER LENGKUNG ================= */
+.listar-feature-right-border {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.listar-feature-right-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 11px solid #258bd5;
+  border-radius: 800px;
+}
+
+.listar-feature-item:hover .listar-feature-right-border::before {
+  border-color: #2f53bf;
+}
+
+/* ================= ICON ================= */
+.listar-feature-icon-wrapper {
+  width: 148px;
+  height: 148px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 8px 8px 30px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -74px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.listar-feature-icon-inner {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listar-feature-icon-inner img {
+  height: 55px;
+  width: auto;
+}
+
+/* ================= CONTENT ================= */
+.listar-feature-content-wrapper {
+  margin-top: 60px;
+}
+
+.listar-feature-item-title {
+  margin-bottom: 30px;
+}
+
+.listar-feature-item-title > span {
+  background: #fff;
+  padding: 12px 24px 12px 70px;
+  border-radius: 50px;
+  box-shadow: 15px 20px 30px rgba(80,80,80,0.12);
+  position: relative;
+  display: inline-block;
+}
+
+.listar-feature-item-title > span span {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 10px 10px 20px rgba(80,80,80,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.listar-feature-item-excerpt {
+  padding: 0 20px;
+  font-size: 14px;
+  color: #252525;
+}
+
+/* ================= RIPPLE EFFECT ================= */
+.listar-feature-item.listar-feature-has-link
+.listar-feature-item-inner::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -26px;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgba(163,177,198,0.3);
+  animation: ripple 1.2s infinite ease-out;
+  z-index: 5;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(163,177,198,0.4),
+      0 0 0 10px rgba(163,177,198,0.25),
+      0 0 0 25px rgba(163,177,198,0.08);
+  }
+  100% {
+    box-shadow:
+      0 0 0 10px rgba(163,177,198,0.3),
+      0 0 0 30px rgba(163,177,198,0.05),
+      0 0 0 60px rgba(163,177,198,0);
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 767px) {
+  .listar-feature-icon-wrapper {
+    width: 120px;
+    height: 120px;
+    top: -60px;
+  }
+
+  .listar-feature-icon-inner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .listar-feature-icon-inner img {
+    height: 45px;
+  }
+
+  .listar-feature-item {
+    min-height: 320px;
+  }
+
+   .listar-feature-item-title > span {
+    padding: 12px 18px 12px 50px; /* ⬅️ dipersempit */
+    max-width: 130%;
+    margin-left: -12px;
+    box-sizing: border-box;
+  }
+
+  .listar-feature-item-title > span span {
+    left: 8px;                 /* ⬅️ angka masuk dikit */
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .listar-feature-item-excerpt {
+    padding: 0 0px;           /* ⬅️ biar teks ga mepet border */
+  }
+
+  .listar-feature-right-border {
+    width: 250px;
+    height: 104%;
+  }
+
+  .listar-feature-right-border::before {
+    border-width: 8px;
+  }
+
+  
+}

@@ -1,0 +1,37 @@
+/* Share Result Styles */
+.share-result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.share-result .btn {
+  padding: 0.6rem 1.2rem;
+}
+
+.qr-code {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+}
+
+.qr-code img {
+  width: 60px;
+  height: 60px;
+}
+
+.qr-code p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+}

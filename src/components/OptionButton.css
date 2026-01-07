@@ -1,0 +1,44 @@
+/* Option Button Styles */
+.option-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.option-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-color: var(--primary-hover);
+}
+
+.option-btn.selected,
+.option-btn.checked {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.option-btn.selected:hover,
+.option-btn.checked:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+
+/* Checkbox styling within the button */
+.option-btn input[type="checkbox"] {
+  margin-right: 1rem;
+  width: 1.2em;
+  height: 1.2em;
+  accent-color: var(--primary-color);
+}

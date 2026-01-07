@@ -1,0 +1,26 @@
+/* RESET AMAN */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY JANGAN FLEX */
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+/* ROOT FULL WIDTH */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* DEFAULT CONTAINER (UNTUK PAGE BIASA) */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}

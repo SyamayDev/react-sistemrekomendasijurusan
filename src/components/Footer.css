@@ -1,0 +1,178 @@
+.site-footer {
+  background: linear-gradient(180deg, #bfdbfe 0%, #ffffff 100%); /* Blue to white gradient */
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #334155; /* Darker text for contrast on light background */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wave effect at the top of the footer */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: -120px; /* Adjust to position the wave correctly */
+  left: 0;
+  width: 100%;
+  height: 200px; /* Height of the wave visual */
+  background: url(https://1.bp.blogspot.com/-NYl6L8pz8B4/XoIVXwfhlNI/AAAAAAAAU3k/nxJKiLT706Mb7jUFiM5vdCsOSNnFAh0yQCLcBGAsYHQ/s1600/hero-wave.png)
+    repeat-x;
+  animation: wave 10s cubic-bezier(0.44, 0.66, 0.67, 0.37) infinite;
+  z-index: 0; /* Ensure wave is behind footer content */
+  transform: scaleY(-1); /* Flip the wave to appear at the top */
+  opacity: 0.2; /* Make it slightly transparent */
+}
+
+/* Re-using the wave animation from Home.css */
+@keyframes wave {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1440px;
+  }
+}
+
+.site-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative; /* Ensure container content is above the wave */
+  z-index: 1;
+}
+
+.site-footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.site-footer .col-sm-12.col-md-6 {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.site-footer .col-xs-6.col-md-3 {
+  width: 25%;
+  padding: 0 15px;
+}
+
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
+  margin: 20px 0;
+}
+
+.site-footer h6 {
+  color: #1e3a8a; /* Darker blue for headings */
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+
+.site-footer a {
+  color: #334155; /* Darker link color for contrast */
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #1e3a8a; /* Darker blue on hover */
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-links li {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.site-footer .social-icons {
+  text-align: right;
+}
+
+.copyright-text {
+  margin: 0;
+  color: #334155; /* Darker copyright text color */
+}
+
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.social-icons a {
+  background-color: rgba(
+    30,
+    58,
+    138,
+    0.1
+  ); /* Semi-transparent darker blue background */
+  color: #1e3a8a; /* Darker blue icon color */
+  font-size: 16px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  transition: all 0.2s linear;
+}
+
+.social-icons a:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.3); /* More visible on hover */
+}
+
+.social-icons a.facebook:hover {
+  background-color: #3b5998;
+}
+.social-icons a.twitter:hover {
+  background-color: #00aced;
+}
+.social-icons a.instagram:hover {
+  background-color: #e4405f;
+}
+.social-icons a.github:hover {
+  background-color: #333;
+}
+
+@media (max-width: 991px) {
+  .site-footer .col-sm-12.col-md-6,
+  .site-footer .col-xs-6.col-md-3 {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: 0;
+  }
+  .site-footer .copyright-text,
+  .site-footer .social-icons {
+    text-align: center;
+  }
+  .site-footer .col-sm-12.col-md-6,
+  .site-footer .col-xs-6.col-md-3 {
+    width: 100%;
+  }
+  .site-footer .social-icons {
+    margin-top: 20px;
+  }
+}

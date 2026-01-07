@@ -1,0 +1,724 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables for a Professional Look */
+:root {
+  --primary-color: #007bff; /* A clean, modern blue */
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d; /* A calm grey for secondary text */
+  --surface-color: #ffffff; /* White for cards and surfaces */
+  --text-color: #212529; /* Dark grey for primary text */
+  --heading-color: #343a40;
+  --border-color: #dee2e6;
+  --border-radius: 0.5rem;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --font-family: "Poppins", sans-serif;
+  --transition-speed: 300ms;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 20%,
+    #ffffff 30%,
+    #b4d4fb 60%,
+    #93c4fc 80%,
+    #89d3f5 100%
+  ); /* Mulai dari putih ke biru */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  /* padding is removed for full-width sections */
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  transition: transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Utility Classes (managed by AnimateOnScroll) */
+/* The base definitions for @keyframes fadeIn, slideInUp, slideInDown, slideInLeft, slideInRight remain */
+
+/* Remove default browser styles */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* Global styles from PakBudiLanding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Landing Section Styles (adapted from PakBudiLanding) */
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #25a9e0 0%, #1e9bd1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 16px 0;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease;
+  z-index: 0; /* Ensure the wave::after is correctly layered */
+  padding-bottom: 120px; /* Provide space for the illustration */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-container .logo {
+  z-index: 3; /* Ensure logo is above illustration and wave */
+}
+
+.landing-container .logo img {
+  height: 70px;
+  animation: slideDown 0.6s ease;
+  max-width: 100%; /* Responsive */
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-container .percentage {
+  font-size: 74px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 4px 0 #f5b400, 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 6px;
+  margin-bottom: 10px; /* Added margin-bottom for spacing */
+}
+
+.landing-container .headline {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 6px; /* Added margin-bottom for spacing */
+}
+
+.landing-container .subtitle {
+  font-size: 15px;
+  color: #eaf7fd;
+  margin-top: 6px;
+  margin-bottom: 12px; /* Added margin-bottom for spacing */
+}
+
+.landing-container .free {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px; /* Added margin-bottom for spacing */
+}
+
+.landing-container .description {
+  font-size: 14px;
+  color: #f1fbff;
+  margin-top: 12px;
+  max-width: 340px;
+  line-height: 1.5;
+  margin-bottom: 22px; /* Added margin-bottom for spacing before CTA */
+}
+
+.landing-container h1,
+.landing-container h2,
+.landing-container p.subtitle,
+.landing-container p.free,
+.landing-container p.description,
+.landing-container .percentage {
+  position: relative;
+  z-index: 3; /* Ensure these are above both CTA (2) and illustration (1) */
+}
+
+.landing-container .cta {
+  margin-top: 22px; /* Already set, ensuring it's relative to description */
+  background: linear-gradient(180deg, #ffc83d, #f9a825);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 15px 32px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 8px 0 #e09100, 0 14px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 2; /* Ensure CTA is above the wave effect */
+}
+
+.landing-container .cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255, 255, 255, 0.4),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.landing-container .cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 #e09100, 0 18px 34px rgba(0, 0, 0, 0.25);
+}
+
+.landing-container .cta:hover::after {
+  opacity: 1;
+}
+
+.landing-container .cta:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #e09100;
+}
+
+.landing-container .illustration {
+  position: absolute;
+  bottom: -12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: riseUp 0.9s ease;
+  z-index: 1; /* Ensure illustration is above the wave effect */
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-container .illustration img {
+  width: 100%;
+  max-width: 440px;
+  height: auto; /* Responsive height */
+}
+
+.landing-container::after {
+  content: "";
+  position: absolute;
+  bottom: -180px; /* Naikkan lebih tinggi untuk nyambung ke putih */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%; /* Lebih lebar untuk smooth */
+  height: 280px; /* Lebih tinggi */
+  background: #ffffff;
+  border-radius: 50%;
+  z-index: 0;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Original global section styles */
+section {
+  padding: 100px 8%;
+  position: relative;
+  background: transparent;
+  z-index: 1;
+}
+
+/* Generic Content Section */
+.content-section {
+  padding-top: 0;
+}
+
+.content-section h2 {
+  font-size: 42px;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section-description {
+  max-width: 700px;
+  color: #334155;
+  line-height: 1.9;
+  text-align: center;
+  margin: 0 auto 5rem auto;
+}
+
+/* Youtube Embed */
+.video-section {
+  text-align: center;
+  margin-top: 80px; /* Added margin to separate from previous section */
+  margin-bottom: 80px; /* Added margin to separate from next section */
+}
+.video-section .section-description {
+  margin-bottom: 3rem; /* Adjusted margin for better spacing */
+}
+
+/* Video Wrapper Tambahan untuk better responsiveness */
+.video-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.video-container {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  background: transparent; /* Ikut gradient body */
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.testimonial-quote {
+  font-style: italic;
+  color: #334155;
+  margin-bottom: 1rem;
+}
+
+.testimonial-name {
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  margin-top: 3rem;
+}
+
+.faq-image img {
+  width: 300px;
+  height: 300px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-item.active .faq-question {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+}
+
+.faq-question .arrow {
+  font-size: 1.5rem;
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  background: #f8fafc;
+}
+
+.faq-answer p {
+  padding: 1rem 0 1.5rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+/* ===== GUIDE ===== */
+.guide-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: center;
+  background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-top: 5rem;
+}
+
+.guide-image img {
+  max-width: 200px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.guide-content h2 {
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+}
+
+.guide-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #334155;
+}
+
+
+/* Responsive Adjustments - Lebih detail */
+@media (max-width: 1200px) {
+  .content-section h2 {
+    font-size: 36px;
+  }
+  .section-description {
+    max-width: 600px;
+  }
+  .guide-section {
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 991px) {
+  section {
+    padding: 80px 5%;
+  }
+  .landing-container .percentage {
+    font-size: 60px;
+  }
+  .landing-container .headline {
+    font-size: 18px;
+  }
+  .landing-container .free {
+    font-size: 22px;
+  }
+  .landing-container .description {
+    font-size: 13px;
+    max-width: 300px;
+  }
+  .video-wrapper {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    padding: 60px 4%;
+  }
+  .video-wrapper {
+    margin: 2rem auto;
+  }
+  .guide-section {
+    padding: 2.5rem;
+    margin: 3rem auto;
+  }
+  .landing-container {
+    padding: 20px 10px 0;
+    padding-bottom: 100px;
+  }
+  .landing-container .logo img {
+    height: 36px;
+  }
+  .landing-container .percentage {
+    font-size: 50px;
+  }
+  .landing-container .headline {
+    font-size: 16px;
+  }
+  .landing-container .subtitle {
+    font-size: 14px;
+  }
+  .landing-container .free {
+    font-size: 20px;
+  }
+  .landing-container .description {
+    font-size: 12px;
+    max-width: 280px;
+  }
+  .landing-container .cta {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+  .landing-container .illustration img {
+    max-width: 320px;
+  }
+  .content-section h2 {
+    font-size: 28px;
+  }
+  .section-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-item {
+    padding: 1rem;
+  }
+
+    .faq-layout,
+  .guide-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .faq-question {
+    text-align: left;
+  }
+
+  .faq-image img,
+  .guide-image img {
+    margin: 0 auto 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-container .percentage {
+    font-size: 40px;
+  }
+  .landing-container::after {
+    bottom: -60px;
+    height: 120px;
+  }
+}

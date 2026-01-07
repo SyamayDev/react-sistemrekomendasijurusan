@@ -1,0 +1,58 @@
+[
+  {
+    "id": "m1",
+    "nama_jurusan": "Teknik Informatika",
+    "kategori": "STEM",
+    "deskripsi": "Fokus pada pemrograman, pengembangan perangkat lunak, dan solusi teknologi.",
+    "karakter_cocok": ["logis", "problem-solver", "suka eksperimen"]
+  },
+  {
+    "id": "m2",
+    "nama_jurusan": "Psikologi",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari perilaku, emosi, dan pendekatan konseling untuk membantu orang.",
+    "karakter_cocok": ["empatik", "observasional", "analitis"]
+  },
+  {
+    "id": "m3",
+    "nama_jurusan": "Desain Komunikasi Visual",
+    "kategori": "Seni",
+    "deskripsi": "Komunikasi visual, branding, dan desain untuk media cetak & digital.",
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented"]
+  },
+  {
+    "id": "m4",
+    "nama_jurusan": "Manajemen",
+    "kategori": "Bisnis",
+    "deskripsi": "Fokus pada pengelolaan organisasi, strategi, dan kepemimpinan.",
+    "karakter_cocok": ["organisir", "kepemimpinan", "strategis"]
+  },
+  {
+    "id": "m5",
+    "nama_jurusan": "Ilmu Komunikasi",
+    "kategori": "Sosial",
+    "deskripsi": "Studi media, komunikasi massa, public relations, dan penyampaian pesan.",
+    "karakter_cocok": ["komunikatif", "kreatif", "presenter"]
+  },
+  {
+    "id": "m6",
+    "nama_jurusan": "Statistika",
+    "kategori": "STEM",
+    "deskripsi": "Analisis data, probabilitas, dan penerapan statistik untuk keputusan berbasis data.",
+    "karakter_cocok": ["analitis", "teliti", "suka angka"]
+  },
+  {
+    "id": "m7",
+    "nama_jurusan": "Arsitektur",
+    "kategori": "Seni",
+    "deskripsi": "Perancangan ruang, estetika bangunan, dan integrasi fungsi-ruang.",
+    "karakter_cocok": ["visual", "terstruktur", "kreatif"]
+  },
+  {
+    "id": "m8",
+    "nama_jurusan": "Akuntansi",
+    "kategori": "Bisnis",
+    "deskripsi": "Pembukuan, laporan keuangan, dan pengelolaan sumber daya organisasi.",
+    "karakter_cocok": ["teliti", "disiplin", "suka angka"]
+  }
+]

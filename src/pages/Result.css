@@ -1,0 +1,50 @@
+/* Result Page Styles */
+.result-page {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.result-page h2, .result-page h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.top-recos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .top-recos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.all-list {
+  margin-bottom: 3rem;
+}
+
+.interpretation {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+.interpretation h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--heading-color);
+}
+
+.empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}

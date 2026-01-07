@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables for a Professional Look */
+:root {
+  --primary-color: #007bff; /* A clean, modern blue */
+  --primary-hover: #0056b3;
+  --secondary-color: #6c757d; /* A calm grey for secondary text */
+  --surface-color: #ffffff; /* White for cards and surfaces */
+  --text-color: #212529; /* Dark grey for primary text */
+  --heading-color: #343a40;
+  --border-color: #dee2e6;
+  --border-radius: 0.5rem;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --font-family: "Poppins", sans-serif;
+  --transition-speed: 300ms;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #f8fbff 0%,
+    #e0f2fe 25%,
+    #bfdbfe 50%,
+    #93c5fd 75%,
+    #7dd3fc 100%
+  ); /* Reverse dari biru ke putih menjadi putih ke biru */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  /* padding is removed for full-width sections */
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  transition: transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Utility Classes (managed by AnimateOnScroll) */
+/* The base definitions for @keyframes fadeIn, slideInUp, slideInDown, slideInLeft, slideInRight remain */
+
+/* Remove default browser styles */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
