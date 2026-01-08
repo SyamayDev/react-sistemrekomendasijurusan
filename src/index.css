@@ -15,13 +15,17 @@
   --primary-hover: #0056b3;
   --secondary-color: #6c757d; /* A calm grey for secondary text */
   --surface-color: #ffffff; /* White for cards and surfaces */
+  --background-color: #f8fbff; /* Base background for the app */
+  --background-color-light: #eef7ff; /* Lighter variant for subtle backgrounds */
   --text-color: #212529; /* Dark grey for primary text */
+  --text-color-light: #5a6268; /* Lighter text for secondary info */
   --heading-color: #343a40;
   --border-color: #dee2e6;
   --border-radius: 0.5rem;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15); /* Larger shadow for prominent elements */
   --font-family: "Poppins", sans-serif;
-  --transition-speed: 300ms;
+  --transition-speed: 0.3s; /* Smooth transition speed */
 }
 
 body {

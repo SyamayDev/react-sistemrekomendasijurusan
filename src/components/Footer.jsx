@@ -20,6 +20,20 @@ const GithubIcon = () => (
 export default function Footer() {
   return (
     <footer className="site-footer hidden-anim animate-slide-in-up" style={{ animationDelay: '500ms' }}>
+
+      {/* WAVE TOP FOOTER */}
+      <svg
+        className="footer-wave"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#ffffff"
+          fillOpacity="0.6"
+          d="M0,160 C240,80 480,220 720,190 960,160 1200,100 1440,140 L1440,0 L0,0 Z"
+        />
+      </svg>
+
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-md-6">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
@@ -8,11 +8,12 @@ import Features from "./pages/Features";
 import WaveBackground from "./components/WaveBackground";
 import Footer from "./components/Footer";
 
-function App() {
+function AppContent() {
   const [resultState, setResultState] = useState(null);
+  const location = useLocation();
 
   return (
-    <HashRouter>
+    <>
       <WaveBackground />
       <main>
         <Routes>
@@ -27,7 +28,15 @@ function App() {
           />
         </Routes>
       </main>
-      <Footer />
+      {location.pathname !== "/quiz" && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <HashRouter>
+      <AppContent />
     </HashRouter>
   );
 }

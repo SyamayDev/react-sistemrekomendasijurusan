@@ -54,5 +54,47 @@
     "kategori": "Bisnis",
     "deskripsi": "Pembukuan, laporan keuangan, dan pengelolaan sumber daya organisasi.",
     "karakter_cocok": ["teliti", "disiplin", "suka angka"]
+  },
+  {
+    "id": "m9",
+    "nama_jurusan": "Ilmu Politik",
+    "kategori": "Sosial",
+    "deskripsi": "Studi tentang sistem pemerintahan, perilaku politik, dan analisis kebijakan publik.",
+    "karakter_cocok": ["analitis", "komunikatif", "strategis"]
+  },
+  {
+    "id": "m10",
+    "nama_jurusan": "Teknik Lingkungan",
+    "kategori": "STEM",
+    "deskripsi": "Solusi teknis untuk masalah lingkungan, pengelolaan sumber daya, dan keberlanjutan.",
+    "karakter_cocok": ["problem-solver", "peduli lingkungan", "analitis"]
+  },
+  {
+    "id": "m11",
+    "nama_jurusan": "Sastra Inggris",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, sastra, dan budaya berbahasa Inggris.",
+    "karakter_cocok": ["kreatif", "analitis", "komunikatif"]
+  },
+  {
+    "id": "m12",
+    "nama_jurusan": "Ilmu Gizi",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mempelajari hubungan antara makanan, kesehatan, dan penyakit. Merancang diet sehat.",
+    "karakter_cocok": ["peduli kesehatan", "analitis", "komunikatif"]
+  },
+  {
+    "id": "m13",
+    "nama_jurusan": "Kedokteran",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mendiagnosis, mengobati, dan mencegah penyakit pada manusia.",
+    "karakter_cocok": ["empatik", "teliti", "problem-solver"]
+  },
+  {
+    "id": "m14",
+    "nama_jurusan": "Desain Interior",
+    "kategori": "Seni",
+    "deskripsi": "Mendesain dan menata ruang interior agar fungsional dan estetis.",
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented"]
   }
 ]

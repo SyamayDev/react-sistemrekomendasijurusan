@@ -2,15 +2,26 @@
 .quiz-page {
   width: 90%;
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 0 auto; /* Center horizontally */
+  min-height: 100vh; /* Take full viewport height */
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Distribute space between items */
   align-items: center;
+  padding: 1rem 0; /* Add some vertical padding, reduce horizontal */
+}
+
+@media (max-width: 768px) {
+  .quiz-page {
+    width: 95%; /* Slightly wider on small screens */
+    padding: 0.5rem 0;
+  }
 }
 
 .quiz-actions {
-  margin-top: 2rem;
+  margin-top: 1.5rem; /* Reduced margin */
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center; /* Center the button */
+  padding-bottom: 1rem; /* Ensure button is not cut off at bottom */
 }

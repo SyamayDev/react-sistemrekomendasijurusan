@@ -14,14 +14,12 @@ export default function QuestionCard({ q, value, onChange }) {
             onChange={(e) => onChange(e.target.value)}
           />
         )}
-        {q.tipe === "yesno" || q.tipe === "scale" || q.tipe === "multiple"
+        {q.tipe === "yesno" || q.tipe === "scale" || q.tipe === "radio"
           ? q.opsi.map((o, idx) => (
               <OptionButton
                 key={idx}
                 option={o}
-                selected={
-                  value && (value.value === o.value || value === o.value)
-                }
+                selected={value && value.label === o.label}
                 onClick={() => onChange(o)}
               />
             ))

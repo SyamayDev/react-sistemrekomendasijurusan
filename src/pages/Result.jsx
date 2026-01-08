@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ResultHighlight from "../components/ResultHighlight";
 import ResultList from "../components/ResultList";
@@ -8,6 +9,7 @@ import './Result.css';
 export default function Result({ resultState }) {
   const loc = useLocation();
   const data = resultState || loc.state || null;
+  const [showAllMajors, setShowAllMajors] = useState(false);
 
   if (!data)
     return (
@@ -37,15 +39,26 @@ export default function Result({ resultState }) {
               major={m}
               score={m.score}
               insight={generateInsight(m.nama_jurusan)}
+              rank={index + 1}
             />
           </div>
         ))}
       </section>
 
-      <section className="all-list animate-fade-in" style={{ animationDelay: '600ms' }}>
-        <h3>Perbandingan Seluruh Jurusan</h3>
-        <ResultList list={data.ranked} />
-      </section>
+      {!showAllMajors && (
+        <div className="show-more-button-container">
+          <button className="button-primary" onClick={() => setShowAllMajors(true)}>
+            Lihat Rekomendasi Jurusan Lainnya
+          </button>
+        </div>
+      )}
+
+      {showAllMajors && (
+        <section className="all-list animate-fade-in" style={{ animationDelay: '600ms' }}>
+          <h3>Perbandingan Seluruh Jurusan</h3>
+          <ResultList list={data.ranked} />
+        </section>
+      )}
 
       <section className="interpretation animate-fade-in" style={{ animationDelay: '800ms' }}>
         <h4>Interpretasi Akademik</h4>

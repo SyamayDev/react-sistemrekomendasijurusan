@@ -6,11 +6,12 @@ export default function WaveBackground() {
       viewBox="0 0 1440 320"
       preserveAspectRatio="none"
       style={{
-        position: "absolute",
-        top: "65vh",
+        position: "fixed",
+        bottom: 0,
         left: 0,
         width: "100%",
-        zIndex: 0
+        height: "25vh", /* Adjusted height to be at the bottom */
+        zIndex: -1 /* Ensure it's behind all other content */
       }}
     >
       <path

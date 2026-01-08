@@ -2,27 +2,51 @@
 .question-card {
   width: 100%;
   text-align: center;
+  flex-grow: 1; /* Allow it to take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically within the card */
+  padding: 1rem; /* Adjust padding for better fit */
 }
 
 .question-card h3 {
-  font-size: 1.75rem;
-  margin-bottom: 2.5rem;
+  font-size: 1.5rem; /* Slightly smaller for mobile */
+  margin-bottom: 1.5rem; /* Reduced margin */
   color: var(--heading-color);
+  line-height: 1.3;
 }
 
 .options {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.75rem; /* Reduced gap */
+  max-height: 50vh; /* Allow options to scroll if too many */
+  overflow-y: auto;
+  padding-right: 5px; /* Prevent scrollbar from overlapping content */
 }
 
 /* For questions with more options, a 2-column layout might be better */
 @media (min-width: 600px) {
   .options {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-height: none; /* Remove max-height on larger screens */
+  }
+  .question-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
   }
 }
 
+@media (max-width: 480px) {
+  .question-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .options {
+    gap: 0.5rem;
+    max-height: 45vh; /* Adjust max-height for very small screens */
+  }
+}
 
 .text-input {
   width: 100%;
