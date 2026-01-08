@@ -658,23 +658,23 @@ section {
     padding-bottom: 100px;
   }
   .landing-container .logo img {
-    height: 60px;
+    height: 64px;
   }
   .landing-container .percentage {
-    font-size: 50px;
+    font-size: 54px;
   }
   .landing-container .headline {
-    font-size: 16px;
+    font-size: 18px;
   }
   .landing-container .subtitle {
-    font-size: 14px;
+    font-size: 18px;
   }
   .landing-container .free {
-    font-size: 20px;
+    font-size: 24px;
   }
   .landing-container .description {
-    font-size: 12px;
-    max-width: 280px;
+    font-size: 16px;
+    max-width: 284px;
   }
   .landing-container .cta {
     padding: 12px 28px;
