@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Footer.css";
 
 const FacebookIcon = () => (
@@ -49,135 +49,244 @@ const GithubIcon = () => (
   </svg>
 );
 
+const YoutubeIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7.5 12.3c-.1 1.4-.7 2.4-2.1 2.8-1.2.3-2.9.4-4.4.4s-3.2-.1-4.4-.4c-1.4-.4-2-1.4-2.1-2.8-.1-1.2-.1-2.2-.1-2.3 0-.1 0-1.1.1-2.3.1-1.4.7-2.4 2.1-2.8 1.2-.3 2.9-.4 4.4-.4s3.2.1 4.4.4c1.4.4 2 1.4 2.1 2.8.1 1.2.1 2.2.1 2.3 0 .1 0 1.1-.1 2.3zM10.5 8.5v7l4.5-3.5-4.5-3.5z" />
+  </svg>
+);
+
 export default function Footer() {
-  const footerRef = useRef(null);
+    const footerRef = useRef(null);
+    const [showAboutModal, setShowAboutModal] = useState(false);
+    const [isAboutClosing, setIsAboutClosing] = useState(false);
+    const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+    const [isPrivacyClosing, setIsPrivacyClosing] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show-anim");
-          observer.unobserve(entry.target); // animasi cuma sekali
+    const handleCloseAbout = () => {
+      setIsAboutClosing(true);
+      setTimeout(() => {
+        setShowAboutModal(false);
+        setIsAboutClosing(false);
+      }, 300); // Animation duration
+    };
+
+    const handleClosePrivacy = () => {
+      setIsPrivacyClosing(true);
+      setTimeout(() => {
+        setShowPrivacyModal(false);
+        setIsPrivacyClosing(false);
+      }, 300); // Animation duration
+    };
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show-anim");
+            observer.unobserve(entry.target); // animasi cuma sekali
+          }
+        },
+        {
+          threshold: 0.15,
         }
-      },
-      {
-        threshold: 0.15,
+      );
+  
+      if (footerRef.current) {
+        observer.observe(footerRef.current);
       }
+  
+      return () => observer.disconnect();
+    }, []);
+  
+    return (
+      <>
+        <div className="footer-transition" />
+  
+        <footer ref={footerRef} className="site-footer hidden-anim">
+          {/* WAVE TOP FOOTER */}
+          <svg
+            className="footer-wave"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#8fc9f9"
+              d="M0,160 C240,80 480,220 720,190 960,160 1200,100 1440,140 L1440,0 L0,0 Z"
+            />
+          </svg>
+  
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-md-6">
+                <h6>About</h6>
+                <p className="text-justify">
+                  <i>SI-RAJU</i> adalah sistem rekomendasi jurusan yang membantu
+                  pengguna memilih jurusan yang tepat sesuai dengan minat, bakat,
+                  dan kemampuan yang dimiliki melalui proses analisis data yang
+                  sederhana, cepat, dan mudah dipahami, sehingga memudahkan
+                  pengguna dalam mengambil keputusan pendidikan.
+                </p>
+              </div>
+  
+              <div className="col-xs-6 col-md-3">
+                <h6>REFERENSI</h6>
+                <ul className="footer-links">
+                  <li>
+                    <a href="https://www.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">Kemdikbud</a>
+                  </li>
+                  <li>
+                    <a href="https://snpmb.bppp.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">SNPMB</a>
+                  </li>
+                  <li>
+                    <a href="https://pddikti.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">PDDikti</a>
+                  </li>
+                </ul>
+              </div>
+  
+              <div className="col-xs-6 col-md-3">
+                <h6>Quick Links</h6>
+                <ul className="footer-links">
+                  <li>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setShowAboutModal(true); }}>About Us</a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/6282267403010" target="_blank" rel="noopener noreferrer">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/SyamayDev/react-sistemrekomendasijurusan" target="_blank" rel="noopener noreferrer">Contribute</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setShowPrivacyModal(true); }}>Privacy Policy</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+          </div>
+  
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-sm-6 col-xs-12">
+                <p className="copyright-text">
+                  Copyright &copy; {new Date().getFullYear()} All Rights Reserved
+                  by
+                  <a href="#"> SI-RAJU</a>.
+                </p>
+              </div>
+  
+              <div className="col-md-4 col-sm-6 col-xs-12 ">
+                <ul className="social-icons">
+                  <li>
+                    <a className="facebook" href="https://www.facebook.com/pahlawan.senja.146" target="_blank" rel="noopener noreferrer">
+                      <FacebookIcon />
+                    </a>
+                  </li>
+                  <li>
+                    <a className="youtube" href="https://www.youtube.com/@channelbelajar25" target="_blank" rel="noopener noreferrer">
+                      <YoutubeIcon />
+                    </a>
+                  </li>
+                  <li>
+                    <a className="instagram" href="https://www.instagram.com/syahrilmaimubdymandai" target="_blank" rel="noopener noreferrer">
+                      <InstagramIcon />
+                    </a>
+                  </li>
+                  <li>
+                    <a className="github" href="https://github.com/SyamayDev" target="_blank" rel="noopener noreferrer">
+                      <GithubIcon />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </footer>
+  
+        {showAboutModal && (
+          <div className={`modal-overlay ${isAboutClosing ? 'closing' : ''}`} onClick={(e) => { if (e.target === e.currentTarget) handleCloseAbout(); }}>
+            <div className="modal-content">
+              <button className="modal-close-btn" onClick={handleCloseAbout}>X</button>
+              <h3>About SI-RAJU</h3>
+              <p>
+                SI-RAJU adalah sistem rekomendasi jurusan yang inovatif, dirancang
+                untuk membantu siswa dan calon mahasiswa menemukan jalur pendidikan
+                yang paling sesuai dengan minat, bakat, dan potensi mereka. Dengan
+                menggunakan pendekatan interaktif dan analisis data yang cerdas,
+                SI-RAJU menyajikan rekomendasi jurusan yang personal dan
+                komprehensif. Misi kami adalah memudahkan proses pengambilan
+                keputusan pendidikan, mengurangi kebingungan, dan membuka peluang
+                masa depan yang lebih cerah bagi setiap individu.
+              </p>
+              <p>
+                Kami percaya bahwa setiap orang memiliki potensi unik. SI-RAJU
+                hadir untuk menggali potensi tersebut dan membimbing Anda menuju
+                pilihan jurusan yang tidak hanya relevan dengan kualifikasi Anda
+                saat ini, tetapi juga selaras dengan aspirasi karir dan tujuan
+                hidup Anda.
+              </p>
+            </div>
+          </div>
+        )}
+  
+        {showPrivacyModal && (
+          <div className={`modal-overlay ${isPrivacyClosing ? 'closing' : ''}`} onClick={(e) => { if (e.target === e.currentTarget) handleClosePrivacy(); }}>
+            <div className="modal-content">
+              <button className="modal-close-btn" onClick={handleClosePrivacy}>X</button>
+              <h3>Privacy Policy</h3>
+              <p>
+                Kebijakan Privasi ini menjelaskan bagaimana SI-RAJU mengumpulkan,
+                menggunakan, dan melindungi informasi pribadi Anda. Kami berkomitmen
+                untuk menjaga privasi Anda dan menjamin keamanan data yang Anda
+                berikan kepada kami.
+              </p>
+              <h4>Informasi yang Kami Kumpulkan</h4>
+              <p>
+                Kami mengumpulkan informasi yang Anda berikan secara langsung saat
+                menggunakan layanan kami, seperti nama, email (jika ada), dan jawaban
+                atas kuesioner minat. Kami juga dapat mengumpulkan data teknis
+                otomatis seperti alamat IP, jenis browser, dan waktu akses untuk
+                meningkatkan pengalaman pengguna.
+              </p>
+              <h4>Bagaimana Kami Menggunakan Informasi Anda</h4>
+              <p>
+                Informasi yang kami kumpulkan digunakan untuk:
+                <ul>
+                  <li>Menyediakan rekomendasi jurusan yang personal dan akurat.</li>
+                  <li>Meningkatkan kualitas dan fungsionalitas layanan kami.</li>
+                  <li>Menganalisis tren penggunaan untuk pengembangan fitur baru.</li>
+                </ul>
+                Kami tidak akan menjual, menyewakan, atau membagikan informasi
+                pribadi Anda kepada pihak ketiga tanpa persetujuan Anda, kecuali
+                jika diwajibkan oleh hukum.
+              </p>
+              <h4>Keamanan Data</h4>
+              <p>
+                Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang
+                wajar untuk melindungi informasi pribadi Anda dari akses tidak
+                sah, pengungkapan, perubahan, atau penghancuran. Meskipun kami
+                berusaha keras, tidak ada metode transmisi internet atau
+                penyimpanan elektronik yang 100% aman.
+              </p>
+              <h4>Perubahan pada Kebijakan Privasi</h4>
+              <p>
+                Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu.
+                Setiap perubahan akan dipublikasikan di halaman ini. Kami
+                menganjurkan Anda untuk meninjau kebijakan ini secara berkala.
+              </p>
+              <h4>Hubungi Kami</h4>
+              <p>
+                Jika Anda memiliki pertanyaan mengenai Kebijakan Privasi ini,
+                silakan hubungi kami melalui opsi Contact Us yang tersedia.
+              </p>
+            </div>
+          </div>
+        )}
+      </>
     );
-
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <>
-      <div className="footer-transition" />
-
-      <footer ref={footerRef} className="site-footer hidden-anim">
-        {/* WAVE TOP FOOTER */}
-        <svg
-          className="footer-wave"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="#8fc9f9"
-            d="M0,160 C240,80 480,220 720,190 960,160 1200,100 1440,140 L1440,0 L0,0 Z"
-          />
-        </svg>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-md-6">
-              <h6>About</h6>
-              <p className="text-justify">
-                <i>SI-RAJU</i> adalah sistem rekomendasi jurusan yang membantu
-                pengguna memilih jurusan yang tepat sesuai dengan minat, bakat,
-                dan kemampuan yang dimiliki melalui proses analisis data yang
-                sederhana, cepat, dan mudah dipahami, sehingga memudahkan
-                pengguna dalam mengambil keputusan pendidikan.
-              </p>
-            </div>
-
-            <div className="col-xs-6 col-md-3">
-              <h6>Categories</h6>
-              <ul className="footer-links">
-                <li>
-                  <a href="/quiz">Quiz</a>
-                </li>
-                <li>
-                  <a href="/about">About</a>
-                </li>
-                <li>
-                  <a href="/features">Features</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="col-xs-6 col-md-3">
-              <h6>Quick Links</h6>
-              <ul className="footer-links">
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">Contribute</a>
-                </li>
-                <li>
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li>
-                  <a href="#">Sitemap</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <hr />
-        </div>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 col-sm-6 col-xs-12">
-              <p className="copyright-text">
-                Copyright &copy; {new Date().getFullYear()} All Rights Reserved
-                by
-                <a href="#"> SI-RAJU</a>.
-              </p>
-            </div>
-
-            <div className="col-md-4 col-sm-6 col-xs-12 ">
-              <ul className="social-icons">
-                <li>
-                  <a className="facebook" href="#">
-                    <FacebookIcon />
-                  </a>
-                </li>
-                <li>
-                  <a className="twitter" href="#">
-                    <TwitterIcon />
-                  </a>
-                </li>
-                <li>
-                  <a className="instagram" href="#">
-                    <InstagramIcon />
-                  </a>
-                </li>
-                <li>
-                  <a className="github" href="#">
-                    <GithubIcon />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
-}
+  }

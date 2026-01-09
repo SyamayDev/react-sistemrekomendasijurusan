@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimateOnScroll from "../components/AnimateOnScroll";
 import AnimatedButton from "../components/AnimatedButton";
@@ -15,6 +15,7 @@ export default function Home() {
   const [percent, setPercent] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation(); // Added useLocation
 
   useEffect(() => {
     let start = 0;
@@ -26,6 +27,15 @@ export default function Home() {
     }, 18);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]); // Re-run effect when location changes
 
   const goToTest = () => navigate("/quiz");
 
@@ -85,7 +95,7 @@ export default function Home() {
 
       {/* FEATURES */}
       <AnimateOnScroll animationClass="slideInUp">
-        <section className="content-section">
+        <section id="features-section" className="content-section">
           <div className="container">
             <Features />
           </div>
