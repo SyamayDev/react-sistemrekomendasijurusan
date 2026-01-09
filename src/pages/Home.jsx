@@ -84,86 +84,93 @@ export default function Home() {
       </motion.main>
 
       {/* FEATURES */}
-      <section className="content-section">
-        <div className="container">
-          <Features />
-        </div>
-      </section>
+      <AnimateOnScroll animationClass="slideInUp">
+        <section className="content-section">
+          <div className="container">
+            <Features />
+          </div>
+        </section>
+      </AnimateOnScroll>
 
       {/* FAQ */}
-      <section className="faq-section content-section">
-        <div className="container">
-          <h2>Pertanyaan Umum (FAQ)</h2>
+      <AnimateOnScroll animationClass="slideInUp" delay={150}>
+        <section className="faq-section content-section">
+          <div className="container">
+            <h2>Pertanyaan Umum (FAQ)</h2>
 
-          <div className="faq-layout">
-            {/* OWL */}
-            <div className="faq-image">
-              <img src={owlAsk} alt="Burung hantu bertanya" />
-            </div>
+            <div className="faq-layout">
+              {/* OWL */}
+              <div className="faq-image">
+                <img src={owlAsk} alt="Burung hantu bertanya" />
+              </div>
 
-            {/* ACCORDION */}
-            <div className="faq-list">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className={`faq-item ${activeFaq === index ? "active" : ""}`}
-                >
-                  <button
-                    className="faq-question"
-                    onClick={() =>
-                      setActiveFaq(activeFaq === index ? null : index)
-                    }
+              {/* ACCORDION */}
+              <div className="faq-list">
+                {faqs.map((faq, index) => (
+                  <div
+                    key={index}
+                    className={`faq-item ${
+                      activeFaq === index ? "active" : ""
+                    }`}
                   >
-                    {faq.question}
-                    <span className="arrow">
-                      {activeFaq === index ? "−" : "+"}
-                    </span>
-                  </button>
+                    <button
+                      className="faq-question"
+                      onClick={() =>
+                        setActiveFaq(activeFaq === index ? null : index)
+                      }
+                    >
+                      {faq.question}
+                      <span className="arrow">
+                        {activeFaq === index ? "−" : "+"}
+                      </span>
+                    </button>
 
-                  <AnimatePresence>
-                    {activeFaq === index && (
-                      <motion.div
-                        className="faq-answer"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: "easeInOut" }}
-                      >
-                        <p>{faq.answer}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+                    <AnimatePresence>
+                      {activeFaq === index && (
+                        <motion.div
+                          className="faq-answer"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: "easeInOut" }}
+                        >
+                          <p>{faq.answer}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
 
       {/* GUIDE */}
-      <section className="content-section">
-        <div className="container">
-          <div className="guide-layout">
-            {/* TEKS */}
-            <div className="guide-content">
-              <h2>Kurang Puas?</h2>
-              <p>
-                Hasil yang kamu dapatkan merupakan rekomendasi berdasarkan tes
-                minat dan bakat yang kamu isi, sehingga tidak bersifat sebagai
-                keputusan mutlak. Rekomendasi ini dapat digunakan sebagai bahan
-                pertimbangan dan diskusi bersama guru, konselor, atau orang tua
-                sebelum menentukan pilihan akhir.
-              </p>
-            </div>
+      <AnimateOnScroll animationClass="slideInUp" delay={150}>
+        <section className="content-section">
+          <div className="container">
+            <div className="guide-layout">
+              {/* TEKS */}
+              <div className="guide-content">
+                <h2>Kurang Puas?</h2>
+                <p>
+                  Hasil yang kamu dapatkan merupakan rekomendasi berdasarkan tes
+                  minat dan bakat yang kamu isi, sehingga tidak bersifat sebagai
+                  keputusan mutlak. Rekomendasi ini dapat digunakan sebagai bahan
+                  pertimbangan dan diskusi bersama guru, konselor, atau orang tua
+                  sebelum menentukan pilihan akhir.
+                </p>
+              </div>
 
-            {/* GAMBAR */}
-            <div className="guide-image">
-              <img src={kurangPuas} alt="Burung hantu kurang puas" />
+              {/* GAMBAR */}
+              <div className="guide-image">
+                <img src={kurangPuas} alt="Burung hantu kurang puas" />
+              </div>
             </div>
-            
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimateOnScroll>
     </>
   );
 }

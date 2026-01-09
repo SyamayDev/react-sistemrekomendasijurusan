@@ -1,41 +1,72 @@
 .share-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .share-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1.4rem;
-    border-radius: 10px;
-    border: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 /* Tombol Bagikan - Biru Muda */
 .share-btn.primary-blue {
-    background: #e0f2fe;
-    color: #0369a1;
-    border: 1px solid #bae6fd;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
 }
 
 .share-btn.primary-blue:hover {
-    background: #bae6fd;
+  background: #bae6fd;
 }
 
 /* Tombol Salin Link - Minimalis */
 .share-btn.secondary-outline {
-    background: transparent;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
+  background: transparent;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
 }
 
 .share-btn.secondary-outline:hover {
-    background: #f1f5f9;
-    color: #1e293b;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+/* Improved toast styling */
+.toast-notif {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #0369a1, #06b6d4);
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.35);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.toast-notif strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.toast-notif .toast-sub {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Slight variation class kept for backwards compatibility */
+.toast-improved {
 }

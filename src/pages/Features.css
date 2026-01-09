@@ -17,10 +17,10 @@
 }
 
 .cara-kerja-separator {
-  width: 60px;
+  width: 100px;
   height: 4px;
   background: #2f53bf;
-  margin: 0 auto 60px;
+  margin: 0 auto 100px;
   border-radius: 2px;
 }
 

@@ -1,46 +1,34 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from "react";
+import { motion } from "framer-motion";
 
-export default function AnimateOnScroll({ children, animationClass, delay = 0, threshold = 0.1, ...rest }) {
-  const [isVisible, setVisible] = useState(false);
-  const domRef = useRef();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            // Optionally, unobserve after animation if it's a one-time thing
-            observer.unobserve(domRef.current);
-          }
-        });
-      },
-      {
-        threshold: threshold,
-        rootMargin: '0px 0px -10% 0px' // Trigger a bit before it's fully in view
-      }
-    );
-
-    const currentRef = domRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [threshold]);
+export default function AnimateOnScroll({
+  children,
+  delay = 0,
+  threshold = 0.15,
+  once = true,
+  className = "",
+  ...rest
+}) {
+  const variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <div
-      ref={domRef}
-      className={`${isVisible ? animationClass : 'hidden-anim'}`}
-      style={{ animationDelay: `${delay}ms` }}
+    <motion.div
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, amount: threshold }}
+      transition={{
+        duration: 1.2,
+        ease: [0.22, 1, 1.86, 1],
+        delay: delay / 1000,
+      }}
+      variants={variants}
       {...rest}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
