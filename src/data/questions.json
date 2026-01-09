@@ -69,12 +69,15 @@
   },
   {
     "id": "q5",
-    "tipe": "yesno",
-    "pertanyaan": "Apakah Anda lebih suka pekerjaan yang menawarkan kestabilan dan rutinitas yang jelas?",
+    "tipe": "scale",
+    "pertanyaan": "Seberapa suka Anda pekerjaan yang stabil dan memiliki rutinitas yang jelas? (1: Sangat tidak suka, 5: Sangat suka)",
     "kategori": "kebiasaan",
     "opsi": [
-      { "label": "Ya, saya suka keteraturan", "value": 1 },
-      { "label": "Tidak, saya suka tantangan dan hal baru", "value": -1 }
+      { "label": "1", "value": 1 },
+      { "label": "2", "value": 2 },
+      { "label": "3", "value": 3 },
+      { "label": "4", "value": 4 },
+      { "label": "5", "value": 5 }
     ],
     "bobot_jurusan": {
       "m4": 0.6, "m8": 0.9, "m56": 0.8, "m59": 0.9, "m84": 1.0, "m117": 1.0, "m127": 0.9, "m141": 1.0, "m143": 0.9, "m149": 0.9,

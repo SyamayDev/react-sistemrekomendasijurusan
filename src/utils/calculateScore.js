@@ -40,21 +40,25 @@ export function calculateScore(answers, questions, majors) {
       // or if the weight for this major is zero.
       if (q.tipe === "text" || w === 0) return;
 
-      let selValue = 0; // `selValue` will store the numerical value of the user's answer.
-      if (q.tipe === "yesno" || q.tipe === "multiple" || q.tipe === "scale") {
-        if (response == null) return; // If no response, skip.
-        selValue =
-          typeof response === "number"
-            ? response // Direct number value for scale
-            : response && response.value != null
-            ? response.value // Value from selected option for yesno/multiple
-            : 0;
-      } else if (q.tipe === "checkbox") {
-        if (!Array.isArray(response)) return; // If no array response, skip.
-        // For checkbox, `selValue` is the sum of values of all selected options.
-        selValue = response.reduce((s, r) => s + (r.value || 0), 0);
-      }
-
+                let selValue = 0; // `selValue` will store the numerical value of the user's answer.
+                if (
+                  q.tipe === "yesno" ||
+                  q.tipe === "multiple" ||
+                  q.tipe === "scale" ||
+                  q.tipe === "radio"
+                ) {
+                  if (response == null) return; // If no response, skip.
+                  selValue =
+                    typeof response === "number"
+                      ? response // Direct number value for scale
+                      : response && response.value != null
+                      ? response.value // Value from selected option for yesno/multiple
+                      : 0;
+                } else if (q.tipe === "checkbox") {
+                  if (!Array.isArray(response)) return; // If no array response, skip.
+                  // For checkbox, `selValue` is the sum of values of all selected options.
+                  selValue = response.reduce((s, r) => s + (r.value || 0), 0);
+                }
       // Calculate `ratio` to normalize the user's answer (selValue) based on the question's maximum option value (maxOpt).
       // This ensures that answers are scaled to a 0-1 range.
       // Avoid division by zero: if `maxOpt` is zero, the contribution is zero.
