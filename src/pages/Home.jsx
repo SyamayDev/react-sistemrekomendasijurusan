@@ -11,7 +11,6 @@ import heroesIllustration from "../assets/bottom-main-image.png";
 import owlAsk from "../assets/owl-ask.png";
 import kurangPuas from "../assets/kurang-puas.png";
 
-
 export default function Home() {
   const [percent, setPercent] = useState(0);
   const [activeFaq, setActiveFaq] = useState(null);
@@ -108,9 +107,7 @@ export default function Home() {
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className={`faq-item ${
-                    activeFaq === index ? "active" : ""
-                  }`}
+                  className={`faq-item ${activeFaq === index ? "active" : ""}`}
                 >
                   <button
                     className="faq-question"
@@ -148,17 +145,21 @@ export default function Home() {
       <section className="content-section">
         <div className="container">
           <div className="guide-layout">
-            <div className="guide-image">
-              <img src={kurangPuas} alt="Burung hantu bingung" />
-            </div>
-
+            {/* TEKS */}
             <div className="guide-content">
               <h2>Kurang Puas?</h2>
               <p>
-                Hasil yang kamu dapatkan adalah rekomendasi, bukan keputusan
-                mutlak. Gunakan sebagai bahan diskusi dengan guru, konselor,
-                atau orang tua sebelum menentukan pilihan akhir.
+                Hasil yang kamu dapatkan merupakan rekomendasi berdasarkan tes
+                minat dan bakat yang kamu isi, sehingga tidak bersifat sebagai
+                keputusan mutlak. Rekomendasi ini dapat digunakan sebagai bahan
+                pertimbangan dan diskusi bersama guru, konselor, atau orang tua
+                sebelum menentukan pilihan akhir.
               </p>
+            </div>
+
+            {/* GAMBAR */}
+            <div className="guide-image">
+              <img src={kurangPuas} alt="Burung hantu kurang puas" />
             </div>
           </div>
         </div>

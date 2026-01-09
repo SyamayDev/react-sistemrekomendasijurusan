@@ -1,28 +1,52 @@
-/* Percentage Bar Styles */
-.pct-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.pct-label {
-  font-weight: 600;
-  color: var(--text-color);
-  flex-basis: 45px;
-  text-align: right;
+/* PercentageBar.css */
+.pct-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .pct-track {
-  flex-grow: 1;
-  height: 12px;
-  background-color: var(--border-color);
-  border-radius: var(--border-radius);
-  overflow: hidden;
+    flex-grow: 1;
+    height: 10px;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
 }
 
 .pct-fill {
-  height: 100%;
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius);
-  transition: width 0.5s ease-in-out;
+    height: 100%;
+    border-radius: 20px;
+    position: relative;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pct-fill.high { background: linear-gradient(90deg, #4f46e5, #818cf8); }
+.pct-fill.med { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.pct-fill.low { background: linear-gradient(90deg, #64748b, #94a3b8); }
+
+/* Efek kilauan bergerak */
+.shine-effect {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    transform: skewX(-20deg) translateX(-150%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% { transform: skewX(-20deg) translateX(200%); }
+}
+
+.pct-label {
+    font-weight: 700;
+    color: var(--text-main);
+    width: 3rem;
+    text-align: right;
 }

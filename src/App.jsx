@@ -5,7 +5,6 @@ import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import About from "./pages/About";
 import Features from "./pages/Features";
-import WaveBackground from "./components/WaveBackground";
 import Footer from "./components/Footer";
 
 function AppContent() {
@@ -14,7 +13,6 @@ function AppContent() {
 
   return (
     <>
-      <WaveBackground />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

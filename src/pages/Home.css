@@ -390,11 +390,11 @@ textarea {
 .landing-container::after {
   content: "";
   position: absolute;
-  bottom: -180px; /* Naikkan lebih tinggi untuk nyambung ke putih */
+  bottom: -220px; /* Diturunkan lebih rendah agar ombak tidak putus */
   left: 50%;
   transform: translateX(-50%);
   width: 200%; /* Lebih lebar untuk smooth */
-  height: 280px; /* Lebih tinggi */
+  height: 320px; /* Lebih tinggi untuk smooth */
   background: #ffffff;
   border-radius: 50%;
   z-index: 0;
@@ -526,9 +526,15 @@ section {
 }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .faq-list {
@@ -541,7 +547,7 @@ section {
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .faq-question {
@@ -581,7 +587,7 @@ section {
 /* ===== GUIDE ===== */
 .guide-layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 1fr 240px;
   gap: 3rem;
   align-items: center;
   background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
@@ -590,9 +596,20 @@ section {
   margin-top: 5rem;
 }
 
+
+
+
+.guide-image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
 .guide-image img {
   max-width: 200px;
   animation: float 4s ease-in-out infinite;
+  
 }
 
 .guide-content h2 {
@@ -603,9 +620,9 @@ section {
 .guide-content p {
   font-size: 16px;
   line-height: 1.8;
+  text-align: center;
   color: #334155;
 }
-
 
 /* Responsive Adjustments - Lebih detail */
 @media (max-width: 1200px) {
@@ -697,10 +714,14 @@ section {
     padding: 1rem;
   }
 
-    .faq-layout,
-  .guide-layout {
+  .faq-layout,
+   .guide-layout {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .guide-image {
+    justify-content: center;
   }
 
   .faq-question {

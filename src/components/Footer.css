@@ -31,6 +31,14 @@
     background-position: 1440px;
   }
 }
+@keyframes waveMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
 .site-footer .container {
   max-width: 1200px;
@@ -55,6 +63,11 @@
   width: 25%;
   padding: 0 15px;
 }
+
+.footer-about {
+  flex: 2;
+}
+
 
 .site-footer hr {
   border-top-color: #bbb;
@@ -90,8 +103,10 @@
 }
 
 .footer-links a:hover {
-  color: #ffffff;
+  color: #1e3a8a;
+  text-decoration: underline;
 }
+
 
 .site-footer .social-icons {
   text-align: right;
@@ -150,6 +165,17 @@
   background-color: #333;
 }
 
+.hidden-anim {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.show-anim {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 991px) {
   .site-footer .col-sm-12.col-md-6,
   .site-footer .col-xs-6.col-md-3 {
@@ -170,7 +196,23 @@
   .site-footer .col-xs-6.col-md-3 {
     width: 100%;
   }
+
   .site-footer .social-icons {
+    text-align: center; /* Memastikan teks di dalam container ke tengah */
     margin-top: 20px;
+    padding-left: 0; /* Menghapus padding default ul */
+    display: flex; /* Menggunakan flexbox untuk mempermudah perataan */
+    justify-content: center; /* Menyelaraskan item flex ke tengah */
+    flex-wrap: wrap; /* Menjaga agar ikon tidak berantakan jika layar sangat kecil */
+    gap: 10px; /* Memberi jarak antar ikon secara otomatis */
+  }
+
+  .social-icons li {
+    display: inline-block;
+    margin: 0; /* Menghapus margin default agar tidak offset */
+  }
+  
+  .social-icons a {
+    margin-right: 0; /* Menghapus margin kanan agar tidak miring ke kiri */
   }
 }

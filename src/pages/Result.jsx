@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import ResultHighlight from "../components/ResultHighlight";
 import ResultList from "../components/ResultList";
-import { generateInsight } from "../utils/generateInsight";
 import ShareResult from "../components/ShareResult";
+import { generateInsight } from "../utils/generateInsight";
 import './Result.css';
 
 export default function Result({ resultState }) {
@@ -13,58 +13,69 @@ export default function Result({ resultState }) {
 
   if (!data)
     return (
-      <div className="container">
-        <div className="empty card">
-            <h2>Hasil Tidak Ditemukan</h2>
-            <p>
-                Kami tidak dapat menemukan hasil tes Anda. Silakan kembali ke halaman utama dan ikuti tes untuk melihat rekomendasi jurusan.
+      <div className="result-page">
+        <div className="empty-state animate-enter">
+            <h2>⚠️ Hasil Tidak Ditemukan</h2>
+            <p style={{color: '#64748b'}}>
+                Maaf, data tes Anda belum tersedia. Silakan ikuti tes ulang.
             </p>
+            <Link to="/" className="btn-explore" style={{marginTop: '1.5rem', display: 'inline-block', textDecoration: 'none'}}>
+                Kembali ke Beranda
+            </Link>
         </div>
       </div>
     );
 
   const top3 = data.ranked.slice(0, 3);
+  const podiumOrder = [top3[1], top3[0], top3[2]].filter(Boolean);
 
   return (
-    <div className="result-page container">
-      <div className="animate-fade-in">
-        <h2>Hasil Rekomendasi Jurusan Anda</h2>
-        <ShareResult />
-      </div>
+    <div className="result-page">
+      <header className="result-header animate-enter">
+        <h2>Peta Masa Depanmu</h2>
+        <p style={{ color: 'var(--text-muted)' }}>Analisis akurat berdasarkan minat, bakat, dan karakter unikmu.</p>
+        <div style={{ marginTop: '2rem' }}>
+             <ShareResult />
+        </div>
+      </header>
       
-      <section className="top-recos">
-        {top3.map((m, index) => (
-          <div key={m.id} className="animate-slide-in-up" style={{ animationDelay: `${index * 150}ms` }}>
-            <ResultHighlight
-              major={m}
-              score={m.score}
-              insight={generateInsight(m.nama_jurusan)}
-              rank={index + 1}
-            />
-          </div>
-        ))}
-      </section>
+<section className="top-recos">
+  {top3.map((m, index) => (
+    <div 
+      key={m.id} 
+      className={`animate-enter reco-card-wrapper rank-${index + 1}`} 
+      style={{ animationDelay: `${index * 150}ms` }}
+    >
+      <ResultHighlight
+        major={m}
+        score={m.score}
+        insight={generateInsight(m.nama_jurusan)}
+        rank={index + 1} // Index 0 jadi Rank 1, dst.
+      />
+    </div>
+  ))}
+</section>
 
       {!showAllMajors && (
-        <div className="show-more-button-container">
-          <button className="button-primary" onClick={() => setShowAllMajors(true)}>
-            Lihat Rekomendasi Jurusan Lainnya
+        <div className="show-more-container animate-enter" style={{ animationDelay: '500ms' }}>
+          <button className="btn-explore" onClick={() => setShowAllMajors(true)}>
+            🔍 Jelajahi Semua Opsi Jurusan
           </button>
         </div>
       )}
 
       {showAllMajors && (
-        <section className="all-list animate-fade-in" style={{ animationDelay: '600ms' }}>
-          <h3>Perbandingan Seluruh Jurusan</h3>
+        <section className="container-glass animate-enter">
+          <h3 className="section-title">Analisis Lengkap</h3>
           <ResultList list={data.ranked} />
         </section>
       )}
 
-      <section className="interpretation animate-fade-in" style={{ animationDelay: '800ms' }}>
-        <h4>Interpretasi Akademik</h4>
-        <p>
-          Persentase menunjukkan tingkat kecocokan profil pengguna dengan
-          karakteristik jurusan berdasarkan hobi, kebiasaan, dan karakter.
+      <section className="container-glass animate-enter" style={{ animationDelay: '600ms' }}>
+        <h3 className="section-title">Interpretasi Akademik</h3>
+        <p style={{ lineHeight: '1.7', color: 'var(--text-muted)' }}>
+          Angka persentase merepresentasikan <strong>Algorithmic Affinity Score</strong>. 
+          Semakin tinggi angkanya, semakin natural jurusan tersebut bagi pola pikir dan karakter bawah sadar Anda.
         </p>
       </section>
     </div>

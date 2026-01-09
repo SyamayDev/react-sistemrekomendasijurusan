@@ -96,5 +96,47 @@
     "kategori": "Seni",
     "deskripsi": "Mendesain dan menata ruang interior agar fungsional dan estetis.",
     "karakter_cocok": ["kreatif", "visual", "detail-oriented"]
+  },
+  {
+    "id": "m15",
+    "nama_jurusan": "Hukum",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari sistem perundang-undangan, keadilan, dan hak asasi manusia.",
+    "karakter_cocok": ["analitis", "logis", "komunikatif", "teliti"]
+  },
+  {
+    "id": "m16",
+    "nama_jurusan": "Farmasi",
+    "kategori": "Kesehatan",
+    "deskripsi": "Meneliti, mengembangkan, dan memproduksi obat-obatan serta terapi kesehatan.",
+    "karakter_cocok": ["teliti", "analitis", "problem-solver"]
+  },
+  {
+    "id": "m17",
+    "nama_jurusan": "Hubungan Internasional",
+    "kategori": "Sosial",
+    "deskripsi": "Studi tentang hubungan antarnegara, diplomasi, dan isu-isu global.",
+    "karakter_cocok": ["komunikatif", "analitis", "strategis", "observasional"]
+  },
+  {
+    "id": "m18",
+    "nama_jurusan": "Teknik Sipil",
+    "kategori": "STEM",
+    "deskripsi": "Merancang, membangun, dan memelihara infrastruktur seperti gedung dan jalan.",
+    "karakter_cocok": ["logis", "problem-solver", "terstruktur", "detail-oriented"]
+  },
+  {
+    "id": "m19",
+    "nama_jurusan": "Seni Rupa Murni",
+    "kategori": "Seni",
+    "deskripsi": "Menciptakan karya seni visual melalui berbagai media dan teknik.",
+    "karakter_cocok": ["kreatif", "ekspresif", "visual", "mandiri"]
+  },
+  {
+    "id": "m20",
+    "nama_jurusan": "Ilmu Sejarah",
+    "kategori": "Humaniora",
+    "deskripsi": "Menganalisis peristiwa masa lalu, dampaknya, dan interpretasi historis.",
+    "karakter_cocok": ["analitis", "observasional", "teliti", "penulis"]
   }
 ]

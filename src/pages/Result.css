@@ -1,83 +1,178 @@
-/* Result Page Styles */
-.result-page {
-  width: 90%;
-  max-width: 1200px; /* Increased max-width for more spacious layout */
-  margin: 2rem auto;
-  padding: 0 1rem; /* Add some horizontal padding */
+/* --- Variables & Reset --- */
+:root {
+  --primary: #0ea5e9; /* Biru Muda Cerah */
+  --primary-dark: #0284c7;
+  --secondary: #38bdf8; /* Biru Langit */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --glass-border: rgba(226, 232, 240, 0.8);
 }
 
-.result-page h2, .result-page h3 {
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+}
+
+/* --- Layout --- */
+.result-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* Header */
+.result-header {
   text-align: center;
-  margin-bottom: 2.5rem; /* Increased margin for better separation */
-  color: var(--heading-color);
+  margin-bottom: 3rem;
+}
+
+.result-header h2 {
+  font-size: 2.5rem;
+  /* Gradasi Biru Muda yang Elegan */
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 .top-recos {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column; /* Di HP: Berurutan ke bawah (1, 2, 3) */
   gap: 2rem;
   margin-bottom: 4rem;
-  align-items: stretch; /* Ensure cards in grid have equal height */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 850px) {
   .top-recos {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-items: end; /* Agar Juara 1 yang lebih tinggi terlihat menonjol ke atas */
   }
+
+  /* Logika Podium untuk Desktop: Juara 2 (kiri), Juara 1 (tengah), Juara 3 (kanan) */
+  .reco-card-wrapper.rank-1 { order: 2; } /* Juara 1 di tengah */
+  .reco-card-wrapper.rank-2 { order: 1; } /* Juara 2 di kiri */
+  .reco-card-wrapper.rank-3 { order: 3; } /* Juara 3 di kanan */
 }
 
-.all-list {
-  margin-bottom: 3rem;
-  animation: fadeIn 0.5s ease-out forwards; /* Added fade-in animation */
-}
-
-.all-list h3 {
-  margin-top: 3rem; /* Add margin above the heading for the list */
-}
-
-.interpretation {
-  background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow); /* Added shadow for consistency */
+.container-glass {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
   padding: 2rem;
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
-.interpretation h4 {
-  margin-top: 0;
-  margin-bottom: 1rem; /* Adjusted margin */
-  color: var(--heading-color);
-  font-size: 1.2rem;
+.section-title {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.empty {
-    text-align: center;
-    padding: 4rem 1rem;
-    font-size: 1.2rem;
-    color: var(--secondary-color);
+.section-title::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 4px;
 }
 
-.show-more-button-container {
-  text-align: center;
-  margin-bottom: 3rem;
+/* Button Jelajahi - Animasi Modern & Warna Biru */
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
 }
 
-.button-primary {
-  background-color: var(--primary-color);
+.btn-explore {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   border: none;
-  border-radius: var(--border-radius);
+  font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease; /* Use CSS variable */
-  box-shadow: var(--shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
 }
 
-.button-primary:hover {
-  background-color: var(--primary-hover); /* Use CSS variable */
-  transform: translateY(-2px); /* Subtle lift on hover */
+.btn-explore:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
+}
+
+.btn-explore:active {
+  transform: translateY(0);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: white;
+  border-radius: var(--radius);
+}
+
+/* --- QR Section --- */
+.qrcode-wrapper {
+  text-align: center;
+  background: #f1f5f9;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px dashed #cbd5e1;
+}
+
+.qr-image {
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  margin-top: 1rem;
+}
+
+/* --- Animations --- */
+.animate-enter {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast Notification Styles */
+.toast-notif {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  z-index: 9999;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 2rem; opacity: 1; }
 }
