@@ -1,0 +1,181 @@
+/* Global CSS variables from user provided code, adjusted to fit existing */
+:root {
+	--hue-primary: 213deg;
+	--hue-secondary: 183deg;
+	--hue-tertiary: 63deg;
+	--white: hsl(0 0% 100%);
+	--gray1: hsl(var(--hue-primary) 10% 95%);
+	--gray2: hsl(var(--hue-primary) 10% 85%);
+	--gray9: hsl(var(--hue-primary) 10% 15%);
+	--gray10: hsl(var(--hue-primary) 10% 5%);
+	--primary5: hsl(var(--hue-primary) 90% 55%);
+	--primary6: hsl(var(--hue-primary) 90% 45%);
+	--secondary5-00: hsl(var(--hue-secondary) 90% 55% / 0);
+	--secondary6: hsl(var(--hue-secondary) 90% 45%);
+	--tertiary6: hsl(var(--hue-tertiary) 90% 45%);
+	--trans-dur: 0.3s;
+}
+
+/* Preloader specific styles */
+.pl {
+	--anim-dur: 4s;
+	display: block;
+	width: 18em;
+	height: auto;
+  position: fixed; /* Keep it centered and on top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Ensure it's above other content */
+}
+
+.pl__bar,
+.pl__blob,
+.pl__circle,
+.pl__worm {
+	animation-duration: var(--anim-dur);
+	animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+	animation-iteration-count: infinite;
+}
+
+.pl__bar {
+	animation-name: bar-full;
+	animation-delay: calc(var(--anim-dur) * -0.4375);
+}
+
+.pl__bar--1,
+.pl__bar--2 {
+	animation-name: bar-half;
+}
+
+.pl__bar--1 {
+	animation-delay: calc(var(--anim-dur) * -0.325);
+}
+
+.pl__bar--2 {
+	animation-delay: calc(var(--anim-dur) * -0.2375);
+}
+
+.pl__blob {
+	animation-name: blob-spin;
+	animation-timing-function: linear;
+}
+
+.pl__circle {
+	animation-name: circle-pulse-063;
+}
+
+.pl__circle--1 {
+	animation-name: circle-pulse-072;
+	animation-delay: calc(var(--anim-dur) * -0.975);
+}
+
+.pl__circle--2 {
+	animation-name: circle-pulse-069;
+	animation-delay: calc(var(--anim-dur) * -0.9125);
+}
+
+.pl__circle-group {
+	transition:
+		transform calc(var(--anim-dur) * 0.125) cubic-bezier(0.32, 0, 0.67, 0),
+		visibility calc(var(--anim-dur) * 0.125) step-end;
+}
+
+.pl__circle-group--shrink {
+	transform: scale(0);
+	visibility: hidden;
+}
+
+.pl__ray {
+	transform: translate(0) scaleY(0);
+	transition:
+		transform calc(var(--anim-dur) * 0.35) cubic-bezier(0.33, 1, 0.68, 1),
+		visibility calc(var(--anim-dur) * 0.35) step-start;
+	visibility: hidden;
+}
+
+.pl__worm {
+	animation-name: worm-move;
+	animation-timing-function: cubic-bezier(0.37, 0.25, 0.63, 0.75);
+}
+
+/* animations */
+@keyframes fade-slide-in {
+	0% {
+		opacity: 0;
+		transform: translateY(25%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes bar-full {
+	0%, 25%, 50%, 75%, 100% {
+		transform: translateY(0);
+	}
+	12.5%, 37.5%, 62.5%, 87.5% {
+		transform: translateY(36px);
+	}
+}
+
+@keyframes bar-half {
+	0%, 25%, 50%, 75%, 100% {
+		transform: translateY(19px);
+	}
+	12.5%, 37.5%, 62.5%, 87.5% {
+		transform: translateY(36px);
+	}
+}
+
+@keyframes blob-spin {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+@keyframes circle-pulse-063 {
+	0%, 50%, 100% {
+		transform: scale(1);
+	}
+	25%, 75% {
+		transform: scale(0.63);
+	}
+}
+
+@keyframes circle-pulse-069 {
+	0%, 50%, 100% {
+		transform: scale(1);
+	}
+	25%, 75% {
+		transform: scale(0.69);
+	}
+}
+
+@keyframes circle-pulse-072 {
+	0%, 50%, 100% {
+		transform: scale(1);
+	}
+	25%, 75% {
+		transform: scale(0.72);
+	}
+}
+
+@keyframes worm-move {
+	0% {
+		transform: rotate(0);
+	}
+	33.33% {
+		transform: rotate(1turn);
+	}
+	66.67% {
+		transform: rotate(2turn);
+	}
+	100% {
+		transform: rotate(3turn);
+	}
+}

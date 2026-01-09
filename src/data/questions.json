@@ -2,8 +2,8 @@
   {
     "id": "q1",
     "tipe": "scale",
-    "pertanyaan": "Seberapa tertarik Anda mempelajari teknologi dan membuat hal baru dengan kode? (1-5)",
-    "kategori": "hobi",
+    "pertanyaan": "Seberapa tertarik Anda mempelajari hal baru dan memecahkan masalah kompleks? (1-5)",
+    "kategori": "karakter",
     "opsi": [
       { "label": "1", "value": 1 },
       { "label": "2", "value": 2 },
@@ -11,12 +11,14 @@
       { "label": "4", "value": 4 },
       { "label": "5", "value": 5 }
     ],
-    "bobot_jurusan": { "m1": 1.0, "m3": 0.2, "m6": 0.1, "m7": 0.9, "m8": 0.8 }
+    "bobot_jurusan": {
+      "m1": 1.0, "m6": 0.9, "m8": 0.8, "m10": 0.9, "m13": 0.9, "m16": 0.9, "m18": 0.95, "m24": 1.0, "m26": 0.95, "m28": 1.0
+    }
   },
   {
     "id": "q2",
     "tipe": "scale",
-    "pertanyaan": "Seberapa suka Anda bekerja dalam tim atau memimpin kelompok kecil? (1-5)",
+    "pertanyaan": "Seberapa suka Anda bekerja dalam tim atau memimpin kelompok? (1-5)",
     "kategori": "kebiasaan",
     "opsi": [
       { "label": "1", "value": 1 },
@@ -25,58 +27,70 @@
       { "label": "4", "value": 4 },
       { "label": "5", "value": 5 }
     ],
-    "bobot_jurusan": { "m2": 0.9, "m4": 1.0, "m5": 0.8, "m9": 0.95 }
+    "bobot_jurusan": {
+      "m2": 0.9, "m4": 1.0, "m5": 0.8, "m9": 0.95, "m17": 0.9, "m21": 0.8
+    }
   },
   {
     "id": "q3",
     "tipe": "radio",
-    "pertanyaan": "Aktivitas yang paling Anda nikmati:",
+    "pertanyaan": "Jenis aktivitas yang paling Anda nikmati:",
     "kategori": "hobi",
     "opsi": [
-      { "label": "Membuat aplikasi / coding", "value": 5 },
-      { "label": "Menganalisis perilaku orang", "value": 5 },
-      { "label": "Mendesain poster / visual", "value": 5 },
-      { "label": "Mengorganisir acara", "value": 4 },
-      { "label": "Menulis dan berbicara di depan umum", "value": 4 }
+      { "label": "Menciptakan sesuatu dengan tangan atau alat", "value": 5 },
+      { "label": "Menganalisis data atau informasi", "value": 5 },
+      { "label": "Berinteraksi dan berkomunikasi dengan orang lain", "value": 5 },
+      { "label": "Mengorganisir dan merencanakan", "value": 4 },
+      { "label": "Mengekspresikan diri melalui seni", "value": 4 }
     ],
-    "bobot_jurusan": { "m1": 1.0, "m2": 0.9, "m3": 0.95, "m4": 0.7, "m5": 0.85, "m7": 0.9, "m10": 0.9 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.8, "m3": 0.95, "m4": 0.8, "m5": 0.9, "m7": 0.9, "m10": 0.85, "m14": 0.95, "m19": 1.0, "m21": 0.85, "m22": 0.9, "m24": 0.9, "m28": 0.9
+    }
   },
   {
     "id": "q4",
     "tipe": "checkbox",
-    "pertanyaan": "Pilih beberapa sifat yang paling menggambarkan Anda:",
+    "pertanyaan": "Pilih beberapa sifat yang paling menggambarkan diri Anda:",
     "kategori": "karakter",
     "opsi": [
       { "label": "Analitis", "value": 3 },
-      { "label": "Empatik", "value": 3 },
+      { "label": "Empati", "value": 3 },
       { "label": "Kreatif", "value": 3 },
       { "label": "Terorganisir", "value": 3 },
-      { "label": "Berani berbicara", "value": 2 }
+      { "label": "Teliti", "value": 3 },
+      { "label": "Komunikatif", "value": 3 }
     ],
-    "bobot_jurusan": { "m1": 0.8, "m2": 0.95, "m3": 0.9, "m4": 0.85, "m5": 0.9, "m6": 0.8, "m10": 0.8 }
+    "bobot_jurusan": {
+      "m1": 0.8, "m2": 0.95, "m3": 0.9, "m4": 0.85, "m5": 0.9, "m6": 0.95, "m7": 0.8, "m8": 0.9, "m9": 0.9, "m10": 0.85, "m11": 0.8, "m12": 0.85, "m13": 0.9, "m14": 0.85, "m15": 0.95, "m16": 0.9, "m17": 0.85, "m18": 0.9, "m19": 0.7, "m20": 0.9, "m21": 0.85, "m22": 0.8, "m23": 0.9, "m24": 0.9, "m25": 0.8, "m26": 0.95, "m27": 0.9, "m28": 0.95
+    }
   },
   {
     "id": "q5",
     "tipe": "yesno",
-    "pertanyaan": "Apakah Anda nyaman bekerja dengan angka, statistik, atau analisis data?",
+    "pertanyaan": "Apakah Anda nyaman bekerja dengan angka, statistik, atau data yang rumit?",
     "kategori": "kebiasaan",
     "opsi": [
       { "label": "Ya", "value": 1 },
       { "label": "Tidak", "value": 0 }
     ],
-    "bobot_jurusan": { "m1": 0.9, "m6": 0.95, "m7": 0.8, "m8": 1.0 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m6": 1.0, "m8": 0.95, "m10": 0.8, "m16": 0.9, "m26": 1.0, "m28": 1.0
+    }
   },
   {
     "id": "q6",
     "tipe": "radio",
-    "pertanyaan": "Media pembelajaran yang Anda sukai:",
+    "pertanyaan": "Gaya belajar yang paling Anda sukai:",
     "kategori": "kebiasaan",
     "opsi": [
-      { "label": "Praktik langsung / proyek", "value": 5 },
-      { "label": "Teori dan bacaan", "value": 4 },
-      { "label": "Diskusi dan presentasi", "value": 4 }
+      { "label": "Praktik langsung / eksperimen", "value": 5 },
+      { "label": "Membaca dan mendengarkan ceramah", "value": 4 },
+      { "label": "Diskusi kelompok dan presentasi", "value": 4 },
+      { "label": "Belajar mandiri melalui riset", "value": 4 }
     ],
-    "bobot_jurusan": { "m1": 0.9, "m2": 0.8, "m3": 0.85, "m4": 0.75, "m5": 0.9, "m7": 0.9, "m9": 0.85 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.8, "m3": 0.85, "m4": 0.75, "m5": 0.9, "m7": 0.9, "m9": 0.85, "m10": 0.8, "m13": 0.85, "m16": 0.85, "m18": 0.9, "m24": 0.9, "m25": 0.8, "m27": 0.8
+    }
   },
   {
     "id": "q7",
@@ -89,8 +103,8 @@
   {
     "id": "q8",
     "tipe": "scale",
-    "pertanyaan": "Seberapa suka Anda menganalisis data untuk menemukan pola atau solusi? (1-5)",
-    "kategori": "hobi",
+    "pertanyaan": "Seberapa suka Anda menganalisis situasi untuk menemukan akar masalah? (1-5)",
+    "kategori": "karakter",
     "opsi": [
       { "label": "1", "value": 1 },
       { "label": "2", "value": 2 },
@@ -98,20 +112,25 @@
       { "label": "4", "value": 4 },
       { "label": "5", "value": 5 }
     ],
-    "bobot_jurusan": { "m1": 0.8, "m6": 1.0, "m8": 0.9, "m7": 0.85 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.8, "m6": 1.0, "m8": 0.9, "m9": 0.8, "m10": 0.95, "m13": 0.95, "m15": 0.9, "m16": 0.95, "m18": 0.9, "m20": 0.85, "m23": 0.95, "m24": 0.9, "m26": 1.0, "m27": 0.95, "m28": 1.0
+    }
   },
   {
     "id": "q9",
     "tipe": "radio",
-    "pertanyaan": "Topik yang menarik minat Anda:",
+    "pertanyaan": "Bidang studi atau topik yang paling menarik perhatian Anda:",
     "kategori": "minat",
     "opsi": [
-      { "label": "Kesehatan mental", "value": 5 },
+      { "label": "Teknologi dan inovasi", "value": 5 },
+      { "label": "Masyarakat dan budaya", "value": 5 },
       { "label": "Bisnis dan ekonomi", "value": 5 },
-      { "label": "Lingkungan dan keberlanjutan", "value": 5 },
-      { "label": "Sejarah dan budaya", "value": 4 }
+      { "label": "Seni dan desain", "value": 4 },
+      { "label": "Kesehatan dan kesejahteraan", "value": 4 }
     ],
-    "bobot_jurusan": { "m2": 1.0, "m4": 0.9, "m5": 0.8, "m9": 0.9 }
+    "bobot_jurusan": {
+      "m1": 1.0, "m2": 0.9, "m3": 0.9, "m4": 0.95, "m5": 0.85, "m6": 0.8, "m7": 0.85, "m8": 0.9, "m9": 0.95, "m10": 0.8, "m12": 0.9, "m13": 1.0, "m14": 0.9, "m15": 0.9, "m16": 0.9, "m17": 0.95, "m18": 0.8, "m19": 0.9, "m20": 0.8, "m21": 0.85, "m22": 1.0, "m23": 0.95, "m24": 0.9, "m25": 0.8, "m26": 0.9, "m27": 0.85, "m28": 0.95
+    }
   },
   {
     "id": "q10",
@@ -122,7 +141,9 @@
       { "label": "Ya", "value": 1 },
       { "label": "Tidak", "value": 0 }
     ],
-    "bobot_jurusan": { "m2": 1.0, "m5": 1.0, "m4": 0.7, "m9": 0.95 }
+    "bobot_jurusan": {
+      "m2": 1.0, "m5": 1.0, "m9": 0.95, "m15": 0.8, "m17": 0.9, "m21": 0.9, "m27": 0.9
+    }
   },
   {
     "id": "q11",
@@ -136,7 +157,9 @@
       { "label": "4", "value": 4 },
       { "label": "5", "value": 5 }
     ],
-    "bobot_jurusan": { "m2": 0.8, "m4": 0.9, "m5": 0.95, "m9": 1.0 }
+    "bobot_jurusan": {
+      "m2": 0.8, "m4": 0.9, "m5": 0.95, "m9": 1.0, "m12": 0.8, "m13": 0.9, "m17": 0.95, "m21": 0.9, "m23": 0.9, "m25": 0.9
+    }
   },
   {
     "id": "q12",
@@ -144,26 +167,32 @@
     "pertanyaan": "Jenis masalah yang paling Anda suka pecahkan:",
     "kategori": "minat",
     "opsi": [
-      { "label": "Masalah teknis dan logis", "value": 5 },
+      { "label": "Masalah logis dan teknis", "value": 5 },
       { "label": "Masalah sosial dan kemanusiaan", "value": 5 },
       { "label": "Masalah artistik dan desain", "value": 5 },
-      { "label": "Masalah bisnis dan ekonomi", "value": 4 }
+      { "label": "Masalah bisnis dan ekonomi", "value": 4 },
+      { "label": "Masalah ilmiah dan penelitian", "value": 4 }
     ],
-    "bobot_jurusan": { "m1": 0.9, "m2": 0.9, "m3": 1.0, "m4": 0.8, "m5": 0.85, "m7": 0.9, "m10": 0.95 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.9, "m3": 1.0, "m4": 0.8, "m5": 0.85, "m6": 0.9, "m7": 0.9, "m8": 0.8, "m9": 0.8, "m10": 0.95, "m12": 0.8, "m13": 0.95, "m14": 0.95, "m15": 0.9, "m16": 0.9, "m17": 0.8, "m18": 1.0, "m19": 1.0, "m20": 0.8, "m22": 0.9, "m23": 0.95, "m24": 1.0, "m26": 0.95, "m27": 0.9, "m28": 1.0
+    }
   },
   {
     "id": "q13",
     "tipe": "checkbox",
-    "pertanyaan": "Pilih bidang teknologi yang menarik perhatian Anda:",
+    "pertanyaan": "Pilih bidang teknologi atau ilmu pengetahuan yang menarik perhatian Anda:",
     "kategori": "minat",
     "opsi": [
       { "label": "Kecerdasan Buatan (AI)", "value": 4 },
-      { "label": "Pengembangan Web/Aplikasi", "value": 4 },
-      { "label": "Data Science", "value": 4 },
-      { "label": "Jaringan Komputer", "value": 3 },
-      { "label": "Desain Grafis", "value": 3 }
+      { "label": "Pengembangan Perangkat Lunak", "value": 4 },
+      { "label": "Analisis Data", "value": 4 },
+      { "label": "Robotika dan Otomasi", "value": 3 },
+      { "label": "Desain Grafis", "value": 3 },
+      { "label": "Ilmu Biomedis", "value": 3 }
     ],
-    "bobot_jurusan": { "m1": 1.0, "m3": 0.9, "m6": 0.9, "m7": 1.0, "m8": 0.95 }
+    "bobot_jurusan": {
+      "m1": 1.0, "m3": 0.9, "m6": 0.9, "m7": 0.8, "m8": 0.7, "m10": 0.8, "m13": 0.95, "m14": 0.8, "m16": 0.9, "m18": 0.8, "m23": 0.9, "m24": 1.0, "m26": 0.95, "m28": 1.0
+    }
   },
   {
     "id": "q14",
@@ -174,12 +203,14 @@
       { "label": "Ya", "value": 1 },
       { "label": "Tidak", "value": 0 }
     ],
-    "bobot_jurusan": { "m4": 1.0, "m9": 0.8, "m10": 0.9 }
+    "bobot_jurusan": {
+      "m4": 1.0, "m8": 0.9, "m9": 0.8, "m22": 1.0, "m26": 0.9
+    }
   },
   {
     "id": "q15",
     "tipe": "scale",
-    "pertanyaan": "Seberapa jauh Anda bersedia belajar hal baru dan beradaptasi dengan perubahan teknologi? (1-5)",
+    "pertanyaan": "Seberapa jauh Anda bersedia belajar hal baru dan beradaptasi dengan perubahan yang cepat? (1-5)",
     "kategori": "kebiasaan",
     "opsi": [
       { "label": "1", "value": 1 },
@@ -188,6 +219,84 @@
       { "label": "4", "value": 4 },
       { "label": "5", "value": 5 }
     ],
-    "bobot_jurusan": { "m1": 0.9, "m3": 0.9, "m6": 0.9, "m7": 0.9, "m8": 0.9, "m10": 0.8 }
+    "bobot_jurusan": {
+      "m1": 0.9, "m3": 0.9, "m6": 0.9, "m7": 0.9, "m8": 0.9, "m10": 0.8, "m11": 0.8, "m17": 0.9, "m22": 0.95, "m24": 0.9, "m26": 0.9, "m28": 0.95
+    }
+  },
+  {
+    "id": "q16",
+    "tipe": "radio",
+    "pertanyaan": "Pekerjaan ideal Anda melibatkan:",
+    "kategori": "hobi",
+    "opsi": [
+      { "label": "Riset dan analisis mendalam", "value": 5 },
+      { "label": "Bekerja di laboratorium atau lapangan", "value": 5 },
+      { "label": "Merancang dan membuat sesuatu", "value": 5 },
+      { "label": "Interaksi langsung dengan banyak orang", "value": 4 },
+      { "label": "Mengelola proyek atau tim", "value": 4 }
+    ],
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.8, "m3": 0.95, "m4": 0.9, "m5": 0.85, "m6": 0.95, "m7": 0.9, "m10": 0.85, "m12": 0.8, "m13": 0.9, "m14": 0.95, "m16": 0.9, "m18": 0.9, "m19": 0.95, "m20": 0.9, "m21": 0.8, "m22": 0.85, "m23": 0.9, "m24": 0.9, "m26": 0.95, "m27": 0.85, "m28": 0.95
+    }
+  },
+  {
+    "id": "q17",
+    "tipe": "yesno",
+    "pertanyaan": "Apakah Anda tertarik pada cara kerja mesin, sistem, atau struktur?",
+    "kategori": "minat",
+    "opsi": [
+      { "label": "Ya", "value": 1 },
+      { "label": "Tidak", "value": 0 }
+    ],
+    "bobot_jurusan": {
+      "m1": 0.95, "m18": 1.0, "m24": 1.0
+    }
+  },
+  {
+    "id": "q18",
+    "tipe": "scale",
+    "pertanyaan": "Seberapa penting bagi Anda untuk memberikan dampak sosial positif? (1-5)",
+    "kategori": "karakter",
+    "opsi": [
+      { "label": "1", "value": 1 },
+      { "label": "2", "value": 2 },
+      { "label": "3", "value": 3 },
+      { "label": "4", "value": 4 },
+      { "label": "5", "value": 5 }
+    ],
+    "bobot_jurusan": {
+      "m2": 0.9, "m5": 0.8, "m9": 0.9, "m10": 1.0, "m12": 0.95, "m13": 1.0, "m15": 0.9, "m17": 0.85, "m23": 0.9, "m27": 0.9
+    }
+  },
+  {
+    "id": "q19",
+    "tipe": "checkbox",
+    "pertanyaan": "Pilih isu-isu global yang paling Anda pedulikan:",
+    "kategori": "minat",
+    "opsi": [
+      { "label": "Perubahan iklim", "value": 4 },
+      { "label": "Kesenjangan sosial", "value": 4 },
+      { "label": "Kesehatan masyarakat", "value": 4 },
+      { "label": "Hak asasi manusia", "value": 3 },
+      { "label": "Perdamaian dan konflik", "value": 3 }
+    ],
+    "bobot_jurusan": {
+      "m2": 0.85, "m9": 0.95, "m10": 0.9, "m12": 0.9, "m13": 0.9, "m15": 0.9, "m17": 1.0, "m23": 0.8, "m27": 0.9
+    }
+  },
+  {
+    "id": "q20",
+    "tipe": "radio",
+    "pertanyaan": "Bagaimana Anda mengambil keputusan penting?",
+    "kategori": "kebiasaan",
+    "opsi": [
+      { "label": "Berdasarkan data dan fakta", "value": 5 },
+      { "label": "Berdasarkan intuisi dan perasaan", "value": 4 },
+      { "label": "Melalui diskusi dengan orang lain", "value": 4 },
+      { "label": "Menganalisis semua kemungkinan risiko", "value": 5 }
+    ],
+    "bobot_jurusan": {
+      "m1": 0.9, "m2": 0.7, "m4": 0.9, "m6": 0.95, "m8": 0.9, "m9": 0.8, "m13": 0.85, "m15": 0.95, "m16": 0.9, "m17": 0.8, "m18": 0.9, "m20": 0.8, "m22": 0.9, "m24": 0.9, "m26": 0.95, "m27": 0.9, "m28": 0.95
+    }
   }
 ]

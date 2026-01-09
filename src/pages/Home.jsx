@@ -161,6 +161,7 @@ export default function Home() {
             <div className="guide-image">
               <img src={kurangPuas} alt="Burung hantu kurang puas" />
             </div>
+            
           </div>
         </div>
       </section>

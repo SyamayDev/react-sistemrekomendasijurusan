@@ -4,139 +4,195 @@
     "nama_jurusan": "Teknik Informatika",
     "kategori": "STEM",
     "deskripsi": "Fokus pada pemrograman, pengembangan perangkat lunak, dan solusi teknologi.",
-    "karakter_cocok": ["logis", "problem-solver", "suka eksperimen"]
+    "karakter_cocok": ["logis", "problem-solver", "suka eksperimen", "analitis"]
   },
   {
     "id": "m2",
     "nama_jurusan": "Psikologi",
     "kategori": "Sosial",
     "deskripsi": "Mempelajari perilaku, emosi, dan pendekatan konseling untuk membantu orang.",
-    "karakter_cocok": ["empatik", "observasional", "analitis"]
+    "karakter_cocok": ["empatik", "observasional", "analitis", "komunikatif"]
   },
   {
     "id": "m3",
     "nama_jurusan": "Desain Komunikasi Visual",
     "kategori": "Seni",
     "deskripsi": "Komunikasi visual, branding, dan desain untuk media cetak & digital.",
-    "karakter_cocok": ["kreatif", "visual", "detail-oriented"]
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented", "inovatif"]
   },
   {
     "id": "m4",
     "nama_jurusan": "Manajemen",
     "kategori": "Bisnis",
     "deskripsi": "Fokus pada pengelolaan organisasi, strategi, dan kepemimpinan.",
-    "karakter_cocok": ["organisir", "kepemimpinan", "strategis"]
+    "karakter_cocok": ["organisir", "kepemimpinan", "strategis", "komunikatif"]
   },
   {
     "id": "m5",
     "nama_jurusan": "Ilmu Komunikasi",
     "kategori": "Sosial",
     "deskripsi": "Studi media, komunikasi massa, public relations, dan penyampaian pesan.",
-    "karakter_cocok": ["komunikatif", "kreatif", "presenter"]
+    "karakter_cocok": ["komunikatif", "kreatif", "presenter", "adaptif"]
   },
   {
     "id": "m6",
     "nama_jurusan": "Statistika",
     "kategori": "STEM",
     "deskripsi": "Analisis data, probabilitas, dan penerapan statistik untuk keputusan berbasis data.",
-    "karakter_cocok": ["analitis", "teliti", "suka angka"]
+    "karakter_cocok": ["analitis", "teliti", "suka angka", "logis"]
   },
   {
     "id": "m7",
     "nama_jurusan": "Arsitektur",
     "kategori": "Seni",
     "deskripsi": "Perancangan ruang, estetika bangunan, dan integrasi fungsi-ruang.",
-    "karakter_cocok": ["visual", "terstruktur", "kreatif"]
+    "karakter_cocok": ["visual", "terstruktur", "kreatif", "detail-oriented"]
   },
   {
     "id": "m8",
     "nama_jurusan": "Akuntansi",
     "kategori": "Bisnis",
     "deskripsi": "Pembukuan, laporan keuangan, dan pengelolaan sumber daya organisasi.",
-    "karakter_cocok": ["teliti", "disiplin", "suka angka"]
+    "karakter_cocok": ["teliti", "disiplin", "suka angka", "sistematis"]
   },
   {
     "id": "m9",
     "nama_jurusan": "Ilmu Politik",
     "kategori": "Sosial",
     "deskripsi": "Studi tentang sistem pemerintahan, perilaku politik, dan analisis kebijakan publik.",
-    "karakter_cocok": ["analitis", "komunikatif", "strategis"]
+    "karakter_cocok": ["analitis", "komunikatif", "strategis", "kritis"]
   },
   {
     "id": "m10",
     "nama_jurusan": "Teknik Lingkungan",
     "kategori": "STEM",
     "deskripsi": "Solusi teknis untuk masalah lingkungan, pengelolaan sumber daya, dan keberlanjutan.",
-    "karakter_cocok": ["problem-solver", "peduli lingkungan", "analitis"]
+    "karakter_cocok": ["problem-solver", "peduli lingkungan", "analitis", "inovatif"]
   },
   {
     "id": "m11",
     "nama_jurusan": "Sastra Inggris",
     "kategori": "Humaniora",
     "deskripsi": "Mempelajari bahasa, sastra, dan budaya berbahasa Inggris.",
-    "karakter_cocok": ["kreatif", "analitis", "komunikatif"]
+    "karakter_cocok": ["kreatif", "analitis", "komunikatif", "penulis"]
   },
   {
     "id": "m12",
     "nama_jurusan": "Ilmu Gizi",
     "kategori": "Kesehatan",
     "deskripsi": "Mempelajari hubungan antara makanan, kesehatan, dan penyakit. Merancang diet sehat.",
-    "karakter_cocok": ["peduli kesehatan", "analitis", "komunikatif"]
+    "karakter_cocok": ["peduli kesehatan", "analitis", "komunikatif", "observasional"]
   },
   {
     "id": "m13",
     "nama_jurusan": "Kedokteran",
     "kategori": "Kesehatan",
     "deskripsi": "Mendiagnosis, mengobati, dan mencegah penyakit pada manusia.",
-    "karakter_cocok": ["empatik", "teliti", "problem-solver"]
+    "karakter_cocok": ["empatik", "teliti", "problem-solver", "dedikatif"]
   },
   {
     "id": "m14",
     "nama_jurusan": "Desain Interior",
     "kategori": "Seni",
     "deskripsi": "Mendesain dan menata ruang interior agar fungsional dan estetis.",
-    "karakter_cocok": ["kreatif", "visual", "detail-oriented"]
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented", "estetis"]
   },
   {
     "id": "m15",
     "nama_jurusan": "Hukum",
     "kategori": "Sosial",
     "deskripsi": "Mempelajari sistem perundang-undangan, keadilan, dan hak asasi manusia.",
-    "karakter_cocok": ["analitis", "logis", "komunikatif", "teliti"]
+    "karakter_cocok": ["analitis", "logis", "komunikatif", "teliti", "kritis"]
   },
   {
     "id": "m16",
     "nama_jurusan": "Farmasi",
     "kategori": "Kesehatan",
     "deskripsi": "Meneliti, mengembangkan, dan memproduksi obat-obatan serta terapi kesehatan.",
-    "karakter_cocok": ["teliti", "analitis", "problem-solver"]
+    "karakter_cocok": ["teliti", "analitis", "problem-solver", "sistematis"]
   },
   {
     "id": "m17",
     "nama_jurusan": "Hubungan Internasional",
     "kategori": "Sosial",
     "deskripsi": "Studi tentang hubungan antarnegara, diplomasi, dan isu-isu global.",
-    "karakter_cocok": ["komunikatif", "analitis", "strategis", "observasional"]
+    "karakter_cocok": ["komunikatif", "analitis", "strategis", "observasional", "adaptif"]
   },
   {
     "id": "m18",
     "nama_jurusan": "Teknik Sipil",
     "kategori": "STEM",
     "deskripsi": "Merancang, membangun, dan memelihara infrastruktur seperti gedung dan jalan.",
-    "karakter_cocok": ["logis", "problem-solver", "terstruktur", "detail-oriented"]
+    "karakter_cocok": ["logis", "problem-solver", "terstruktur", "detail-oriented", "praktis"]
   },
   {
     "id": "m19",
     "nama_jurusan": "Seni Rupa Murni",
     "kategori": "Seni",
     "deskripsi": "Menciptakan karya seni visual melalui berbagai media dan teknik.",
-    "karakter_cocok": ["kreatif", "ekspresif", "visual", "mandiri"]
+    "karakter_cocok": ["kreatif", "ekspresif", "visual", "mandiri", "inovatif"]
   },
   {
     "id": "m20",
     "nama_jurusan": "Ilmu Sejarah",
     "kategori": "Humaniora",
     "deskripsi": "Menganalisis peristiwa masa lalu, dampaknya, dan interpretasi historis.",
-    "karakter_cocok": ["analitis", "observasional", "teliti", "penulis"]
+    "karakter_cocok": ["analitis", "observasional", "teliti", "penulis", "kritis"]
+  },
+  {
+    "id": "m21",
+    "nama_jurusan": "Jurnalistik",
+    "kategori": "Sosial",
+    "deskripsi": "Mengumpulkan, menulis, dan menyajikan berita serta informasi kepada publik.",
+    "karakter_cocok": ["komunikatif", "kritis", "penulis", "observasional", "cepat"]
+  },
+  {
+    "id": "m22",
+    "nama_jurusan": "Bisnis Digital",
+    "kategori": "Bisnis",
+    "deskripsi": "Fokus pada strategi bisnis di era digital, e-commerce, dan pemasaran online.",
+    "karakter_cocok": ["inovatif", "strategis", "analitis", "adaptif", "kreatif"]
+  },
+  {
+    "id": "m23",
+    "nama_jurusan": "Kedokteran Hewan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mendiagnosis, mengobati, dan mencegah penyakit pada hewan.",
+    "karakter_cocok": ["empatik", "teliti", "problem-solver", "penyayang hewan", "observasional"]
+  },
+  {
+    "id": "m24",
+    "nama_jurusan": "Teknik Elektro",
+    "kategori": "STEM",
+    "deskripsi": "Merancang dan mengembangkan sistem kelistrikan dan elektronika.",
+    "karakter_cocok": ["logis", "problem-solver", "analitis", "detail-oriented", "eksperimen"]
+  },
+  {
+    "id": "m25",
+    "nama_jurusan": "Pendidikan Bahasa Inggris",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari metode pengajaran bahasa Inggris dan mengembangkan kurikulum.",
+    "karakter_cocok": ["komunikatif", "sabar", "analitis", "penulis", "empati"]
+  },
+  {
+    "id": "m26",
+    "nama_jurusan": "Ilmu Aktuaria",
+    "kategori": "Bisnis",
+    "deskripsi": "Menerapkan metode matematika dan statistik untuk menilai risiko di bidang keuangan dan asuransi.",
+    "karakter_cocok": ["analitis", "suka angka", "teliti", "logis", "problem-solver"]
+  },
+  {
+    "id": "m27",
+    "nama_jurusan": "Kriminologi",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari kejahatan, perilaku kriminal, dan sistem peradilan pidana.",
+    "karakter_cocok": ["analitis", "observasional", "kritis", "empatik", "logis"]
+  },
+  {
+    "id": "m28",
+    "nama_jurusan": "Sains Data",
+    "kategori": "STEM",
+    "deskripsi": "Menganalisis data besar untuk mengekstrak pengetahuan dan wawasan.",
+    "karakter_cocok": ["analitis", "logis", "problem-solver", "suka angka", "eksperimen"]
   }
 ]
