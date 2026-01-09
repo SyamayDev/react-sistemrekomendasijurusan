@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Chatbot.css';
-import chatbotIcon from '../assets/chatbot-icon.png';
-import closeIcon from '../assets/close-icon.svg'; // I'll create this as a simple SVG string
+import chatbotIcon from '../assets/chatbot-icon.svg';
 
 // A simple close icon SVG as a string
 const closeIconSvg = `

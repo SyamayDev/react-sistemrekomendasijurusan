@@ -6,10 +6,10 @@ import AnimatedButton from "../components/AnimatedButton";
 import Features from "./Features";
 import "./Home.css";
 
-import logo from "../assets/logo.png";
-import heroesIllustration from "../assets/bottom-main-image.png";
-import owlAsk from "../assets/owl-ask.png";
-import kurangPuas from "../assets/kurang-puas.png";
+import logo from "../assets/logo.webp";
+import heroesIllustration from "../assets/bottom-main-image.webp";
+import owlAsk from "../assets/owl-ask.webp";
+import kurangPuas from "../assets/kurang-puas.webp";
 
 export default function Home() {
   const [percent, setPercent] = useState(0);
