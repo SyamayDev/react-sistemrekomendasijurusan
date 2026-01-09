@@ -21,8 +21,8 @@ export default function AnimateOnScroll({
       whileInView="visible"
       viewport={{ once, amount: threshold }}
       transition={{
-        duration: 1.2,
-        ease: [0.22, 1, 1.86, 1],
+        duration: 1,
+        ease: [0.22, 1, 1.46, 1],
         delay: delay / 1000,
       }}
       variants={variants}

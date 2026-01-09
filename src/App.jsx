@@ -38,24 +38,34 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Add/remove class to body for preloader styling
+    const handleLoad = () => {
+      // Introduce a small delay for a smoother transition
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+    };
+
+    // Check if the page is already loaded
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('load', handleLoad);
+    };
+  }, []); // Empty array ensures this effect runs only once on mount
+
+  useEffect(() => {
+    // This effect manages the body class for preloader styling
     if (isLoading) {
       document.body.classList.add('preloader-active');
     } else {
       document.body.classList.remove('preloader-active');
     }
-
-    // Simulate loading time for assets
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // Display preloader for 3 seconds
-
-    return () => {
-      clearTimeout(timer);
-      // Ensure the class is removed if component unmounts prematurely
-      document.body.classList.remove('preloader-active');
-    };
-  }, [isLoading]); // Rerun effect when isLoading changes
+  }, [isLoading]);
 
   return (
     <HashRouter>
