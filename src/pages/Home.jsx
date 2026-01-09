@@ -86,7 +86,6 @@ export default function Home() {
       {/* FEATURES */}
       <section className="content-section">
         <div className="container">
-          <h2>Kenapa SI-RAJU?</h2>
           <Features />
         </div>
       </section>

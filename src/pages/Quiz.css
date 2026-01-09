@@ -1,27 +1,67 @@
-/* Quiz Page Styles */
 .quiz-page {
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto; /* Center horizontally */
-  min-height: 100vh; /* Take full viewport height */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  /* Gunakan dvh (dynamic viewport height) agar pas di layar HP (tidak terpotong toolbar browser) */
+  height: 100dvh; 
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribute space between items */
-  align-items: center;
-  padding: 1rem 0; /* Add some vertical padding, reduce horizontal */
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: hidden; /* Mencegah seluruh halaman scroll */
 }
 
-@media (max-width: 768px) {
-  .quiz-page {
-    width: 95%; /* Slightly wider on small screens */
-    padding: 0.5rem 0;
-  }
+.quiz-fixed-top {
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.quiz-container {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f0f0;
+  max-height: 85vh; /* Batasi tinggi container */
+  overflow: hidden; /* Mencegah container meluber */
+}
+
+.quiz-content {
+  padding: 1.5rem;
+  overflow-y: auto; /* HANYA bagian ini yang boleh scroll jika pilihan jawaban banyak */
+  flex-grow: 1;
 }
 
 .quiz-actions {
-  margin-top: 1.5rem; /* Reduced margin */
-  width: 100%;
+  padding: 1rem 1.5rem;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
   display: flex;
-  justify-content: center; /* Center the button */
-  padding-bottom: 1rem; /* Ensure button is not cut off at bottom */
+  justify-content: flex-end;
+  flex-shrink: 0; /* Pastikan area tombol tidak mengecil */
+}
+
+/* Penyesuaian khusus Mobile */
+@media (max-width: 768px) {
+  .quiz-page {
+    padding: 0.75rem;
+  }
+  
+  .quiz-container {
+    max-height: 90vh;
+  }
+
+  .quiz-content {
+    padding: 1rem;
+  }
+
+  .quiz-actions {
+    padding: 0.8rem 1rem;
+  }
+
+  /* Membuat tombol memenuhi lebar bawah pada mobile agar mudah diklik jempol */
+  .quiz-actions button {
+    width: 100%;
+  }
 }

@@ -85,10 +85,10 @@
   },
   {
     "id": "m13",
-    "nama_jurusan": "Kedokteran",
+    "nama_jurusan": "Pendidikan Dokter",
     "kategori": "Kesehatan",
-    "deskripsi": "Mendiagnosis, mengobati, dan mencegah penyakit pada manusia.",
-    "karakter_cocok": ["empatik", "teliti", "problem-solver", "dedikatif"]
+    "deskripsi": "Mendiagnosis, mengobati, dan mencegah penyakit pada manusia melalui pendidikan klinis.",
+    "karakter_cocok": ["empatik", "teliti", "problem-solver", "dedikatif", "suka belajar"]
   },
   {
     "id": "m14",
@@ -99,7 +99,7 @@
   },
   {
     "id": "m15",
-    "nama_jurusan": "Hukum",
+    "nama_jurusan": "Ilmu Hukum",
     "kategori": "Sosial",
     "deskripsi": "Mempelajari sistem perundang-undangan, keadilan, dan hak asasi manusia.",
     "karakter_cocok": ["analitis", "logis", "komunikatif", "teliti", "kritis"]
@@ -165,14 +165,14 @@
     "nama_jurusan": "Teknik Elektro",
     "kategori": "STEM",
     "deskripsi": "Merancang dan mengembangkan sistem kelistrikan dan elektronika.",
-    "karakter_cocok": ["logis", "problem-solver", "analitis", "detail-oriented", "eksperimen"]
+    "karakter_cocok": ["logis", "problem-solver", "analitis", "detail-oriented", "suka eksperimen"]
   },
   {
     "id": "m25",
     "nama_jurusan": "Pendidikan Bahasa Inggris",
-    "kategori": "Humaniora",
+    "kategori": "Pendidikan",
     "deskripsi": "Mempelajari metode pengajaran bahasa Inggris dan mengembangkan kurikulum.",
-    "karakter_cocok": ["komunikatif", "sabar", "analitis", "penulis", "empati"]
+    "karakter_cocok": ["komunikatif", "sabar", "analitis", "penulis", "empatik"]
   },
   {
     "id": "m26",
@@ -190,9 +190,863 @@
   },
   {
     "id": "m28",
-    "nama_jurusan": "Sains Data",
+    "nama_jurusan": "Sistem Informasi",
     "kategori": "STEM",
-    "deskripsi": "Menganalisis data besar untuk mengekstrak pengetahuan dan wawasan.",
-    "karakter_cocok": ["analitis", "logis", "problem-solver", "suka angka", "eksperimen"]
+    "deskripsi": "Menjembatani antara ilmu komputer dan bisnis untuk solusi teknologi informasi.",
+    "karakter_cocok": ["analitis", "logis", "problem-solver", "komunikatif", "strategis"]
+  },
+  {
+    "id": "m29",
+    "nama_jurusan": "Matematika",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari teori dan aplikasi matematika murni dan terapan, logika, dan pemodelan.",
+    "karakter_cocok": ["logis", "analitis", "suka angka", "problem-solver", "abstrak"]
+  },
+  {
+    "id": "m30",
+    "nama_jurusan": "Fisika",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari hukum-hukum dasar alam semesta, dari partikel subatomik hingga galaksi.",
+    "karakter_cocok": ["suka eksperimen", "analitis", "logis", "kritis", "penasaran"]
+  },
+  {
+    "id": "m31",
+    "nama_jurusan": "Biologi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari organisme hidup, siklus hidup, adaptasi, dan lingkungannya.",
+    "karakter_cocok": ["observasional", "analitis", "peduli lingkungan", "suka eksperimen", "teliti"]
+  },
+  {
+    "id": "m32",
+    "nama_jurusan": "Kimia",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari materi, sifatnya, bagaimana dan mengapa zat bergabung atau terpisah.",
+    "karakter_cocok": ["analitis", "suka eksperimen", "teliti", "problem-solver", "sistematis"]
+  },
+  {
+    "id": "m33",
+    "nama_jurusan": "Astronomi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari benda-benda langit (seperti bintang, planet, komet) dan fenomena di luar atmosfer Bumi.",
+    "karakter_cocok": ["penasaran", "analitis", "observasional", "logis", "abstrak"]
+  },
+  {
+    "id": "m34",
+    "nama_jurusan": "Geofisika",
+    "kategori": "STEM",
+    "deskripsi": "Menerapkan prinsip-prinsip fisika untuk mempelajari Bumi, termasuk gempa dan medan magnet.",
+    "karakter_cocok": ["analitis", "problem-solver", "suka bekerja di luar", "logis", "observasional"]
+  },
+  {
+    "id": "m35",
+    "nama_jurusan": "Geologi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari batuan, mineral, dan sejarah Bumi serta proses-proses yang membentuknya.",
+    "karakter_cocok": ["observasional", "suka bekerja di luar", "analitis", "teliti", "petualang"]
+  },
+  {
+    "id": "m36",
+    "nama_jurusan": "Ilmu Kedokteran",
+    "kategori": "Kesehatan",
+    "deskripsi": "Dasar-dasar ilmu yang mendukung praktik kedokteran, fokus pada penelitian dan pemahaman penyakit.",
+    "karakter_cocok": ["analitis", "peneliti", "problem-solver", "teliti", "suka belajar"]
+  },
+  {
+    "id": "m37",
+    "nama_jurusan": "Kedokteran Gigi",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mendiagnosis, mencegah, dan mengobati penyakit dan kondisi rongga mulut.",
+    "karakter_cocok": ["teliti", "detail-oriented", "estetis", "empatik", "terampil"]
+  },
+  {
+    "id": "m38",
+    "nama_jurusan": "Ilmu Keperawatan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Memberikan asuhan keperawatan kepada individu, keluarga, dan masyarakat.",
+    "karakter_cocok": ["empatik", "peduli", "sabar", "komunikatif", "tangguh"]
+  },
+  {
+    "id": "m39",
+    "nama_jurusan": "Apoteker",
+    "kategori": "Kesehatan",
+    "deskripsi": "Pendidikan profesional untuk menjadi apoteker, mengelola dan memberikan informasi obat.",
+    "karakter_cocok": ["teliti", "bertanggung jawab", "komunikatif", "sistematis", "analitis"]
+  },
+  {
+    "id": "m40",
+    "nama_jurusan": "Kebidanan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Memberikan perawatan kepada wanita selama kehamilan, persalinan, dan masa nifas.",
+    "karakter_cocok": ["empatik", "peduli", "tangguh", "sabar", "bertanggung jawab"]
+  },
+  {
+    "id": "m41",
+    "nama_jurusan": "Kesehatan Masyarakat",
+    "kategori": "Kesehatan",
+    "deskripsi": "Fokus pada peningkatan kesehatan dan pencegahan penyakit pada tingkat populasi.",
+    "karakter_cocok": ["sosial", "analitis", "komunikatif", "peduli", "strategis"]
+  },
+  {
+    "id": "m42",
+    "nama_jurusan": "Teknik Mesin",
+    "kategori": "STEM",
+    "deskripsi": "Merancang, menganalisis, memproduksi, dan memelihara sistem mekanis.",
+    "karakter_cocok": ["logis", "problem-solver", "suka bongkar pasang", "praktis", "kreatif"]
+  },
+  {
+    "id": "m43",
+    "nama_jurusan": "Teknik Kimia",
+    "kategori": "STEM",
+    "deskripsi": "Mengubah bahan mentah menjadi produk yang berguna melalui proses kimia.",
+    "karakter_cocok": ["analitis", "problem-solver", "suka eksperimen", "sistematis", "inovatif"]
+  },
+  {
+    "id": "m44",
+    "nama_jurusan": "Teknik Industri",
+    "kategori": "STEM",
+    "deskripsi": "Mengoptimalkan proses dan sistem yang kompleks dalam industri manufaktur dan jasa.",
+    "karakter_cocok": ["strategis", "analitis", "organisir", "problem-solver", "efisien"]
+  },
+  {
+    "id": "m45",
+    "nama_jurusan": "Teknik Pertambangan",
+    "kategori": "STEM",
+    "deskripsi": "Merancang dan mengelola ekstraksi mineral berharga dari kerak bumi.",
+    "karakter_cocok": ["petualang", "problem-solver", "suka bekerja di luar", "tangguh", "logis"]
+  },
+  {
+    "id": "m46",
+    "nama_jurusan": "Teknik Perminyakan",
+    "kategori": "STEM",
+    "deskripsi": "Fokus pada eksplorasi, pengeboran, dan produksi minyak dan gas bumi.",
+    "karakter_cocok": ["analitis", "problem-solver", "suka bekerja di luar", "tangguh", "berani ambil risiko"]
+  },
+  {
+    "id": "m47",
+    "nama_jurusan": "Teknik Dirgantara/Penerbangan",
+    "kategori": "STEM",
+    "deskripsi": "Merancang, membangun, dan menguji pesawat terbang, pesawat ruang angkasa, dan rudal.",
+    "karakter_cocok": ["detail-oriented", "logis", "analitis", "suka fisika", "inovatif"]
+  },
+  {
+    "id": "m48",
+    "nama_jurusan": "Ilmu Komputer",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari teori komputasi, algoritma, dan desain perangkat lunak.",
+    "karakter_cocok": ["logis", "abstrak", "problem-solver", "analitis", "kreatif"]
+  },
+  {
+    "id": "m49",
+    "nama_jurusan": "Perencanaan Wilayah dan Kota",
+    "kategori": "Seni",
+    "deskripsi": "Merencanakan penggunaan lahan dan infrastruktur untuk menciptakan lingkungan yang teratur dan berkelanjutan.",
+    "karakter_cocok": ["strategis", "visual", "analitis", "sosial", "peduli lingkungan"]
+  },
+  {
+    "id": "m50",
+    "nama_jurusan": "Kehutanan",
+    "kategori": "STEM",
+    "deskripsi": "Mengelola dan melestarikan sumber daya hutan untuk manfaat ekologis dan ekonomis.",
+    "karakter_cocok": ["peduli lingkungan", "suka bekerja di luar", "analitis", "petualang", "sosial"]
+  },
+  {
+    "id": "m51",
+    "nama_jurusan": "Teknologi Pangan",
+    "kategori": "STEM",
+    "deskripsi": "Menerapkan ilmu pengetahuan untuk pengolahan, pengawetan, dan distribusi makanan.",
+    "karakter_cocok": ["suka eksperimen", "teliti", "analitis", "peduli kesehatan", "inovatif"]
+  },
+  {
+    "id": "m52",
+    "nama_jurusan": "Agribisnis",
+    "kategori": "Bisnis",
+    "deskripsi": "Mengelola bisnis di sektor pertanian, mulai dari produksi hingga pemasaran.",
+    "karakter_cocok": ["wirausaha", "strategis", "analitis", "komunikatif", "suka alam"]
+  },
+  {
+    "id": "m53",
+    "nama_jurusan": "Peternakan",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari produksi ternak yang efisien dan berkelanjutan serta kesejahteraan hewan.",
+    "karakter_cocok": ["penyayang hewan", "sabar", "wirausaha", "suka bekerja di luar", "praktis"]
+  },
+  {
+    "id": "m54",
+    "nama_jurusan": "Ilmu Kelautan",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari ekosistem laut, oseanografi, dan konservasi sumber daya laut.",
+    "karakter_cocok": ["petualang", "peduli lingkungan", "observasional", "analitis", "suka air"]
+  },
+  {
+    "id": "m55",
+    "nama_jurusan": "Sosiologi",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari struktur, perkembangan, dan masalah dalam masyarakat manusia.",
+    "karakter_cocok": ["analitis", "observasional", "kritis", "empatik", "sosial"]
+  },
+  {
+    "id": "m56",
+    "nama_jurusan": "Ilmu Administrasi Negara",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari kebijakan publik, manajemen organisasi pemerintah, dan pelayanan publik.",
+    "karakter_cocok": ["organisir", "analitis", "komunikatif", "sosial", "sistematis"]
+  },
+  {
+    "id": "m57",
+    "nama_jurusan": "Antropologi Sosial",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari keragaman budaya dan sosial manusia di seluruh dunia.",
+    "karakter_cocok": ["observasional", "penasaran", "adaptif", "komunikatif", "analitis"]
+  },
+  {
+    "id": "m58",
+    "nama_jurusan": "Arkeologi",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari masa lalu manusia melalui analisis artefak dan sisa-sisa material.",
+    "karakter_cocok": ["teliti", "observasional", "petualang", "analitis", "sabar"]
+  },
+  {
+    "id": "m59",
+    "nama_jurusan": "Ilmu Perpustakaan",
+    "kategori": "Sosial",
+    "deskripsi": "Mengelola, mengorganisir, dan menyebarkan informasi di perpustakaan dan pusat informasi.",
+    "karakter_cocok": ["organisir", "teliti", "suka membaca", "pelayan", "sistematis"]
+  },
+  {
+    "id": "m60",
+    "nama_jurusan": "Hubungan Masyarakat",
+    "kategori": "Sosial",
+    "deskripsi": "Membangun dan memelihara citra positif organisasi di mata publik.",
+    "karakter_cocok": ["komunikatif", "strategis", "kreatif", "sosial", "presenter"]
+  },
+  {
+    "id": "m61",
+    "nama_jurusan": "Sastra Jepang",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, sastra, budaya, dan sejarah Jepang.",
+    "karakter_cocok": ["suka budaya asing", "analitis", "komunikatif", "penulis", "detail-oriented"]
+  },
+  {
+    "id": "m62",
+    "nama_jurusan": "Sastra Indonesia",
+    "kategori": "Humaniora",
+    "deskripsi": "Mengkaji secara mendalam karya sastra, bahasa, dan filologi Indonesia.",
+    "karakter_cocok": ["kreatif", "penulis", "analitis", "suka membaca", "kritis"]
+  },
+  {
+    "id": "m63",
+    "nama_jurusan": "Ilmu Filsafat",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari pertanyaan-pertanyaan mendasar tentang eksistensi, pengetahuan, nilai, dan akal.",
+    "karakter_cocok": ["kritis", "abstrak", "analitis", "logis", "suka berdebat"]
+  },
+  {
+    "id": "m64",
+    "nama_jurusan": "Ekonomi Pembangunan",
+    "kategori": "Bisnis",
+    "deskripsi": "Fokus pada isu-isu ekonomi di negara berkembang, termasuk kemiskinan dan ketimpangan.",
+    "karakter_cocok": ["analitis", "sosial", "strategis", "kritis", "peduli"]
+  },
+  {
+    "id": "m65",
+    "nama_jurusan": "Bisnis Internasional",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari operasi bisnis yang melintasi batas-batas negara, termasuk perdagangan dan investasi.",
+    "karakter_cocok": ["adaptif", "komunikatif", "strategis", "berani ambil risiko", "wirausaha"]
+  },
+  {
+    "id": "m66",
+    "nama_jurusan": "Kewirausahaan",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari cara memulai, mengelola, dan mengembangkan bisnis baru.",
+    "karakter_cocok": ["wirausaha", "inovatif", "berani ambil risiko", "mandiri", "kreatif"]
+  },
+  {
+    "id": "m67",
+    "nama_jurusan": "Geografi",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari hubungan antara manusia dan lingkungannya, serta distribusi fenomena di permukaan bumi.",
+    "karakter_cocok": ["observasional", "analitis", "visual", "suka bekerja di luar", "peduli lingkungan"]
+  },
+  {
+    "id": "m68",
+    "nama_jurusan": "Pariwisata",
+    "kategori": "Bisnis",
+    "deskripsi": "Mengelola dan memasarkan destinasi dan layanan pariwisata.",
+    "karakter_cocok": ["sosial", "komunikatif", "organisir", "kreatif", "suka jalan-jalan"]
+  },
+  {
+    "id": "m69",
+    "nama_jurusan": "Perhotelan",
+    "kategori": "Vokasi",
+    "deskripsi": "Fokus pada manajemen operasional hotel, resor, dan akomodasi lainnya.",
+    "karakter_cocok": ["pelayan", "ramah", "organisir", "problem-solver", "tahan banting"]
+  },
+  {
+    "id": "m70",
+    "nama_jurusan": "Teknologi Pendidikan",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mengembangkan dan memanfaatkan teknologi untuk meningkatkan proses belajar mengajar.",
+    "karakter_cocok": ["inovatif", "kreatif", "analitis", "suka teknologi", "problem-solver"]
+  },
+  {
+    "id": "m71",
+    "nama_jurusan": "Manajemen Pendidikan",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mengelola lembaga pendidikan secara efektif dan efisien.",
+    "karakter_cocok": ["organisir", "kepemimpinan", "strategis", "komunikatif", "analitis"]
+  },
+  {
+    "id": "m72",
+    "nama_jurusan": "Bimbingan dan Konseling",
+    "kategori": "Pendidikan",
+    "deskripsi": "Membantu siswa mengatasi masalah pribadi, sosial, dan akademik.",
+    "karakter_cocok": ["empatik", "pendengar yang baik", "komunikatif", "sabar", "problem-solver"]
+  },
+  {
+    "id": "m73",
+    "nama_jurusan": "Pendidikan Guru Sekolah Dasar (PGSD)",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan calon guru untuk mengajar berbagai mata pelajaran di tingkat sekolah dasar.",
+    "karakter_cocok": ["sabar", "kreatif", "suka anak-anak", "komunikatif", "enerjik"]
+  },
+  {
+    "id": "m74",
+    "nama_jurusan": "Pendidikan Luar Biasa",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik dan mendukung siswa dengan kebutuhan khusus.",
+    "karakter_cocok": ["sabar", "empatik", "kreatif", "tangguh", "peduli"]
+  },
+  {
+    "id": "m75",
+    "nama_jurusan": "Pendidikan Matematika",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari cara efektif mengajarkan konsep matematika kepada siswa.",
+    "karakter_cocok": ["logis", "sabar", "komunikatif", "suka angka", "kreatif"]
+  },
+  {
+    "id": "m76",
+    "nama_jurusan": "Pendidikan Seni Tari",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan pengajar yang kompeten dalam seni tari, koreografi, dan apresiasi tari.",
+    "karakter_cocok": ["ekspresif", "kreatif", "sabar", "enerjik", "suka mengajar"]
+  },
+  {
+    "id": "m77",
+    "nama_jurusan": "Pendidikan Jasmani, Kesehatan, dan Rekreasi",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik siswa tentang pentingnya aktivitas fisik, kesehatan, dan gaya hidup aktif.",
+    "karakter_cocok": ["aktif", "sportif", "peduli kesehatan", "komunikatif", "enerjik"]
+  },
+  {
+    "id": "m78",
+    "nama_jurusan": "Seni Kriya",
+    "kategori": "Seni",
+    "deskripsi": "Menciptakan produk kerajinan fungsional dan estetis dengan berbagai material.",
+    "karakter_cocok": ["kreatif", "terampil", "detail-oriented", "sabar", "visual"]
+  },
+  {
+    "id": "m79",
+    "nama_jurusan": "Seni Musik",
+    "kategori": "Seni",
+    "deskripsi": "Mempelajari komposisi, pertunjukan, dan teori musik secara mendalam.",
+    "karakter_cocok": ["musikal", "kreatif", "ekspresif", "disiplin", "pendengar yang baik"]
+  },
+  {
+    "id": "m80",
+    "nama_jurusan": "Desain Produk",
+    "kategori": "Seni",
+    "deskripsi": "Merancang dan mengembangkan produk fungsional yang memenuhi kebutuhan pengguna.",
+    "karakter_cocok": ["inovatif", "problem-solver", "kreatif", "visual", "terampil"]
+  },
+  {
+    "id": "m81",
+    "nama_jurusan": "Film dan Televisi",
+    "kategori": "Seni",
+    "deskripsi": "Mempelajari proses pembuatan film dan program televisi, dari pra-produksi hingga pasca-produksi.",
+    "karakter_cocok": ["kreatif", "visual", "komunikatif", "organisir", "storyteller"]
+  },
+  {
+    "id": "m82",
+    "nama_jurusan": "Tata Boga",
+    "kategori": "Vokasi",
+    "deskripsi": "Seni mengolah dan menyajikan makanan dengan teknik dan estetika yang tinggi.",
+    "karakter_cocok": ["kreatif", "detail-oriented", "suka memasak", "terampil", "sabar"]
+  },
+  {
+    "id": "m83",
+    "nama_jurusan": "Fisioterapi",
+    "kategori": "Vokasi",
+    "deskripsi": "Memberikan layanan rehabilitasi untuk mengembalikan fungsi gerak tubuh.",
+    "karakter_cocok": ["peduli", "sabar", "aktif", "problem-solver", "empatik"]
+  },
+  {
+    "id": "m84",
+    "nama_jurusan": "Administrasi Perkantoran",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan manajemen kantor, korespondensi, dan administrasi bisnis.",
+    "karakter_cocok": ["organisir", "teliti", "komunikatif", "sistematis", "bertanggung jawab"]
+  },
+  {
+    "id": "m85",
+    "nama_jurusan": "Desain Grafis",
+    "kategori": "Vokasi",
+    "deskripsi": "Pendidikan praktis dalam menciptakan solusi visual untuk media cetak dan digital.",
+    "karakter_cocok": ["kreatif", "visual", "suka teknologi", "detail-oriented", "komunikatif"]
+  },
+  {
+    "id": "m86",
+    "nama_jurusan": "Meteorologi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari atmosfer bumi dan fenomena cuaca untuk membuat prakiraan.",
+    "karakter_cocok": ["analitis", "observasional", "logis", "suka data", "detail-oriented"]
+  },
+  {
+    "id": "m87",
+    "nama_jurusan": "Kesehatan Lingkungan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mempelajari faktor-faktor lingkungan yang mempengaruhi kesehatan manusia.",
+    "karakter_cocok": ["peduli lingkungan", "analitis", "problem-solver", "sosial", "observasional"]
+  },
+  {
+    "id": "m88",
+    "nama_jurusan": "Keselamatan dan Kesehatan Kerja (K3)",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mengidentifikasi dan mengendalikan risiko di tempat kerja untuk mencegah kecelakaan dan penyakit.",
+    "karakter_cocok": ["bertanggung jawab", "teliti", "analitis", "komunikatif", "tegas"]
+  },
+  {
+    "id": "m89",
+    "nama_jurusan": "Teknik Biomedis",
+    "kategori": "STEM",
+    "deskripsi": "Menggabungkan prinsip teknik dengan ilmu kedokteran untuk merancang alat kesehatan.",
+    "karakter_cocok": ["inovatif", "analitis", "problem-solver", "teliti", "suka biologi"]
+  },
+  {
+    "id": "m90",
+    "nama_jurusan": "Teknik Geodesi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari pengukuran dan pemetaan permukaan bumi serta penentuan posisi.",
+    "karakter_cocok": ["teliti", "suka bekerja di luar", "analitis", "suka geografi", "praktis"]
+  },
+  {
+    "id": "m91",
+    "nama_jurusan": "Teknik Perkapalan",
+    "kategori": "STEM",
+    "deskripsi": "Merancang, membangun, dan memelihara kapal dan struktur lepas pantai lainnya.",
+    "karakter_cocok": ["logis", "terstruktur", "problem-solver", "suka fisika", "praktis"]
+  },
+  {
+    "id": "m92",
+    "nama_jurusan": "Teknologi Bioproses",
+    "kategori": "STEM",
+    "deskripsi": "Memanfaatkan organisme hidup atau komponennya untuk menghasilkan produk industri.",
+    "karakter_cocok": ["suka eksperimen", "analitis", "inovatif", "problem-solver", "teliti"]
+  },
+  {
+    "id": "m93",
+    "nama_jurusan": "Teknik Material",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari sifat, struktur, dan aplikasi berbagai material seperti logam, polimer, dan keramik.",
+    "karakter_cocok": ["analitis", "suka eksperimen", "teliti", "inovatif", "problem-solver"]
+  },
+  {
+    "id": "m94",
+    "nama_jurusan": "Teknik Komputer",
+    "kategori": "STEM",
+    "deskripsi": "Fokus pada desain dan pengembangan perangkat keras komputer dan sistem tertanam.",
+    "karakter_cocok": ["logis", "suka bongkar pasang", "problem-solver", "analitis", "suka teknologi"]
+  },
+  {
+    "id": "m95",
+    "nama_jurusan": "Arsitektur Interior",
+    "kategori": "Seni",
+    "deskripsi": "Spesialisasi dalam perancangan fungsional dan estetis dari ruang-ruang di dalam bangunan.",
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented", "estetis", "problem-solver"]
+  },
+  {
+    "id": "m96",
+    "nama_jurusan": "Agronomi",
+    "kategori": "STEM",
+    "deskripsi": "Ilmu dan teknologi dalam memproduksi dan memanfaatkan tanaman untuk pangan, pakan, dan bahan bakar.",
+    "karakter_cocok": ["suka bekerja di luar", "sabar", "analitis", "peduli lingkungan", "praktis"]
+  },
+  {
+    "id": "m97",
+    "nama_jurusan": "Akuakultur",
+    "kategori": "STEM",
+    "deskripsi": "Budi daya organisme perairan seperti ikan, udang, dan rumput laut.",
+    "karakter_cocok": ["wirausaha", "sabar", "suka air", "peduli lingkungan", "praktis"]
+  },
+  {
+    "id": "m98",
+    "nama_jurusan": "Bioteknologi",
+    "kategori": "STEM",
+    "deskripsi": "Pemanfaatan sistem biologis atau organisme hidup untuk mengembangkan produk teknologi.",
+    "karakter_cocok": ["inovatif", "analitis", "suka eksperimen", "problem-solver", "suka biologi"]
+  },
+  {
+    "id": "m99",
+    "nama_jurusan": "Ilmu Pemerintahan",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari proses, institusi, dan dinamika kekuasaan dalam pemerintahan.",
+    "karakter_cocok": ["analitis", "kritis", "komunikatif", "strategis", "sosial"]
+  },
+  {
+    "id": "m100",
+    "nama_jurusan": "Administrasi Bisnis",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari pengelolaan semua aspek operasional dalam sebuah perusahaan.",
+    "karakter_cocok": ["organisir", "kepemimpinan", "analitis", "komunikatif", "strategis"]
+  },
+  {
+    "id": "m101",
+    "nama_jurusan": "Manajemen Komunikasi",
+    "kategori": "Sosial",
+    "deskripsi": "Merencanakan dan mengelola strategi komunikasi untuk mencapai tujuan organisasi.",
+    "karakter_cocok": ["strategis", "komunikatif", "analitis", "kreatif", "organisir"]
+  },
+  {
+    "id": "m102",
+    "nama_jurusan": "Bahasa dan Kebudayaan Korea",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, sastra, budaya, dan sejarah Korea secara komprehensif.",
+    "karakter_cocok": ["suka budaya asing", "komunikatif", "analitis", "sabar", "detail-oriented"]
+  },
+  {
+    "id": "m103",
+    "nama_jurusan": "Sastra Arab",
+    "kategori": "Humaniora",
+    "deskripsi": "Mendalami bahasa, sastra klasik dan modern, serta kebudayaan Arab.",
+    "karakter_cocok": ["analitis", "suka membaca", "penulis", "kritis", "suka budaya asing"]
+  },
+  {
+    "id": "m104",
+    "nama_jurusan": "Ilmu Ekonomi Islam",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari prinsip-prinsip ekonomi yang didasarkan pada hukum dan etika Islam.",
+    "karakter_cocok": ["analitis", "etis", "kritis", "sosial", "sistematis"]
+  },
+  {
+    "id": "m105",
+    "nama_jurusan": "Keuangan dan Perbankan",
+    "kategori": "Bisnis",
+    "deskripsi": "Fokus pada manajemen keuangan, pasar modal, dan operasi lembaga perbankan.",
+    "karakter_cocok": ["analitis", "teliti", "suka angka", "bertanggung jawab", "strategis"]
+  },
+  {
+    "id": "m106",
+    "nama_jurusan": "Ilmu Kesejahteraan Sosial",
+    "kategori": "Sosial",
+    "deskripsi": "Bekerja untuk meningkatkan kualitas hidup individu dan komunitas melalui intervensi sosial.",
+    "karakter_cocok": ["empatik", "peduli", "sosial", "problem-solver", "komunikatif"]
+  },
+  {
+    "id": "m107",
+    "nama_jurusan": "Pendidikan Guru PAUD (PGPAUD)",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan tenaga pendidik profesional untuk anak usia dini.",
+    "karakter_cocok": ["sabar", "kreatif", "suka anak-anak", "enerjik", "penyayang"]
+  },
+  {
+    "id": "m108",
+    "nama_jurusan": "Pendidikan Bahasa Jepang",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari metodologi pengajaran bahasa Jepang sebagai bahasa asing.",
+    "karakter_cocok": ["komunikatif", "sabar", "suka budaya asing", "kreatif", "organisir"]
+  },
+  {
+    "id": "m109",
+    "nama_jurusan": "Pendidikan Sejarah",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari cara mengajarkan peristiwa masa lalu secara menarik dan bermakna.",
+    "karakter_cocok": ["analitis", "storyteller", "sabar", "kritis", "komunikatif"]
+  },
+  {
+    "id": "m110",
+    "nama_jurusan": "Pendidikan Geografi",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik siswa tentang hubungan manusia dan lingkungan serta pemetaan.",
+    "karakter_cocok": ["observasional", "sabar", "visual", "komunikatif", "suka bekerja di luar"]
+  },
+  {
+    "id": "m111",
+    "nama_jurusan": "Pendidikan Agama Islam",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan guru yang kompeten dalam mengajarkan ajaran dan nilai-nilai Islam.",
+    "karakter_cocok": ["agamis", "sabar", "komunikatif", "panutan", "empatik"]
+  },
+  {
+    "id": "m112",
+    "nama_jurusan": "Pendidikan Biologi",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari cara efektif mengajarkan konsep-konsep ilmu hayati kepada siswa.",
+    "karakter_cocok": ["suka alam", "sabar", "komunikatif", "suka eksperimen", "analitis"]
+  },
+  {
+    "id": "m113",
+    "nama_jurusan": "Pendidikan Kepelatihan Olahraga",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan pelatih profesional untuk berbagai cabang olahraga.",
+    "karakter_cocok": ["sportif", "kepemimpinan", "strategis", "aktif", "motivator"]
+  },
+  {
+    "id": "m114",
+    "nama_jurusan": "Tata Kelola Seni",
+    "kategori": "Seni",
+    "deskripsi": "Manajemen organisasi dan acara di bidang seni, seperti galeri, museum, atau festival.",
+    "karakter_cocok": ["organisir", "kreatif", "komunikatif", "sosial", "wirausaha"]
+  },
+  {
+    "id": "m115",
+    "nama_jurusan": "Tata Rias",
+    "kategori": "Vokasi",
+    "deskripsi": "Seni merias wajah untuk berbagai keperluan, seperti kecantikan, panggung, dan karakter.",
+    "karakter_cocok": ["kreatif", "estetis", "detail-oriented", "terampil", "sabar"]
+  },
+  {
+    "id": "m116",
+    "nama_jurusan": "Tata Busana",
+    "kategori": "Vokasi",
+    "deskripsi": "Merancang dan membuat busana, dari konsep hingga menjadi produk jadi.",
+    "karakter_cocok": ["kreatif", "visual", "detail-oriented", "terampil", "inovatif"]
+  },
+  {
+    "id": "m117",
+    "nama_jurusan": "Administrasi Perpajakan",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan praktis dalam perhitungan, pelaporan, dan administrasi pajak.",
+    "karakter_cocok": ["teliti", "suka angka", "sistematis", "bertanggung jawab", "analitis"]
+  },
+  {
+    "id": "m118",
+    "nama_jurusan": "Manajemen Informasi dan Dokumentasi",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan dalam mengelola, menyimpan, dan menyajikan informasi dan dokumen secara efisien.",
+    "karakter_cocok": ["organisir", "teliti", "sistematis", "suka teknologi", "bertanggung jawab"]
+  },
+  {
+    "id": "m119",
+    "nama_jurusan": "Penyiaran Multimedia",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan teknis dan kreatif dalam produksi konten untuk radio, televisi, dan media online.",
+    "karakter_cocok": ["kreatif", "komunikatif", "suka teknologi", "cepat", "dinamis"]
+  },
+  {
+    "id": "m120",
+    "nama_jurusan": "Periklanan Kreatif",
+    "kategori": "Vokasi",
+    "deskripsi": "Mengembangkan ide-ide kreatif dan eksekusi untuk kampanye periklanan.",
+    "karakter_cocok": ["kreatif", "inovatif", "komunikatif", "visual", "strategis"]
+  },
+  {
+    "id": "m121",
+    "nama_jurusan": "Manajemen Pemasaran Pariwisata",
+    "kategori": "Vokasi",
+    "deskripsi": "Fokus pada strategi pemasaran untuk hotel, biro perjalanan, dan destinasi wisata.",
+    "karakter_cocok": ["kreatif", "komunikatif", "sosial", "strategis", "wirausaha"]
+  },
+  {
+    "id": "m122",
+    "nama_jurusan": "Pemasaran Digital",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan praktis dalam menggunakan media sosial, SEO, dan iklan online untuk pemasaran.",
+    "karakter_cocok": ["analitis", "kreatif", "suka teknologi", "strategis", "adaptif"]
+  },
+  {
+    "id": "m123",
+    "nama_jurusan": "Teknik Listrik",
+    "kategori": "STEM",
+    "deskripsi": "Fokus pada pembangkitan, transmisi, dan distribusi energi listrik.",
+    "karakter_cocok": ["logis", "problem-solver", "analitis", "praktis", "suka fisika"]
+  },
+  {
+    "id": "m124",
+    "nama_jurusan": "Teknik Nuklir",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari pemanfaatan energi nuklir untuk pembangkit listrik dan aplikasi lainnya.",
+    "karakter_cocok": ["analitis", "bertanggung jawab", "teliti", "logis", "suka fisika"]
+  },
+  {
+    "id": "m125",
+    "nama_jurusan": "Teknik Metalurgi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari proses ekstraksi dan pengolahan logam dari bijihnya.",
+    "karakter_cocok": ["analitis", "suka eksperimen", "problem-solver", "praktis", "teliti"]
+  },
+  {
+    "id": "m126",
+    "nama_jurusan": "Ilmu Administrasi Niaga",
+    "kategori": "Bisnis",
+    "deskripsi": "Fokus pada pengelolaan dan strategi dalam organisasi bisnis komersial.",
+    "karakter_cocok": ["wirausaha", "strategis", "komunikatif", "analitis", "kepemimpinan"]
+  },
+  {
+    "id": "m127",
+    "nama_jurusan": "Ilmu Administrasi Fiskal",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari kebijakan dan administrasi penerimaan negara, terutama pajak.",
+    "karakter_cocok": ["analitis", "teliti", "suka angka", "bertanggung jawab", "kritis"]
+  },
+  {
+    "id": "m128",
+    "nama_jurusan": "Kearsipan Digital",
+    "kategori": "Sosial",
+    "deskripsi": "Mengelola arsip dan dokumen dalam format digital untuk pelestarian dan aksesibilitas.",
+    "karakter_cocok": ["organisir", "sistematis", "teliti", "suka teknologi", "bertanggung jawab"]
+  },
+  {
+    "id": "m129",
+    "nama_jurusan": "Bahasa dan Budaya Tiongkok",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa Mandarin, sastra, budaya, dan sejarah Tiongkok.",
+    "karakter_cocok": ["suka budaya asing", "komunikatif", "analitis", "sabar", "detail-oriented"]
+  },
+  {
+    "id": "m130",
+    "nama_jurusan": "Sastra Belanda",
+    "kategori": "Humaniora",
+    "deskripsi": "Mengkaji bahasa, sastra, dan budaya Belanda serta sejarahnya di Indonesia.",
+    "karakter_cocok": ["analitis", "suka membaca", "kritis", "peneliti", "suka sejarah"]
+  },
+  {
+    "id": "m131",
+    "nama_jurusan": "Sastra Jerman",
+    "kategori": "Humaniora",
+    "deskripsi": "Mendalami bahasa, sastra, dan pemikiran dari dunia berbahasa Jerman.",
+    "karakter_cocok": ["analitis", "logis", "suka membaca", "kritis", "suka budaya asing"]
+  },
+  {
+    "id": "m132",
+    "nama_jurusan": "Sastra Prancis",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, sastra, dan budaya Prancis yang kaya akan seni dan filsafat.",
+    "karakter_cocok": ["estetis", "kreatif", "analitis", "suka membaca", "komunikatif"]
+  },
+  {
+    "id": "m133",
+    "nama_jurusan": "Bisnis Islam",
+    "kategori": "Bisnis",
+    "deskripsi": "Mengelola bisnis sesuai dengan prinsip-prinsip syariah Islam.",
+    "karakter_cocok": ["etis", "wirausaha", "sosial", "bertanggung jawab", "komunikatif"]
+  },
+  {
+    "id": "m134",
+    "nama_jurusan": "Pendidikan Pancasila dan Kewarganegaraan",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik siswa menjadi warga negara yang baik sesuai dengan nilai-nilai Pancasila.",
+    "karakter_cocok": ["nasionalis", "sosial", "komunikatif", "kritis", "panutan"]
+  },
+  {
+    "id": "m135",
+    "nama_jurusan": "Pendidikan Sosiologi",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari cara mengajarkan konsep interaksi dan struktur sosial kepada siswa.",
+    "karakter_cocok": ["analitis", "observasional", "kritis", "sabar", "komunikatif"]
+  },
+  {
+    "id": "m136",
+    "nama_jurusan": "Pendidikan Kimia",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempelajari metode efektif untuk mengajarkan ilmu kimia di sekolah.",
+    "karakter_cocok": ["analitis", "suka eksperimen", "sabar", "komunikatif", "teliti"]
+  },
+  {
+    "id": "m137",
+    "nama_jurusan": "Pendidikan Fisika",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan guru untuk mengajarkan konsep-konsep fisika secara menarik dan mudah dipahami.",
+    "karakter_cocok": ["logis", "suka eksperimen", "sabar", "analitis", "komunikatif"]
+  },
+  {
+    "id": "m138",
+    "nama_jurusan": "Pendidikan Seni Rupa",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mengajarkan berbagai teknik dan apresiasi seni rupa kepada siswa.",
+    "karakter_cocok": ["kreatif", "visual", "sabar", "ekspresif", "komunikatif"]
+  },
+  {
+    "id": "m139",
+    "nama_jurusan": "Pendidikan Seni Musik",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik siswa dalam teori musik, praktik instrumen, dan apresiasi musik.",
+    "karakter_cocok": ["musikal", "sabar", "kreatif", "komunikatif", "disiplin"]
+  },
+  {
+    "id": "m140",
+    "nama_jurusan": "Film dan Animasi",
+    "kategori": "Seni",
+    "deskripsi": "Menggabungkan seni perfilman dengan teknik animasi untuk menciptakan karya visual yang dinamis.",
+    "karakter_cocok": ["kreatif", "visual", "sabar", "suka teknologi", "storyteller"]
+  },
+  {
+    "id": "m141",
+    "nama_jurusan": "Administrasi Keuangan dan Perbankan",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan praktis dalam administrasi di lembaga keuangan dan bank.",
+    "karakter_cocok": ["teliti", "suka angka", "organisir", "bertanggung jawab", "sistematis"]
+  },
+  {
+    "id": "m142",
+    "nama_jurusan": "Okupasi Terapi",
+    "kategori": "Vokasi",
+    "deskripsi": "Membantu individu dengan keterbatasan untuk berpartisipasi dalam aktivitas kehidupan sehari-hari.",
+    "karakter_cocok": ["empatik", "kreatif", "sabar", "problem-solver", "peduli"]
+  },
+  {
+    "id": "m143",
+    "nama_jurusan": "Akuntansi Sektor Publik",
+    "kategori": "Vokasi",
+    "deskripsi": "Akuntansi yang diterapkan pada organisasi pemerintah dan nirlaba.",
+    "karakter_cocok": ["teliti", "analitis", "bertanggung jawab", "sistematis", "jujur"]
+  },
+  {
+    "id": "m144",
+    "nama_jurusan": "Ilmu Keolahragaan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Mempelajari aspek ilmiah dari olahraga, termasuk fisiologi, biomekanika, dan psikologi olahraga.",
+    "karakter_cocok": ["aktif", "sportif", "analitis", "peduli kesehatan", "disiplin"]
+  },
+  {
+    "id": "m145",
+    "nama_jurusan": "Studi Agama",
+    "kategori": "Humaniora",
+    "deskripsi": "Mengkaji berbagai agama dari perspektif sejarah, budaya, dan filosofis.",
+    "karakter_cocok": ["analitis", "kritis", "terbuka", "suka membaca", "observasional"]
+  },
+  {
+    "id": "m146",
+    "nama_jurusan": "Teologi",
+    "kategori": "Humaniora",
+    "deskripsi": "Studi mendalam tentang doktrin, keyakinan, dan praktik suatu agama tertentu.",
+    "karakter_cocok": ["agamis", "analitis", "kritis", "suka membaca", "reflektif"]
+  },
+  {
+    "id": "m147",
+    "nama_jurusan": "Pendidikan Ilmu Komputer",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mempersiapkan guru untuk mengajarkan ilmu komputer, pemrograman, dan literasi digital.",
+    "karakter_cocok": ["logis", "sabar", "suka teknologi", "komunikatif", "problem-solver"]
+  },
+  {
+    "id": "m148",
+    "nama_jurusan": "Seni Tari",
+    "kategori": "Seni",
+    "deskripsi": "Fokus pada ekspresi, teknik, dan koreografi dalam seni pertunjukan tari.",
+    "karakter_cocok": ["ekspresif", "enerjik", "kreatif", "disiplin", "percaya diri"]
+  },
+  {
+    "id": "m149",
+    "nama_jurusan": "Sekretaris",
+    "kategori": "Vokasi",
+    "deskripsi": "Keterampilan profesional dalam manajemen kantor, komunikasi bisnis, dan asistensi eksekutif.",
+    "karakter_cocok": ["organisir", "komunikatif", "teliti", "profesional", "multitasking"]
+  },
+  {
+    "id": "m150",
+    "nama_jurusan": "Administrasi Perumahsakitan",
+    "kategori": "Vokasi",
+    "deskripsi": "Manajemen operasional dan administrasi di rumah sakit dan fasilitas kesehatan.",
+    "karakter_cocok": ["organisir", "teliti", "peduli", "komunikatif", "problem-solver"]
   }
 ]

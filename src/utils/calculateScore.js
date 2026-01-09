@@ -32,7 +32,9 @@ export function calculateScore(answers, questions, majors) {
       
       // Accumulate the maximum possible weight for this major, regardless of user answer.
       // This forms the basis for overall normalization later.
-      maxPossible[m.id] += w;
+      if (w > 0) {
+        maxPossible[m.id] += w;
+      }
 
       // Skip text input questions as they don't directly contribute to numerical scoring,
       // or if the weight for this major is zero.

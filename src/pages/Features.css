@@ -1,9 +1,27 @@
 /* ================= FEATURE SECTION ================= */
 .pset {
-  padding-top: 180px;
+  padding-top: 100px; /* Diperkecil agar judul tidak terlalu jauh dari atas */
   padding-bottom: 80px;
-  margin-top: 80px;
+  margin-top: 40px;
   background: transparent;
+}
+
+/* Style untuk Judul Baru */
+.cara-kerja-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #258bd5;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cara-kerja-separator {
+  width: 60px;
+  height: 4px;
+  background: #2f53bf;
+  margin: 0 auto 60px;
+  border-radius: 2px;
 }
 
 .listar-feature-items {
@@ -11,10 +29,11 @@
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  gap: 45px; /* Menambah jarak antar kartu */
 }
 
 .listar-feature-item-wrapper {
-  padding: 0 27px;
+  padding: 0 15px; /* Mengatur padding internal */
   margin-bottom: 120px;
   flex: 0 0 100%;
   max-width: 100%;
@@ -22,15 +41,15 @@
 
 @media (min-width: 576px) {
   .listar-feature-item-wrapper {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 45%; /* Diperkecil dari 50% agar ada gap */
+    max-width: 45%;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .listar-feature-item-wrapper {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
+    flex: 0 0 30%; /* Diperkecil dari 33% agar ada gap */
+    max-width: 30%;
   }
 }
 
@@ -185,6 +204,10 @@
 
 /* ================= MOBILE ================= */
 @media (max-width: 767px) {
+  .cara-kerja-title {
+    font-size: 24px;
+  }
+
   .listar-feature-icon-wrapper {
     width: 120px;
     height: 120px;
@@ -205,32 +228,22 @@
   }
 
    .listar-feature-item-title > span {
-    padding: 12px 18px 12px 50px; /* ⬅️ dipersempit */
+    padding: 12px 18px 12px 50px;
     max-width: 150%;
     margin-left: -20px;
     box-sizing: border-box;
   }
 
   .listar-feature-item-title > span span {
-    left: 8px;                 /* ⬅️ angka masuk dikit */
+    left: 8px;
     width: 38px;
     height: 38px;
     font-size: 18px;
     font-weight: 600;
   }
 
-  .listar-feature-item-excerpt {
-    padding: 0 0px;           /* ⬅️ biar teks ga mepet border */
-  }
-
   .listar-feature-right-border {
     width: 250px;
     height: 104%;
   }
-
-  .listar-feature-right-border::before {
-    border-width: 8px;
-  }
-
-  
 }
