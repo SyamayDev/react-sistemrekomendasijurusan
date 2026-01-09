@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Features from "./pages/Features";
 import Footer from "./components/Footer";
 import PulsatingStatPreloader from "./components/Preloader"; // Import the preloader
+import Chatbot from "./components/Chatbot"; // Import the chatbot
 
 function AppContent() {
   const [resultState, setResultState] = useState(null);
@@ -30,6 +31,7 @@ function AppContent() {
         </Routes>
       </main>
       {location.pathname !== "/quiz" && <Footer />}
+      <Chatbot />
     </>
   );
 }
