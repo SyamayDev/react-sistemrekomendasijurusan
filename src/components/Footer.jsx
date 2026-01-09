@@ -84,7 +84,7 @@ export default function Footer() {
           preserveAspectRatio="none"
         >
           <path
-            fill="#98ccfb"
+            fill="#8fc9f9"
             d="M0,160 C240,80 480,220 720,190 960,160 1200,100 1440,140 L1440,0 L0,0 Z"
           />
         </svg>
