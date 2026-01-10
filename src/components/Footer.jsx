@@ -138,13 +138,13 @@ export default function Footer() {
                 <h6>REFERENSI</h6>
                 <ul className="footer-links">
                   <li>
-                    <a href="https://www.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">Kemdikbud</a>
+                    <a href="https://kemendikdasmen.go.id/" target="_blank" rel="noopener noreferrer">Kemdikbud</a>
                   </li>
                   <li>
                     <a href="https://snpmb.bppp.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">SNPMB</a>
                   </li>
                   <li>
-                    <a href="https://pddikti.kemdikbud.go.id" target="_blank" rel="noopener noreferrer">PDDikti</a>
+                    <a href="https://pddikti.kemdiktisaintek.go.id/" target="_blank" rel="noopener noreferrer">PDDikti</a>
                   </li>
                 </ul>
               </div>
