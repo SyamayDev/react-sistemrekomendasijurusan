@@ -180,6 +180,7 @@
   padding: 10px 15px;
   font-size: 1rem;
   outline: none;
+  min-width: 150px;
 }
 
 .chat-input-area button {
