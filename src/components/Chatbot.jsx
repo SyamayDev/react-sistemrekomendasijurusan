@@ -148,7 +148,6 @@ export default function Chatbot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* ===== INPUT ===== */}
         <div className="chat-input-area">
           <input
             ref={inputRef}
@@ -169,7 +168,6 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* ===== FLOATING BUTTON ===== */}
       <button onClick={toggleChat} className="chatbot-fab">
         <img src={chatbotIcon} alt="Chatbot" />
       </button>

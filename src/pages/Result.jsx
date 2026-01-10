@@ -46,7 +46,7 @@ export default function Result({ resultState }) {
           Analisis akurat berdasarkan minat, bakat, dan karakter unikmu.
         </p>
         <div style={{ marginTop: "2rem" }}>
-          <ShareResult />
+          <ShareResult shareUrl="https://syamaydev.github.io/react-sistemrekomendasijurusan/" />
         </div>
       </header>
       <section className="top-recos">

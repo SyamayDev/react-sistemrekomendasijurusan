@@ -72,11 +72,11 @@ export default function Home() {
         transition={{ duration: 1 }}
       >
         <div className="logo">
-          <img src={logo} alt="SI-RAJU Logo" />
+          <img src={logo} alt="SI-RAJU Logo" width="210" height="70" />
         </div>
 
-        <motion.h1 className="percentage">{percent}%</motion.h1>
-        <h2 className="headline">Orang Salah Pilih Jurusan Kuliah !!</h2>
+        <motion.div className="percentage">{percent}%</motion.div>
+        <h1 className="headline">Orang Salah Pilih Jurusan Kuliah !!</h1>
         <p className="subtitle">Ikuti Tes Minat Bakat Online</p>
         <p className="free">GRATIS!!</p>
 
@@ -89,7 +89,12 @@ export default function Home() {
         </AnimatedButton>
 
         <div className="illustration">
-          <img src={heroesIllustration} alt="Ilustrasi Profesi" />
+          <img
+            src={heroesIllustration}
+            alt="Ilustrasi Profesi"
+            width="440"
+            height="248"
+          />
         </div>
       </motion.main>
 
@@ -111,7 +116,12 @@ export default function Home() {
             <div className="faq-layout">
               {/* OWL */}
               <div className="faq-image">
-                <img src={owlAsk} alt="Burung hantu bertanya" />
+                <img
+                  src={owlAsk}
+                  alt="Burung hantu bertanya"
+                  width="300"
+                  height="300"
+                />
               </div>
 
               {/* ACCORDION */}
@@ -175,7 +185,12 @@ export default function Home() {
 
               {/* GAMBAR */}
               <div className="guide-image">
-                <img src={kurangPuas} alt="Burung hantu kurang puas" />
+                <img
+                  src={kurangPuas}
+                  alt="Burung hantu kurang puas"
+                  width="200"
+                  height="200"
+                />
               </div>
             </div>
           </div>
