@@ -3,14 +3,17 @@ import "./Chatbot.css";
 import chatbotIcon from "../assets/chatbot-icon.svg";
 import sendIcon from "../assets/send-icon.svg";
 
+/* ===== ICON CLOSE ===== */
 const closeIconSvg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <line x1="18" y1="6" x2="6" y2="18"></line>
   <line x1="6" y1="6" x2="18" y2="18"></line>
 </svg>
 `;
 const closeIconDataUrl = `data:image/svg+xml;base64,${btoa(closeIconSvg)}`;
 
+/* ===== GANTI DENGAN URL BACKEND VERCEL KAMU ===== */
 const API_URL = "https://si-raju-backend.vercel.app/api/chat";
 
 export default function Chatbot() {
@@ -22,20 +25,19 @@ export default function Chatbot() {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
+  /* ===== AUTO SCROLL ===== */
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  /* ===== GREETING SAAT DIBUKA ===== */
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([
         {
           role: "model",
-          parts: [
-            {
-              text: "Halo! Saya SI-RAJU AI, asisten virtual Anda. Ada yang bisa saya bantu terkait pemilihan jurusan atau kuis di website ini?",
-            },
-          ],
+          text:
+            "Halo! Saya SI-RAJU AI 🤖\nSaya bisa membantu kamu memahami jurusan kuliah dan cara kerja kuis rekomendasi.\nSilakan bertanya 😊",
         },
       ]);
     }
@@ -51,50 +53,55 @@ export default function Chatbot() {
     }
   }, [isOpen]);
 
-  const toggleChat = () => setIsOpen(!isOpen);
+  const toggleChat = () => setIsOpen((prev) => !prev);
 
+  /* ===== KIRIM PESAN ===== */
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    const userMessage = {
-      role: "user",
-      parts: [{ text: input }],
-    };
+    const userText = input;
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", text: userText },
+    ]);
+
     setInput("");
     setIsLoading(true);
 
     try {
       const res = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          message: input,
-          history: messages.slice(-10),
+          message: userText,
         }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Server error");
 
-      const botMessage = {
-        role: "model",
-        parts: [{ text: data.reply }],
-      };
+      if (!res.ok) {
+        // Jika respons tidak ok, server seharusnya mengirim pesan error di `data.reply`
+        const serverError =
+          data.reply || "⚠️ Maaf, server sedang bermasalah.\nSilakan coba lagi beberapa saat.";
+        throw new Error(serverError);
+      }
 
-      setMessages((prev) => [...prev, botMessage]);
-    } catch (err) {
       setMessages((prev) => [
         ...prev,
         {
           role: "model",
-          parts: [
-            {
-              text:
-                "Maaf, terjadi kesalahan pada server. Silakan coba lagi sebentar.",
-            },
-          ],
+          text: data.reply,
+        },
+      ]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "model",
+          text: error.message,
         },
       ]);
     } finally {
@@ -107,6 +114,7 @@ export default function Chatbot() {
       <div className="mobile-modal-overlay" onClick={toggleChat}></div>
 
       <div className={`chat-window ${isOpen ? "open" : ""}`}>
+        {/* ===== HEADER ===== */}
         <div className="chat-header">
           <h3>SI-RAJU AI</h3>
           <button onClick={toggleChat} className="chat-close-btn">
@@ -114,6 +122,7 @@ export default function Chatbot() {
           </button>
         </div>
 
+        {/* ===== MESSAGES ===== */}
         <div className="chat-messages">
           {messages.map((msg, index) => (
             <div
@@ -122,7 +131,7 @@ export default function Chatbot() {
                 msg.role === "user" ? "user" : "model"
               }`}
             >
-              <p>{msg.parts[0].text}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{msg.text}</p>
             </div>
           ))}
 
@@ -139,6 +148,7 @@ export default function Chatbot() {
           <div ref={messagesEndRef} />
         </div>
 
+        {/* ===== INPUT ===== */}
         <div className="chat-input-area">
           <input
             ref={inputRef}
@@ -159,6 +169,7 @@ export default function Chatbot() {
         </div>
       </div>
 
+      {/* ===== FLOATING BUTTON ===== */}
       <button onClick={toggleChat} className="chatbot-fab">
         <img src={chatbotIcon} alt="Chatbot" />
       </button>
