@@ -111,6 +111,26 @@
   height: 20px;
 }
 
+.send-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.send-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 /* Messages Area */
 .chat-messages {
   flex-grow: 1;
