@@ -385,6 +385,7 @@ textarea {
   width: 100%;
   max-width: 440px;
   height: auto; /* Responsive height */
+  aspect-ratio: 440 / 248;
 }
 
 .landing-container::after {
@@ -521,7 +522,8 @@ section {
 
 .faq-image img {
   width: 300px;
-  height: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -608,6 +610,8 @@ section {
 
 .guide-image img {
   max-width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   animation: float 4s ease-in-out infinite;
   
 }

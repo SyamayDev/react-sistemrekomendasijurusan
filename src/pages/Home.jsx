@@ -72,7 +72,7 @@ export default function Home() {
         transition={{ duration: 1 }}
       >
         <div className="logo">
-          <img src={logo} alt="SI-RAJU Logo" width="210" height="70" />
+          <img src={logo} alt="SI-RAJU Logo" />
         </div>
 
         <motion.div className="percentage">{percent}%</motion.div>
@@ -89,12 +89,7 @@ export default function Home() {
         </AnimatedButton>
 
         <div className="illustration">
-          <img
-            src={heroesIllustration}
-            alt="Ilustrasi Profesi"
-            width="440"
-            height="248"
-          />
+          <img src={heroesIllustration} alt="Ilustrasi Profesi" />
         </div>
       </motion.main>
 
@@ -116,12 +111,7 @@ export default function Home() {
             <div className="faq-layout">
               {/* OWL */}
               <div className="faq-image">
-                <img
-                  src={owlAsk}
-                  alt="Burung hantu bertanya"
-                  width="300"
-                  height="300"
-                />
+                <img src={owlAsk} alt="Burung hantu bertanya" />
               </div>
 
               {/* ACCORDION */}
