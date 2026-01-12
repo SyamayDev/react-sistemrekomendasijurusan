@@ -10,7 +10,7 @@ function getResultDataFromURL(searchParams) {
   try {
     const dataStr = searchParams.get("data");
     if (!dataStr) return null;
-    const decoded = atob(dataStr);
+    const decoded = atob(decodeURIComponent(dataStr));
     return JSON.parse(decoded);
   } catch (error) {
     console.error("Failed to parse result data from URL:", error);
