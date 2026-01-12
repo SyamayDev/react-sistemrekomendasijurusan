@@ -5,6 +5,7 @@ import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import About from "./pages/About";
 import Features from "./pages/Features";
+import ShareableResultPage from "./pages/ShareableResultPage";
 import Footer from "./components/Footer";
 import PulsatingStatPreloader from "./components/Preloader"; // Import the preloader
 import Chatbot from "./components/Chatbot"; // Import the chatbot
@@ -28,6 +29,7 @@ function AppContent() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/features" element={<Features />} />
+          <Route path="/result/share" element={<ShareableResultPage />} />
         </Routes>
       </main>
       {location.pathname !== "/quiz" && <Footer />}

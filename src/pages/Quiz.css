@@ -38,8 +38,33 @@
   background: #fff;
   border-top: 1px solid #f0f0f0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  gap: 1rem;
   flex-shrink: 0; /* Pastikan area tombol tidak mengecil */
+}
+
+/* When there are two buttons, push the first one (Back) to the far left */
+.quiz-actions button:first-child:not(:only-child) {
+  margin-right: auto;
+}
+
+.secondary-btn {
+  background: #6b6b6b;
+  border: 1px solid #e0e0e0;
+  color: #fff;
+}
+
+.secondary-btn:hover {
+  background: #4d4d4d;
+}
+
+.primary-btn {
+  background: #007bff;
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background: #0069d9;
 }
 
 /* Penyesuaian khusus Mobile */
@@ -58,10 +83,16 @@
 
   .quiz-actions {
     padding: 0.8rem 1rem;
+    gap: 0.8rem;
   }
 
   /* Membuat tombol memenuhi lebar bawah pada mobile agar mudah diklik jempol */
   .quiz-actions button {
     width: 100%;
+  }
+
+  /* On mobile, disable the push-left behavior to have side-by-side buttons */
+  .quiz-actions button:first-child:not(:only-child) {
+    margin-right: 0;
   }
 }

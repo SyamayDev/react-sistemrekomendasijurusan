@@ -50,6 +50,13 @@ export default function Quiz({ onComplete }) {
     }
   };
 
+  const back = () => {
+    if (index > 0) {
+      setIndex((i) => i - 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
   const percent = questions.length
     ? Math.round((index / questions.length) * 100)
     : 0;
@@ -72,9 +79,17 @@ export default function Quiz({ onComplete }) {
             </div>
 
             <div className="quiz-actions">
+              {index > 0 && (
+                <AnimatedButton 
+                  onClick={back} 
+                  className="secondary secondary-btn"
+                >
+                  Kembali
+                </AnimatedButton>
+              )}
               <AnimatedButton 
                 onClick={next} 
-                className={`primary ${!canNext() ? "disabled" : ""}`}
+                className={`primary primary-btn ${!canNext() ? "disabled" : ""}`}
                 disabled={!canNext()}
               >
                 {index < questions.length - 1 ? "Lanjut" : "Lihat Hasil"}

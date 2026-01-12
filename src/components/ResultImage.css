@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500&display=swap');
+
+.result-image-wrapper {
+  width: 500px;
+  /* height: 750px; */ /* Height will be auto based on content */
+  padding: 2rem;
+  background: linear-gradient(160deg, #F0F8FF, #E6E6FA);
+  font-family: 'Inter', sans-serif;
+  color: #1E293B;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.ri-header {
+  text-align: center;
+  border-bottom: 2px dashed #D1D5DB;
+  padding-bottom: 1rem;
+}
+
+.ri-logo {
+  width: 60px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.ri-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0284C7; /* Blue */
+  margin: 0;
+}
+
+.ri-subtitle {
+  font-size: 0.9rem;
+  color: #475569;
+  max-width: 80%;
+  margin: 0.5rem auto 0;
+}
+
+.ri-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ri-major-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid #E5E7EB;
+  transition: all 0.3s;
+}
+
+.ri-major-card.rank-1 {
+  border-left: 6px solid #FBBF24; /* Gold */
+}
+.ri-major-card.rank-2 {
+  border-left: 6px solid #D1D5DB; /* Silver */
+}
+.ri-major-card.rank-3 {
+  border-left: 6px solid #CD7F32; /* Bronze */
+}
+
+.ri-major-name-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.ri-major-icon {
+    font-size: 1.5rem;
+}
+
+.ri-major-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.ri-score-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6B7280;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.ri-footer {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 2px dashed #D1D5DB;
+  margin-top: auto;
+}
+
+.ri-footer p {
+  font-size: 0.85rem;
+  color: #475569;
+  margin: 0;
+}

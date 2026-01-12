@@ -28,6 +28,23 @@
   background: #bae6fd;
 }
 
+/* Tombol Bagikan Gambar - Solid */
+.share-btn.secondary-solid {
+  background: #38bdf8; /* Biru Langit */
+  color: white;
+  border: 1px solid #0ea5e9;
+}
+
+.share-btn.secondary-solid:hover {
+  background: #0ea5e9;
+}
+
+.share-btn.secondary-solid:disabled {
+  background-color: #a5dff8;
+  border-color: #a5dff8;
+  cursor: not-allowed;
+}
+
 /* Tombol Salin Link - Minimalis */
 .share-btn.secondary-outline {
   background: transparent;

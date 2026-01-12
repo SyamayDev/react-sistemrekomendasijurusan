@@ -41,12 +41,39 @@
 }
 
 @keyframes shimmer {
+
     100% { transform: skewX(-20deg) translateX(200%); }
+
 }
 
+
+
 .pct-label {
+
     font-weight: 700;
+
     color: var(--text-main);
+
     width: 3rem;
+
     text-align: right;
+
+}
+
+
+
+/* --- Versi untuk Gambar --- */
+
+.pct-wrapper.image-version .pct-fill.high { background: #4f46e5; }
+
+.pct-wrapper.image-version .pct-fill.med { background: #f59e0b; }
+
+.pct-wrapper.image-version .pct-fill.low { background: #64748b; }
+
+
+
+.pct-wrapper.image-version .shine-effect {
+
+    display: none;
+
 }
