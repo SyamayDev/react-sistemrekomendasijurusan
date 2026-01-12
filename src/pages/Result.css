@@ -184,3 +184,10 @@ body {
   from { bottom: 0; opacity: 0; }
   to { bottom: 2rem; opacity: 1; }
 }
+
+/* peta masa depan mu in mobile more small */
+@media (max-width: 768px) {
+  .result-header h2 {
+    font-size: 2rem;
+  }
+}
