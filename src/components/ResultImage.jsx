@@ -45,7 +45,7 @@ export default function ResultImage({ rankedMajors, onReady }) {
         ))}
       </div>
       <div className="ri-footer">
-        <p>Lihat analisis lengkap dan ikuti tes di <strong>sistemrekomendasijurusan.vercel.app</strong></p>
+        <p>Lihat analisis lengkap dan ikuti tes di <strong>syamaydev.github.io/react-sistemrekomendasijurusan/</strong></p>
       </div>
     </div>
   );

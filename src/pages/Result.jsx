@@ -50,11 +50,6 @@ export default function Result({ resultState }) {
   }
 
   const top3 = data.ranked.slice(0, 3);
-  
-  const dataStr = btoa(JSON.stringify(data));
-  const encodedData = encodeURIComponent(dataStr);
-  const baseUrl = window.location.href.split('#')[0];
-  const shareUrl = `${baseUrl}#/result/share?data=${encodedData}`;
 
   return (
     <>
@@ -80,7 +75,6 @@ export default function Result({ resultState }) {
             Kembali ke Beranda
           </Link>
           <ShareResult 
-            shareUrl={shareUrl} 
             imageExportRef={imageExportRef}
           />
         </div>

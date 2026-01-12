@@ -3,38 +3,38 @@ import { motion, AnimatePresence } from "framer-motion";
 import html2canvas from "html2canvas";
 import "./ShareResult.css";
 
-export default function ShareResult({ shareUrl, imageExportRef }) {
+export default function ShareResult({ imageExportRef }) {
   const [toastMessage, setToastMessage] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const url =
-    shareUrl || (typeof window !== "undefined" ? window.location.href : "");
+  
+  // The user explicitly requested to share the homepage URL.
+  const homepageUrl = "https://syamaydev.github.io/react-sistemrekomendasijurusan/";
 
   function triggerToast(message) {
     setToastMessage(message);
     setTimeout(() => setToastMessage(null), 3500);
   }
 
-  function copyLink() {
-    navigator.clipboard?.writeText(url).then(() => {
-      triggerToast("Link berhasil disalin ke clipboard!");
+  function copyHomepageLink() {
+    navigator.clipboard?.writeText(homepageUrl).then(() => {
+      triggerToast("Link laman utama telah disalin!");
     });
   }
 
-  async function nativeShare() {
+  async function nativeShareHomepage() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "Hasil Tes Minat Jurusan",
-          text: "Cek rekomendasi jurusan yang paling cocok untukku!",
-          url,
+          title: "SI-RAJU: Sistem Rekomendasi Jurusan",
+          text: "Temukan jurusan kuliah yang paling cocok untukmu dengan tes berbasis data ini!",
+          url: homepageUrl,
         });
       } catch (e) {
-        // This can happen if the user cancels the share sheet
         console.log("Native share failed or was cancelled", e);
       }
     } else {
-      // Fallback for desktop browsers
-      copyLink();
+      // Fallback for desktop browsers that don't support native share
+      copyHomepageLink();
     }
   }
 
@@ -47,21 +47,15 @@ export default function ShareResult({ shareUrl, imageExportRef }) {
     setIsGenerating(true);
 
     try {
-      // The element is off-screen, so we need to be explicit with dimensions
       const element = imageExportRef.current;
       const canvas = await html2canvas(element, {
         useCORS: true,
-        // Set a default background color, useful for transparent elements
-        backgroundColor: "#F0F8FF", 
-        // Higher scale means better resolution
+        backgroundColor: "#F0F8FF",
         scale: 2,
-        // Since the element has a fixed width in CSS, we don't need to specify it here
       });
 
-      // Convert canvas to blob
       const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png', 0.9));
       
-      // Create a link and trigger download
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = 'hasil-tes-jurusan-siraju.png';
@@ -82,8 +76,8 @@ export default function ShareResult({ shareUrl, imageExportRef }) {
   return (
     <>
       <div className="share-buttons">
-        <button className="share-btn primary-blue" onClick={nativeShare}>
-          <span className="icon">🔗</span> Bagikan Link
+        <button className="share-btn primary-blue" onClick={nativeShareHomepage}>
+          <span className="icon">🔗</span> Bagikan Web
         </button>
         <button
           className="share-btn secondary-solid"
@@ -91,7 +85,7 @@ export default function ShareResult({ shareUrl, imageExportRef }) {
           disabled={isGenerating}
         >
           <span className="icon">🖼️</span>
-          {isGenerating ? "Membuat..." : "Unduh Gambar"}
+          {isGenerating ? "Membuat..." : "Unduh Hasil"}
         </button>
       </div>
 
