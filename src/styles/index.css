@@ -1,0 +1,642 @@
+@import "tailwindcss";
+
+/* Theme switching is attribute-driven so any subtree (e.g. the night hero)
+   can opt into dark tokens with data-theme="dark". */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Design tokens ---------- */
+@theme inline {
+  --font-sans: "Plus Jakarta Sans Variable", "Jakarta Fallback", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-soft: var(--ink-soft);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-on-primary: var(--on-primary);
+  --color-sun: var(--sun);
+  --color-sun-strong: var(--sun-strong);
+  --color-sun-ink: var(--sun-ink);
+  --color-on-sun: var(--on-sun);
+}
+
+@theme {
+  --color-night-950: #040817;
+  --color-night-900: #070e22;
+  --color-night-800: #0b1533;
+  --color-night-700: #12204a;
+  --color-owl: #1b2b66;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --shadow-soft: 0 1px 2px rgb(12 20 48 / 0.04), 0 8px 24px -12px rgb(12 20 48 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(12 20 48 / 0.04), 0 24px 48px -20px rgb(12 20 48 / 0.28);
+  --shadow-glow: 0 0 0 1px rgb(255 197 61 / 0.35), 0 10px 40px -8px rgb(255 176 32 / 0.55);
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --bg-soft: #edf0f8;
+  --surface: #ffffff;
+  --surface-2: #f2f4fa;
+  --line: #e1e5f0;
+  --ink: #0c1430;
+  --ink-muted: #46506f;
+  --ink-soft: #5c6584;
+  --primary: #2b48c8;
+  --primary-strong: #1f379f;
+  --primary-soft: #e8edff;
+  --on-primary: #ffffff;
+  --sun: #ffc53d;
+  --sun-strong: #ffa91f;
+  --sun-ink: #8a5600;
+  --on-sun: #1a1405;
+  --focus: #2b48c8;
+  --header-h: 4.25rem;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #060b19;
+  --bg-soft: #0a1124;
+  --surface: #0d1530;
+  --surface-2: #131d3d;
+  --line: #1f2a4d;
+  --ink: #eaeefb;
+  --ink-muted: #aab3d3;
+  --ink-soft: #8f99bd;
+  --primary: #8ca2ff;
+  --primary-strong: #a9baff;
+  --primary-soft: #18244d;
+  --on-primary: #08102a;
+  --sun-ink: #ffd36b;
+  --focus: #ffc53d;
+}
+
+/* Metric-matched fallback keeps the hero from jumping when the web font swaps in. */
+@font-face {
+  font-family: "Jakarta Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  size-adjust: 104.5%;
+  ascent-override: 98%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    text-rendering: optimizeLegibility;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--sun) 70%, transparent);
+    color: var(--on-sun);
+  }
+  :focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 3px;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  img, svg, canvas {
+    display: block;
+  }
+  button, [role="button"], a, label, summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled), [role="button"], summary, label[for] {
+    cursor: pointer;
+  }
+}
+
+/* ---------- Components ---------- */
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+    color: var(--primary);
+  }
+
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+  }
+
+  .text-gradient-sun {
+    background: linear-gradient(100deg, #ffe08a 0%, #ffc53d 40%, #ff9f43 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(100deg, var(--primary) 0%, #7b5cff 60%, #ff8fd8 120%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Buttons */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 2.875rem;
+    padding: 0.7rem 1.35rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.1;
+    white-space: nowrap;
+    isolation: isolate;
+    transition:
+      transform 0.25s var(--ease-out-expo),
+      box-shadow 0.3s var(--ease-out-expo),
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .btn-lg {
+    min-height: 3.5rem;
+    padding: 0.95rem 1.9rem;
+    font-size: 1.02rem;
+  }
+  .btn-sun {
+    color: var(--on-sun);
+    background: linear-gradient(180deg, #ffd668 0%, #ffbf2e 55%, #ffaa1f 100%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.55),
+      0 1px 2px rgb(120 70 0 / 0.25),
+      0 12px 32px -12px rgb(255 166 31 / 0.75);
+  }
+  .btn-sun:hover:not(:disabled) {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.6),
+      0 1px 2px rgb(120 70 0 / 0.25),
+      0 18px 44px -12px rgb(255 166 31 / 0.95);
+  }
+  .btn-primary {
+    color: var(--on-primary);
+    background: var(--primary);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      0 10px 28px -14px color-mix(in oklab, var(--primary) 85%, transparent);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--primary-strong);
+  }
+  .btn-ghost {
+    color: var(--ink);
+    background: color-mix(in oklab, var(--surface) 70%, transparent);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover:not(:disabled) {
+    border-color: color-mix(in oklab, var(--primary) 45%, var(--line));
+    background: var(--surface);
+  }
+  .btn-icon {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0;
+    border-radius: 999px;
+  }
+
+  /* Morphing animated border used by the hero CTA (conic sweep). */
+  .border-morph::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--angle), #fff5d1, #ffc53d, #ff8f6b, #8ca2ff, #fff5d1);
+    -webkit-mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    opacity: 0;
+    transition: opacity 0.4s;
+    animation: spin-angle 3.2s linear infinite;
+  }
+  .border-morph:hover::before,
+  .border-morph:focus-visible::before {
+    opacity: 1;
+  }
+
+  /* Surfaces */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .glass {
+    background: color-mix(in oklab, var(--surface) 72%, transparent);
+    border: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  }
+  [data-theme="dark"] .glass {
+    background: color-mix(in oklab, var(--surface) 55%, transparent);
+    border-color: rgb(255 255 255 / 0.08);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+  }
+
+  /* Catalogue card (×150) — one class instead of a long utility string per card. */
+  .major-li {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 12rem;
+  }
+  .major-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      box-shadow 0.5s var(--ease-out-expo);
+  }
+  .major-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+  .major-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+  .major-card:hover h3 {
+    color: var(--primary);
+  }
+  .major-card p {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .major-card span {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-2);
+    border-radius: 0.9rem;
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--surface) 70%, transparent), transparent);
+    animation: shimmer 1.6s var(--ease-out-expo) infinite;
+  }
+
+  /* Scroll reveal: content stays visible without JS (no .js class = no hiding). */
+  .js .reveal {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.985);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 1.1s var(--ease-out-expo);
+    transition-delay: calc(var(--d, 0) * 1ms);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .js .reveal.reveal-tilt {
+    transform: perspective(900px) rotateX(16deg) translate3d(0, 40px, 0) scale(0.95);
+    transform-origin: 50% 100%;
+  }
+  .js .reveal.reveal-tilt.is-visible {
+    transform: none;
+  }
+
+  /* Hero entrance — pure CSS so it runs before hydration. */
+  .rise {
+    display: inline-block;
+    animation: rise 0.8s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 30ms);
+  }
+  /* Client-side route change (never on the first, prerendered paint).
+     Opacity only, fill "backwards": transform/filter here would turn the page
+     wrapper into the containing block of every position:fixed child. */
+  .page-enter {
+    animation: page-in 0.45s ease-out backwards;
+  }
+  .fade-up {
+    animation: fade-up 0.8s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 60ms + 80ms);
+  }
+
+  /* CSS-only count-up: the number animates from first paint, no JS needed. */
+  .count-87 {
+    animation: count-87 1.5s cubic-bezier(0.2, 0.7, 0.1, 1) 0.25s both;
+    counter-reset: num var(--num);
+  }
+  .count-87::before {
+    content: counter(num);
+  }
+
+  .float-y {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  .stars-layer {
+    background-image:
+      radial-gradient(1.2px 1.2px at 22px 34px, rgb(255 255 255 / 0.9), transparent),
+      radial-gradient(1px 1px at 74px 112px, rgb(255 255 255 / 0.7), transparent),
+      radial-gradient(1.4px 1.4px at 140px 62px, rgb(196 210 255 / 0.85), transparent),
+      radial-gradient(1px 1px at 186px 160px, rgb(255 255 255 / 0.6), transparent),
+      radial-gradient(1.6px 1.6px at 110px 190px, rgb(255 220 150 / 0.75), transparent),
+      radial-gradient(1px 1px at 40px 150px, rgb(255 255 255 / 0.5), transparent),
+      radial-gradient(1.2px 1.2px at 230px 40px, rgb(255 255 255 / 0.8), transparent);
+    background-size: 260px 220px;
+  }
+}
+
+/* ---------- Backdrops (CSS sky = instant paint + WebGL fallback) ---------- */
+.backdrop-night {
+  background:
+    radial-gradient(55% 45% at 78% 18%, rgb(86 112 255 / 0.32), transparent 70%),
+    radial-gradient(45% 40% at 12% 72%, rgb(126 92 255 / 0.2), transparent 70%),
+    radial-gradient(35% 30% at 88% 88%, rgb(255 176 64 / 0.12), transparent 70%),
+    linear-gradient(180deg, #040817 0%, #081230 55%, #0b1638 100%);
+}
+.backdrop-dawn {
+  background:
+    radial-gradient(55% 45% at 85% 0%, rgb(170 186 255 / 0.55), transparent 70%),
+    radial-gradient(45% 40% at 0% 100%, rgb(255 222 160 / 0.45), transparent 70%),
+    linear-gradient(180deg, #f8f9fe 0%, #eef2fb 100%);
+}
+
+/* ---------- Keyframes ---------- */
+/* Entrance keyframes start at 0.01 (not 0): visually identical, but the text
+   counts as painted on the first frame, so LCP isn't held back by the stagger. */
+@keyframes rise {
+  from {
+    opacity: 0.01;
+    transform: translate3d(0, 0.55em, 0) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0.01;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes count-87 {
+  from {
+    --num: 0;
+  }
+  to {
+    --num: 87;
+  }
+}
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes float-y {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@keyframes owl-blink {
+  0%, 92%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes tassel-swing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  65% {
+    transform: rotate(-8deg);
+  }
+}
+@keyframes wing-flap {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(var(--flap, -10deg));
+  }
+}
+@keyframes ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.45;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ---------- Owl mascot ---------- */
+.owl {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.5s var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+.owl .owl-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: owl-blink 5.5s infinite;
+}
+.owl .owl-eye:nth-of-type(2) {
+  animation-delay: 0.04s;
+}
+.owl .owl-pupil {
+  transform: translate(calc(var(--ex, 0) * 1px), calc(var(--ey, 0) * 1px));
+  transition: transform 0.18s ease-out;
+}
+.owl .owl-tassel {
+  transform-box: view-box;
+  transform-origin: 144px 40px;
+}
+.owl .owl-wing {
+  transform-box: fill-box;
+}
+.owl .owl-wing-l {
+  transform-origin: 90% 10%;
+  --flap: 12deg;
+}
+.owl .owl-wing-r {
+  transform-origin: 10% 10%;
+  --flap: -12deg;
+}
+.owl:hover .owl-tassel,
+.owl[data-mood="happy"] .owl-tassel {
+  animation: tassel-swing 1.4s var(--ease-out-expo);
+}
+.owl:hover .owl-wing,
+.owl[data-mood="happy"] .owl-wing {
+  animation: wing-flap 0.5s ease-in-out 2;
+}
+.owl[data-mood="thinking"] .owl-head {
+  transform-box: view-box;
+  transform-origin: 100px 120px;
+  animation: float-y 2.4s ease-in-out infinite;
+}
+
+/* ---------- Motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal,
+  .js .reveal.reveal-tilt {
+    opacity: 1;
+    transform: none;
+  }
+  .count-87 {
+    --num: 87;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,25 +1,23 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import { devApiServerPlugin } from "./vite-plugin-dev-api-server.js";
 
-export default defineConfig(({ command, mode }) => {
-  // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-  const env = loadEnv(mode, process.cwd(), '');
-
-  // Merge the loaded variables into the Node.js process environment.
-  // This makes them accessible to server-side code like our API plugin.
-  process.env = { ...process.env, ...env };
-
-  const plugins = [react()];
-
-  // Add the custom API server plugin only during development ('serve' command).
-  if (command === 'serve') {
-    plugins.push(devApiServerPlugin());
-  }
-
+export default defineConfig(({ command, mode, isSsrBuild }) => {
+  const env = loadEnv(mode, process.cwd(), "");
   return {
-    base: "/react-sistemrekomendasijurusan/",
-    plugins: plugins,
+    // GitHub Pages project path by default; set BASE_PATH=/ for a root deploy (e.g. Vercel).
+    base: env.BASE_PATH || "/react-sistemrekomendasijurusan/",
+    plugins: [react(), tailwindcss(), command === "serve" && devApiServerPlugin()],
+    build: {
+      target: "es2022",
+      // The prerenderer reads the manifest to add per-route <link rel="modulepreload">.
+      manifest: !isSsrBuild,
+      modulePreload: { polyfill: false },
+      // Fonts stay real files (cacheable, and allowed by the strict CSP font-src).
+      assetsInlineLimit: (file) => (file.endsWith(".woff2") ? false : undefined),
+      reportCompressedSize: false,
+      chunkSizeWarningLimit: 900, // the lazy three.js chunk is intentionally large
+    },
   };
 });

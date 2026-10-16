@@ -1,16 +1,67 @@
-# React + Vite
+# SI-RAJU — Sistem Rekomendasi Jurusan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Tes minat bakat online gratis yang mencocokkan siswa SMA/SMK dengan **150 jurusan kuliah**, memakai model minat karier **RIASEC (Holland)**, lengkap dengan persentase kecocokan dan **alasan yang bisa dijelaskan**.
 
-Currently, two official plugins are available:
+**Live:** https://syamaydev.github.io/react-sistemrekomendasijurusan/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fitur utama
 
-## React Compiler
+- **Rekomendasi yang jujur & transparan** — setiap jawaban menjadi bukti (sadar-opsi), dinormalisasi per jurusan dengan *shrinkage*, lalu dipadukan dengan kemiripan profil RIASEC. Tiap hasil menampilkan alasan terkuatnya.
+- **Privat** — seluruh perhitungan berjalan di browser; jawaban tidak dikirim ke server. Link hasil berupa kode ringkas (tanpa isian bebas).
+- **“Semesta Jurusan” 3D** — 150 bintang (satu per jurusan) dengan React Three Fiber yang bereaksi terhadap jawaban dan menyorot jurusan teratasmu.
+- **Raju**, maskot burung hantu SVG interaktif (mata mengikuti kursor, berkedip, miring 3D).
+- **SI-RAJU AI** — chat streaming (Google Gemini) yang bisa memakai konteks hasil tes.
+- **150 halaman jurusan** statis yang bisa diindeks mesin pencari + katalog dengan pencarian.
+- Tema terang/gelap, aksesibel (keyboard, pembaca layar, *reduced motion*).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Teknologi
 
-## Expanding the ESLint configuration
+React 19 · React Router 7 · Vite 7 · Tailwind CSS 4 · Motion · three.js + React Three Fiber + Drei · lucide-react · prerender statis (React `prerenderToNodeStream`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Menjalankan
+
+```bash
+npm install
+npm run dev        # http://localhost:5173/react-sistemrekomendasijurusan/
+npm test           # unit test mesin rekomendasi (Node test runner)
+npm run lint
+npm run build      # build klien + SSR + prerender 158 halaman ke dist/
+npm run preview
+npm run deploy     # build lalu publish dist/ ke GitHub Pages (gh-pages)
+```
+
+Saat `npm run dev`, endpoint `/api/chat` dilayani langsung dari proyek backend di sebelahnya (`../Backend-SistemRekomendasiJurusan`) memakai `GEMINI_API_KEY` dari `.env.local` backend.
+
+### Variabel lingkungan (opsional)
+
+| Variabel | Default | Kegunaan |
+| --- | --- | --- |
+| `BASE_PATH` | `/react-sistemrekomendasijurusan/` | Base path deploy (pakai `/` untuk domain sendiri/Vercel) |
+| `VITE_SITE_URL` | URL GitHub Pages | URL kanonis untuk SEO, sitemap, OG |
+| `VITE_CHAT_API_URL` | `https://si-raju-backend.vercel.app/api/chat` | Endpoint chat AI (juga dipakai CSP) |
+
+## Arsitektur singkat
+
+```
+src/
+  main.jsx              entry mungil: tunggu first paint → muat React → hidrasi
+  boot.jsx / App.jsx    shell aplikasi, rute, transisi
+  entry-server.jsx      renderer prerender (dipakai scripts/prerender.mjs)
+  lib/                  engine.js (mesin rekomendasi murni + test), riasec, seo, store 3D, util
+  data/                 questions.json (model berbobot per opsi), majors.json, insights.json, faq.js
+  components/
+    home/  Hero3D, AnimatedHowItWorks, CategoryExplorer, Benefits, FaqSection, CtaBand
+    quiz/  MorphingQuestionCard, AnswerInputs
+    result/ ResultReveal, WhyMatch, MatchCard, AllMajorsList, ShareActions, shareImage
+    three/ Background3D, Universe, shaders
+    chat/  ChatLauncher, ChatPanel, markdown
+    ui/    OwlMascot, MagneticButton, RadarChart, ProgressRing, Accordion, TiltCard, …
+scripts/prerender.mjs   SSG: HTML per rute, CSS inline, CSP, sitemap.xml, robots.txt, 404.html
+```
+
+### Catatan performa
+
+- Setiap halaman diprerender; CSS (~14 KB gzip) di-*inline* sehingga first paint hanya butuh HTML.
+- JavaScript dimuat **setelah first paint** dan dievaluasi bertahap (React DOM → aplikasi → hidrasi dalam transition).
+- three.js (lazy, ~205 KB br) baru dimuat setelah interaksi pertama, dilewati di perangkat lemah, mode hemat data, atau *reduced motion*; render loop berhenti saat langit tidak terlihat.
+- Animasi halaman utama memakai CSS; library Motion hanya dimuat di rute yang membutuhkannya.

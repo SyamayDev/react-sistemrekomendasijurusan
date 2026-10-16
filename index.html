@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html lang="id" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Temukan jurusan kuliah yang paling sesuai dengan minat dan bakatmu. Ikuti tes rekomendasi jurusan online gratis dari SI-RAJU untuk merencanakan masa depanmu."
-    />
-    <title>SI-RAJU | Sistem Rekomendasi Jurusan Kuliah</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!--app-csp-->
+    <script>!function(){var d=document.documentElement;try{var t=JSON.parse(localStorage.getItem("siraju:theme")||"null"),k=t==="dark"||t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches;d.dataset.theme=k?"dark":"light"}catch(e){}d.classList.add("js")}()</script>
+    <!--app-head-->
+    <title>SI-RAJU — Tes Minat Bakat & Rekomendasi Jurusan Kuliah</title>
+    <meta name="description" content="Tes minat bakat online gratis untuk siswa SMA/SMK. Temukan jurusan kuliah yang paling cocok dari 150 jurusan berdasarkan model RIASEC." />
+    <!--/app-head-->
+    <meta name="theme-color" content="#060b19" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="author" content="SI-RAJU" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!--app-preload-->
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
