@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /react-sistemrekomendasijurusan/hasil/
+
+Sitemap: https://syamaydev.github.io/react-sistemrekomendasijurusan/sitemap.xml
