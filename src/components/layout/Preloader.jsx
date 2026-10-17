@@ -4,15 +4,15 @@
  * until the 3D world has drawn, so the scroll story always opens with RAJU
  * alive instead of a static or half-built scene. Progress is real: two
  * downloads counted in bytes, then the build, lighting and shader steps
- * (lib/loader3d.js). Escape hatches: start the test right away, or continue
- * without 3D.
+ * (lib/loader3d.js). The test can always be started right away; if loading
+ * fails: retry, or continue with the static story.
  */
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Link } from "react-router";
 import { ArrowRight, Check, RotateCcw } from "lucide-react";
 import OwlMascot from "../ui/OwlMascot.jsx";
 import { scene, subscribeScene } from "../../lib/sceneStore.js";
-import { IDLE_LOAD, LOAD_STEPS, attachLoader, detachLoader, skipLoad } from "../../lib/loader3d.js";
+import { IDLE_LOAD, LOAD_STEPS, attachLoader, continueWithout3D, detachLoader } from "../../lib/loader3d.js";
 import { CATEGORIES } from "../../lib/categories.js";
 
 const R = 88;
@@ -79,9 +79,9 @@ export default function Preloader() {
     return detachLoader;
   }, []);
 
-  const skip = (e) => {
+  const without3D = (e) => {
     e.preventDefault();
-    skipLoad();
+    continueWithout3D();
   };
 
   return (
@@ -153,19 +153,14 @@ export default function Preloader() {
               <button type="button" className="btn btn-sun" onClick={() => window.location.reload()}>
                 <RotateCcw size={16} aria-hidden="true" /> Coba lagi
               </button>
-              <a href="?3d=off" onClick={skip} className="btn btn-ghost">
+              <a href="?3d=off" onClick={without3D} className="btn btn-ghost">
                 Lanjut tanpa 3D
               </a>
             </>
           ) : (
-            <>
-              <Link to="/tes/" className="btn btn-ghost">
-                Langsung mulai tes <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <a href="?3d=off" onClick={skip} className="text-sm font-semibold text-ink-muted underline-offset-4 hover:text-ink hover:underline">
-                Lewati 3D
-              </a>
-            </>
+            <Link to="/tes/" className="btn btn-ghost">
+              Langsung mulai tes <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           )}
         </div>
       </div>

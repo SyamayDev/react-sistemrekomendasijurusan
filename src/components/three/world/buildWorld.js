@@ -49,6 +49,7 @@ import {
   CATEGORY_RGB,
   CHAOS,
   CLUSTERS,
+  CLUSTER_OFF,
   DEMO_MATCH,
   DEMO_TOP,
   HALO,
@@ -61,9 +62,11 @@ import {
   RIM,
   SAMPLE_PROFILE,
   WALL,
+  frontSpin,
   haloAt,
   mulberry32,
   orbitAt,
+  planetPos,
   tileCategory,
   tileSeed,
 } from "./layouts.js";
@@ -308,7 +311,7 @@ export function buildWorld({ tier = "mid" } = {}) {
     g.add(halo);
     g.scale.setScalar(0.001);
     root.add(g);
-    return { ...p, group: g, body, mat: m, halo, cur: 0, sel: 0 };
+    return { ...p, group: g, body, mat: m, halo, cur: 0, sel: 0, at: new Vector3(...p.pos) };
   });
 
   /* Portal: 8 rumpun arcs + inner light. */
@@ -350,6 +353,7 @@ export function buildWorld({ tier = "mid" } = {}) {
     lookAt: new Vector3(0, 1.4, 6),
     haloScale: 1,
     orbitScale: 1,
+    ringSpin: 0,
   };
   const tmpQ = new Quaternion();
   const tmpE = new Euler();
@@ -412,11 +416,11 @@ export function buildWorld({ tier = "mid" } = {}) {
     FRAME_STATES[5] = BAND_BOTTOM[5] - store.bandTop > 0.22 ? WHY_OWL : WHY_STARS;
     FRAME_TALL(story, frameArr);
     if (Math.floor(story) === 4 && store.selectedRumpun >= 0) {
-      // Fly to the chosen planet.
-      const p = planets[store.selectedRumpun].pos;
-      selFrame[0] = p[0];
-      selFrame[1] = p[1];
-      selFrame[2] = p[2];
+      // Fly to the chosen planet (where the turning ring has brought it).
+      const p = planets[store.selectedRumpun].at;
+      selFrame[0] = p.x;
+      selFrame[1] = p.y;
+      selFrame[2] = p.z;
       const k = 0.85 * presence(story, 4);
       for (let i = 0; i < 6; i++) frameArr[i] = lerp(frameArr[i], selFrame[i], k);
     }
@@ -504,10 +508,10 @@ export function buildWorld({ tier = "mid" } = {}) {
     st.look.set(camArr[3], camArr[4], camArr[5]);
     if (mode === "story" && !stacked && ch === 4 && store.selectedRumpun >= 0) {
       // Fly towards the chosen planet while keeping it right of the text column.
-      const p = planets[store.selectedRumpun].pos;
+      const p = planets[store.selectedRumpun].at;
       const k = 0.55 * presence(story, 4);
-      st.look.lerp(tmpV.set(p[0] - 2.6, p[1], p[2]), k);
-      st.cam.lerp(tmpV.set(p[0] - 2.6, p[1] + 4.2, p[2] + 10.5), k);
+      st.look.lerp(tmpV.set(p.x - 2.6, p.y, p.z), k);
+      st.cam.lerp(tmpV.set(p.x - 2.6, p.y + 4.2, p.z + 10.5), k);
     }
     camera.position.x = damp(camera.position.x, st.cam.x, 3.2, dt);
     camera.position.y = damp(camera.position.y, st.cam.y, 3.2, dt);
@@ -570,6 +574,15 @@ export function buildWorld({ tier = "mid" } = {}) {
     const inHow = mode === "story" && ch === 3 ? presence(story, 3) : 0;
     const resultTop = mode === "result" ? store.highlight : -1;
 
+    // Rumpun ring: drifts slowly; choosing a field (or a result's top field)
+    // turns the ring the short way round until that planet is at the front.
+    const focusPlanet = mode === "story" && selected >= 0 ? selected : resultTop >= 0 ? tileCategory[resultTop] : -1;
+    if (focusPlanet >= 0) {
+      const target = frontSpin(focusPlanet);
+      st.ringSpin += Math.atan2(Math.sin(target - st.ringSpin), Math.cos(target - st.ringSpin)) * (1 - Math.exp(-2.6 * dt));
+    } else st.ringSpin += dt * 0.05;
+    planets.forEach((p, k) => planetPos(k, st.ringSpin, p.at));
+
     for (let i = 0; i < N; i++) {
       const seed = tileSeed[i];
       const k = clamp01(blend * 1.35 - seed * 0.35);
@@ -591,7 +604,10 @@ export function buildWorld({ tier = "mid" } = {}) {
           x = PORTAL_CENTER[0] + cx * ca - cy * sa;
           y = PORTAL_CENTER[1] + cx * sa + cy * ca;
         } else if (L === CLUSTERS) {
-          y += Math.sin(t * 0.8 + seed * 9) * 0.06;
+          const home = planets[tileCategory[i]].at;
+          x = home.x + CLUSTER_OFF[i * 3];
+          y = home.y + CLUSTER_OFF[i * 3 + 1] + Math.sin(t * 0.8 + seed * 9) * 0.06;
+          z = home.z + CLUSTER_OFF[i * 3 + 2];
         }
         out.set(x, y, z);
         return out;
@@ -720,7 +736,7 @@ export function buildWorld({ tier = "mid" } = {}) {
       p.sel = damp(p.sel, isSel ? 1 : 0, 6, dt);
       const dim = mode === "story" && selected >= 0 && !isSel ? 0.75 : 1;
       p.group.scale.setScalar(Math.max(0.001, p.cur * (1 + p.sel * 0.35) * dim));
-      p.group.position.y = p.pos[1] + Math.sin(t * 0.6 + k) * 0.08;
+      p.group.position.set(p.at.x, p.at.y + Math.sin(t * 0.6 + k) * 0.08, p.at.z);
       p.body.rotation.y += dt * 0.15;
       p.mat.emissiveIntensity = 0.12 + p.sel * 0.6;
       p.halo.material.uniforms.uOpacity.value = (0.35 + p.sel * 0.65) * p.cur;

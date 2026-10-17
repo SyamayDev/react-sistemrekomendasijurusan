@@ -97,10 +97,20 @@ export const WALL = layout((i) => {
   return [1.9 + col * 0.34, 2.75 - row * 0.34, -0.6 - Math.abs(col - 7) * 0.03];
 });
 
-/** Rumpun planets on a tilted ring around RAJU. */
+/** Rumpun planets on a tilted ring around RAJU. The ring can turn ("spin"),
+ *  so a chosen planet swings round to the front where nothing can hide it. */
 export const PLANET_RING_R = 3.9;
+const planetAngle = (k) => (k / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2 + 0.35;
+export function planetPos(k, spin, out) {
+  const a = planetAngle(k) + spin;
+  return out.set(Math.cos(a) * PLANET_RING_R, 0.9 + Math.sin(a) * 0.55, Math.sin(a) * PLANET_RING_R * 0.62);
+}
+/** Ring spin that brings planet k to the front — slightly right of centre, so
+ *  RAJU (standing in the middle) presents it instead of being covered by it. */
+const FRONT = Math.PI / 2 - 0.6;
+export const frontSpin = (k) => FRONT - planetAngle(k);
 export const PLANETS = CATEGORIES.map((c, k) => {
-  const a = (k / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2 + 0.35;
+  const a = planetAngle(k);
   return {
     id: c.id,
     color: c.warna,
@@ -117,6 +127,8 @@ export const CLUSTERS = layout((i) => {
   const r = p.radius + 0.35 + rand() * 0.6;
   return [p.pos[0] + Math.cos(a) * r, p.pos[1] + gauss() * 0.28, p.pos[2] + Math.sin(a) * r];
 });
+/** Each tile's offset from its own planet, so the clusters travel with the turning ring. */
+export const CLUSTER_OFF = Float32Array.from(CLUSTERS, (v, j) => v - PLANETS[tileCategory[Math.floor(j / 3)]].pos[j % 3]);
 
 /** Finale: the 150 tiles become the rim of the portal. */
 export const PORTAL_CENTER = [0, 2.2, -1.4];

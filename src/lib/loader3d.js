@@ -6,13 +6,13 @@
  * lighting (baked) and the shaders (compiled on the GPU). Each one reports its
  * progress here; the loader screen shows "n / 5 siap" and an overall
  * percentage, and only lifts once the world has drawn its first frame, so
- * nobody sees a half-built scene.
+ * nobody sees a half-built scene. If loading fails, the visitor can retry or
+ * continue with the (complete) static story for this visit.
  *
  * Visibility is driven by html[data-load3d] (set by the inline head script at
  * first paint, then by this module), see .preloader in index.css.
  */
 import { scene, setScene } from "./sceneStore.js";
-import { set3DPref } from "./device.js";
 
 export const LOAD_STEPS = [
   { id: "engine", label: "Mesin 3D (three.js)", weight: 0.42 },
@@ -85,11 +85,10 @@ export function failLoad() {
   if (root().dataset.load3d) root().dataset.load3d = "failed";
 }
 
-/** Continue without 3D (remembered; the 3D switch in the top-right brings it back). */
-export function skipLoad() {
+/** After a failure: continue with the static story for this visit (not remembered). */
+export function continueWithout3D() {
   clearTimeout(timer);
-  set3DPref("off");
-  setScene({ load: { ...IDLE_LOAD, state: "skipped" }, pref3d: "off" });
+  setScene({ load: { ...IDLE_LOAD, state: "skipped" } });
   release();
 }
 

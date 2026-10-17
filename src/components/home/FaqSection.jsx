@@ -5,7 +5,7 @@ import owlAsk from "../../assets/owl-ask-sm.webp";
 
 export default function FaqSection() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="bg-bg-soft py-24 sm:py-32">
+    <section id="faq" aria-labelledby="faq-title" className="faq-section pb-24 pt-32 sm:pb-32 sm:pt-44">
       <div className="container-x grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <Reveal className="lg:sticky lg:top-28">
           <p className="eyebrow">Pertanyaan umum</p>

@@ -93,7 +93,8 @@ function ReadySignal() {
 export default function Stage() {
   const active = useSyncExternalStore(subscribeScene, isSceneActive, () => false);
   const [tier] = useState(deviceTier);
-  const maxDpr = tier === "high" ? 1.75 : 1.4;
+  // Low-end devices get the world too, just rendered at a lighter resolution.
+  const maxDpr = tier === "high" ? 1.75 : tier === "mid" ? 1.4 : 1;
   const [dpr, setDpr] = useState(() => Math.min(window.devicePixelRatio || 1, maxDpr));
 
   useEffect(() => () => setScene({ ready: false }), []);

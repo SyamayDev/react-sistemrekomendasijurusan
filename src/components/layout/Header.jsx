@@ -1,49 +1,73 @@
 /**
  * Floating controls instead of a top bar, so the 3D world can use the whole
  * screen: the logo in one small pill on the left, the actions in another on
- * the right (Mulai Tes · 3D · tema · layar penuh · Menu). Navigation lives in
- * a full-screen menu with the site's pages, the story's chapters and the
- * display settings.
+ * the right (Mulai Tes · tema · layar penuh · Menu). Navigation lives in a
+ * full-screen menu — pages, the story's chapters and display settings, each
+ * with an icon so it reads at a glance.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
-import { ArrowRight, Menu, X } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  CircleHelp,
+  ClipboardCheck,
+  DoorOpen,
+  GraduationCap,
+  Hexagon,
+  House,
+  Info,
+  Maximize2,
+  Menu,
+  Moon,
+  Orbit,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+  Workflow,
+  X,
+} from "lucide-react";
 import Logo from "../ui/Logo.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import FullscreenButton from "./FullscreenButton.jsx";
-import Toggle3D from "./Toggle3D.jsx";
 import { toggleTheme, useTheme } from "../../lib/theme.js";
 import { toggleFullscreen, useFullscreen } from "../../lib/fullscreen.js";
-import { use3DSwitch } from "../../lib/use3DSwitch.js";
 
 const PAGES = [
-  { to: "/", label: "Beranda", end: true },
-  { to: "/tes/", label: "Tes Minat Bakat" },
-  { to: "/jurusan/", label: "Jelajahi Jurusan" },
-  { to: "/tentang/", label: "Tentang SI-RAJU" },
-  { to: "/privasi/", label: "Privasi" },
+  { to: "/", label: "Beranda", Icon: House, end: true },
+  { to: "/tes/", label: "Tes Minat Bakat", Icon: ClipboardCheck },
+  { to: "/jurusan/", label: "Jelajahi Jurusan", Icon: GraduationCap },
+  { to: "/tentang/", label: "Tentang SI-RAJU", Icon: Info },
+  { to: "/privasi/", label: "Privasi", Icon: ShieldCheck },
 ];
 const CHAPTERS = [
-  ["mulai", "Mulai"],
-  ["pertanyaan", "Pertanyaan"],
-  ["kenali-dirimu", "Kenali dirimu"],
-  ["cara-kerja", "Cara kerja"],
-  ["semesta", "Semesta jurusan"],
-  ["kenapa", "Kenapa SI-RAJU"],
-  ["gerbang", "Gerbang"],
+  { id: "mulai", label: "Mulai", Icon: Sparkles },
+  { id: "pertanyaan", label: "Pertanyaan", Icon: CircleHelp },
+  { id: "kenali-dirimu", label: "Kenali dirimu", Icon: Hexagon },
+  { id: "cara-kerja", label: "Cara kerja", Icon: Workflow },
+  { id: "semesta", label: "Semesta jurusan", Icon: Orbit },
+  { id: "kenapa", label: "Kenapa SI-RAJU", Icon: BadgeCheck },
+  { id: "gerbang", label: "Gerbang", Icon: DoorOpen },
 ];
 
-/** A labelled switch row for the menu's "Tampilan" settings (works on every screen size). */
-function SettingRow({ label, value, onClick, pressed }) {
+/** A settings row: icon, label and an on/off switch (a real toggle button with aria-pressed). */
+function SwitchRow({ Icon, label, on, onClick }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-pressed={pressed}
-      className="flex min-h-11 w-full items-center justify-between gap-4 rounded-xl px-3 text-left text-sm font-semibold hover:bg-surface-2/70"
+      aria-pressed={on}
+      className="flex min-h-12 w-full items-center gap-3 rounded-2xl px-2 text-left text-sm font-semibold hover:bg-surface-2/70"
     >
-      {label}
-      <span className="hud-label text-ink-soft">{value}</span>
+      <span className="grid size-9 shrink-0 place-items-center rounded-xl border border-line bg-surface/60 text-ink" aria-hidden="true">
+        <Icon size={18} />
+      </span>
+      <span className="flex-1">{label}</span>
+      <span aria-hidden="true" className={`relative h-6 w-11 shrink-0 rounded-full transition-colors duration-300 ${on ? "bg-sun" : "bg-line"}`}>
+        <span
+          className={`absolute left-0.5 top-0.5 size-5 rounded-full bg-white shadow transition-transform duration-300 ease-out-expo ${on ? "translate-x-5" : "translate-x-0"}`}
+        />
+      </span>
     </button>
   );
 }
@@ -52,7 +76,7 @@ function MenuOverlay({ open, onClose }) {
   const panel = useRef(null);
   const theme = useTheme();
   const fs = useFullscreen();
-  const d3 = use3DSwitch();
+  const dark = theme === "dark";
 
   useEffect(() => {
     if (!open) return;
@@ -80,65 +104,80 @@ function MenuOverlay({ open, onClose }) {
       inert={!open}
       className={`menu-overlay fixed inset-0 -z-10 overflow-y-auto ${open ? "is-open pointer-events-auto" : ""}`}
     >
-      <div className="container-x grid min-h-full content-center gap-x-16 gap-y-10 pb-12 pt-[calc(var(--header-h)+2rem)] lg:grid-cols-[1.25fr_1fr]">
-        <nav aria-label="Navigasi utama">
-          <p className="hud-label menu-item text-ink-soft" style={{ "--i": 0 }}>
-            Halaman
-          </p>
-          <ol className="mt-4 grid gap-1">
-            {PAGES.map((p, i) => (
-              <li key={p.to} className="menu-item" style={{ "--i": i + 1 }}>
-                <NavLink
-                  to={p.to}
-                  end={p.end}
-                  onClick={onClose}
-                  className={({ isActive }) =>
-                    `group flex items-baseline gap-4 rounded-xl py-1 font-display text-[clamp(2rem,5.5vw,3.6rem)] font-bold leading-[1.05] tracking-tight transition-colors ${
-                      isActive ? "text-sun-ink dark:text-sun" : "text-ink hover:text-sun-ink dark:hover:text-sun"
-                    }`
-                  }
-                >
-                  <span className="hud-label w-8 shrink-0 text-ink-soft">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="transition-transform duration-500 ease-out-expo group-hover:translate-x-2">{p.label}</span>
-                </NavLink>
-              </li>
-            ))}
-          </ol>
-        </nav>
+      <div className="container-x grid min-h-full content-center gap-x-16 gap-y-8 pb-10 pt-[calc(var(--header-h)+1.25rem)] lg:grid-cols-[1.2fr_1fr] lg:gap-y-10">
+        <div>
+          <nav aria-label="Navigasi utama">
+            <p className="hud-label menu-item text-ink-soft" style={{ "--i": 0 }}>
+              Halaman
+            </p>
+            <ul className="mt-3 grid gap-1">
+              {PAGES.map(({ to, label, Icon, end }, i) => (
+                <li key={to} className="menu-item" style={{ "--i": i + 1 }}>
+                  <NavLink
+                    to={to}
+                    end={end}
+                    onClick={onClose}
+                    className={({ isActive }) =>
+                      `group flex items-center gap-4 rounded-2xl py-1.5 font-display text-[clamp(1.55rem,5vw,3.2rem)] font-bold leading-[1.1] tracking-tight transition-colors ${
+                        isActive ? "text-sun-ink dark:text-sun" : "text-ink hover:text-sun-ink dark:hover:text-sun"
+                      }`
+                    }
+                  >
+                    {({ isActive }) => (
+                      <>
+                        <span
+                          aria-hidden="true"
+                          className={`grid size-10 shrink-0 place-items-center rounded-2xl border transition-colors sm:size-12 ${
+                            isActive ? "border-transparent bg-sun text-on-sun" : "border-line bg-surface/60 text-ink group-hover:border-sun/60"
+                          }`}
+                        >
+                          <Icon className="size-5 sm:size-6" />
+                        </span>
+                        <span className="transition-transform duration-500 ease-out-expo group-hover:translate-x-1.5">{label}</span>
+                      </>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="menu-item mt-7" style={{ "--i": 6 }}>
+            <Link to="/tes/" onClick={onClose} className="btn btn-sun btn-lg w-full sm:w-auto">
+              Mulai Tes Gratis <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
 
-        <div className="grid content-start gap-9">
+        <div className="grid content-start gap-8">
           <section aria-labelledby="menu-bab" className="menu-item" style={{ "--i": 4 }}>
             <p id="menu-bab" className="hud-label text-ink-soft">
               Bab cerita
             </p>
-            <ol className="mt-3 grid grid-cols-2 gap-x-6 gap-y-0.5 text-sm">
-              {CHAPTERS.map(([id, name], i) => (
+            <ul className="mt-2 grid grid-cols-2 gap-x-3 gap-y-0.5 text-sm">
+              {CHAPTERS.map(({ id, label, Icon }) => (
                 <li key={id}>
-                  <Link to={`/#${id}`} onClick={onClose} className="flex min-h-10 items-center gap-2.5 font-semibold text-ink-muted hover:text-ink">
-                    <span className="hud-label text-sun-ink dark:text-sun">{String(i).padStart(2, "0")}</span>
-                    {name}
+                  <Link
+                    to={`/#${id}`}
+                    onClick={onClose}
+                    className="flex min-h-11 items-center gap-2.5 rounded-xl px-1.5 font-semibold text-ink-muted transition-colors hover:bg-surface-2/60 hover:text-ink"
+                  >
+                    <Icon size={17} aria-hidden="true" className="shrink-0 text-sun-ink dark:text-sun" />
+                    {label}
                   </Link>
                 </li>
               ))}
-            </ol>
+            </ul>
           </section>
 
           <section aria-labelledby="menu-tampilan" className="menu-item" style={{ "--i": 5 }}>
             <p id="menu-tampilan" className="hud-label text-ink-soft">
               Tampilan
             </p>
-            <div className="mt-2 grid gap-0.5">
-              <SettingRow label="Tema" value={theme === "dark" ? "Gelap" : "Terang"} pressed={theme === "dark"} onClick={toggleTheme} />
-              {d3.available && <SettingRow label="Dunia 3D" value={d3.on ? "Nyala" : "Mati"} pressed={d3.on} onClick={d3.toggle} />}
-              {fs.available && <SettingRow label="Layar penuh" value={fs.active ? "Nyala" : "Mati"} pressed={fs.active} onClick={toggleFullscreen} />}
+            <div className="mt-2 grid gap-1">
+              <SwitchRow Icon={dark ? Moon : Sun} label="Tema gelap" on={dark} onClick={toggleTheme} />
+              {fs.available && <SwitchRow Icon={Maximize2} label="Layar penuh" on={fs.active} onClick={toggleFullscreen} />}
             </div>
           </section>
-
-          <div className="menu-item" style={{ "--i": 6 }}>
-            <Link to="/tes/" onClick={onClose} className="btn btn-sun btn-lg w-full sm:w-auto">
-              Mulai Tes Gratis <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-          </div>
         </div>
       </div>
     </div>
@@ -173,8 +212,7 @@ export default function Header() {
           <Link to="/tes/" className="btn btn-sun mr-1 hidden min-h-10! px-4! text-sm sm:inline-flex">
             Mulai Tes <ArrowRight size={16} aria-hidden="true" />
           </Link>
-          <Toggle3D className="max-md:hidden" />
-          <ThemeToggle className="max-md:hidden" />
+          <ThemeToggle />
           <FullscreenButton />
           <button
             ref={button}

@@ -10,6 +10,7 @@
  * custom properties for DOM choreography:
  *   --enter  0..1 entering progress     --p  0..1 pinned progress
  *   --exit   0..1 how far the next chapter has entered (outgoing fade)
+ *   html --story-out 0..1 as the last chapter scrolls away (the world fades out)
  *   data-step="n" on chapters with data-steps (sticky step-by-step stories)
  *   html[data-story] = index of the chapter in view (for the HUD rail).
  * On the stacked (phone/tablet) layout it also measures where each chapter's
@@ -74,6 +75,11 @@ export function startStory(root) {
       const exit = next ? clamp01((y - (next.top - vh)) / vh) : 0;
       m.el.style.setProperty("--exit", exit.toFixed(4));
     });
+    // After the last chapter unpins, fade the world out over 40 % of a screen,
+    // so the portal never lingers behind text that is leaving.
+    const last = metrics[metrics.length - 1];
+    const out = last ? clamp01((y - (last.top + last.height - vh)) / (vh * 0.4)) : 0;
+    document.documentElement.style.setProperty("--story-out", out.toFixed(4));
     // The very first chapter is already on screen at load.
     if (y < (metrics[0]?.top ?? 0)) story = SETTLE;
     scene.story = story;
@@ -117,6 +123,7 @@ export function startStory(root) {
     io.disconnect();
     delete document.documentElement.dataset.story;
     document.documentElement.classList.remove("story-out");
+    document.documentElement.style.removeProperty("--story-out");
     scene.story = 0;
     scene.steps = {};
     scene.bandBottom = [];

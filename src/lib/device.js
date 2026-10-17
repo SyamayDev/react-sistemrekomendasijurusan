@@ -4,7 +4,7 @@ const mq = (q) => typeof window !== "undefined" && window.matchMedia?.(q).matche
 export const prefersReducedMotion = () => mq("(prefers-reduced-motion: reduce)");
 export const hasFinePointer = () => mq("(hover: hover) and (pointer: fine)");
 
-/** "high" desktop GPUs, "mid" phones/laptops, "low" = skip WebGL entirely. */
+/** "high" desktop GPUs, "mid" phones/laptops, "low" = very modest hardware (lightest 3D settings). */
 export function deviceTier() {
   if (typeof navigator === "undefined") return "mid";
   const cores = navigator.hardwareConcurrency || 4;
@@ -14,32 +14,29 @@ export function deviceTier() {
   return "high";
 }
 
-/* ---------- the visitor's 3D preference ----------
- * "auto" (default) | "on" (forced, e.g. via the 3D toggle) | "off".
- * The inline head script in index.html reads the same key, so keep them in sync. */
-const PREF_KEY = "siraju:3d";
+/* ---------- testing/support override ----------
+ * `?3d=on` forces the 3D world (even on software WebGL), `?3d=off` skips it,
+ * for this tab only (sessionStorage). The inline head script in index.html
+ * reads the same key, so keep them in sync. */
+const KEY = "siraju:3d";
 
-export function get3DPref() {
+export function get3DOverride() {
   try {
-    return localStorage.getItem(PREF_KEY) || "auto";
+    return sessionStorage.getItem(KEY) || "auto";
   } catch {
     return "auto";
   }
 }
 
-export function set3DPref(value) {
-  try {
-    if (value === "auto") localStorage.removeItem(PREF_KEY);
-    else localStorage.setItem(PREF_KEY, value);
-  } catch {
-    /* private mode: the choice lasts for this page view only */
-  }
-}
-
-/** `?3d=on` / `?3d=off` in the URL sets the preference (handy for support and testing). */
 export function apply3DQuery() {
-  const m = typeof location !== "undefined" && location.search.match(/[?&]3d=(on|off|auto)\b/);
-  if (m) set3DPref(m[1]);
+  try {
+    // An older build remembered "3D off" for good; the 3D world is now always on.
+    localStorage.removeItem(KEY);
+    const m = location.search.match(/[?&]3d=(on|off|auto)\b/);
+    if (m) sessionStorage.setItem(KEY, m[1]);
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 let gpu; // { webgl: boolean, software: boolean } — probed once
@@ -62,18 +59,15 @@ function probeGpu() {
 }
 
 /**
- * Should this visitor get the live 3D world?
- * Never with reduced motion or without WebGL. By default also not on data
- * saver, very low-end devices or software-rendered WebGL (a few frames per
- * second would make the scroll story worse than the static version) — unless
- * the visitor switched 3D on explicitly.
+ * Does this visitor get the live 3D world? Yes, whenever the device has a
+ * real GPU behind WebGL. The only exceptions: reduced motion (accessibility),
+ * no WebGL at all, or a software renderer that draws a few frames per second
+ * (the scroll story would stutter) — unless forced with `?3d=on`.
  */
 export function canRender3D() {
   if (typeof window === "undefined") return false;
-  const pref = get3DPref();
-  if (pref === "off" || prefersReducedMotion()) return false;
-  const forced = pref === "on";
-  if (!forced && (navigator.connection?.saveData || deviceTier() === "low")) return false;
+  const override = get3DOverride();
+  if (override === "off" || prefersReducedMotion()) return false;
   const { webgl, software } = probeGpu();
-  return webgl && (forced || !software);
+  return webgl && (override === "on" || !software);
 }

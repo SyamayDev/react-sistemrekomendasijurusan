@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <!--app-csp-->
-    <script>!function(){var d=document.documentElement;try{var t=JSON.parse(localStorage.getItem("siraju:theme")||"null"),k=t==="dark"||t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches;d.dataset.theme=k?"dark":"light"}catch(e){}d.classList.add("js");try{var q=location.search.match(/[?&]3d=(on|off|auto)\b/),p=q?q[1]:localStorage.getItem("siraju:3d"),n=navigator,c=n.connection;if(p!=="off"&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(p==="on"||!(c&&c.saveData)&&(n.hardwareConcurrency||4)>2&&(n.deviceMemory||4)>2)){d.dataset.load3d="pending";setTimeout(function(){d.dataset.load3d==="pending"&&delete d.dataset.load3d},9e3)}}catch(e){}}()</script>
+    <script>!function(){var d=document.documentElement;try{var t=JSON.parse(localStorage.getItem("siraju:theme")||"null"),k=t==="dark"||t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches;d.dataset.theme=k?"dark":"light"}catch(e){}d.classList.add("js");try{var q=location.search.match(/[?&]3d=(on|off|auto)\b/),p=q?q[1]:sessionStorage.getItem("siraju:3d");if(p!=="off"&&!matchMedia("(prefers-reduced-motion: reduce)").matches){d.dataset.load3d="pending";setTimeout(function(){d.dataset.load3d==="pending"&&delete d.dataset.load3d},9e3)}}catch(e){}}()</script>
     <!--app-head-->
     <title>SI-RAJU — Tes Minat Bakat & Rekomendasi Jurusan Kuliah</title>
     <meta name="description" content="Tes minat bakat online gratis untuk siswa SMA/SMK. Temukan jurusan kuliah yang paling cocok dari 150 jurusan berdasarkan model RIASEC." />

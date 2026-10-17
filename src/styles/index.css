@@ -652,6 +652,14 @@
   background: color-mix(in oklab, var(--surface) 46%, transparent);
   border-color: rgb(255 255 255 / 0.08);
 }
+/* Home: the 3D world fades as the story's last chapter scrolls away. */
+.world-layer {
+  opacity: calc(1 - var(--story-out, 0));
+}
+/* The FAQ grows out of the sky instead of starting at a hard edge. */
+.faq-section {
+  background: linear-gradient(180deg, transparent 0, color-mix(in oklab, var(--bg-soft) 70%, transparent) 9rem, var(--bg-soft) 18rem);
+}
 /* Soft fade at the top edge so scrolling content never collides with the pills. */
 .top-veil {
   position: absolute;
