@@ -114,29 +114,33 @@ export default function RadarChart({ series, caption, className = "" }) {
           </span>
         ))}
       </figcaption>
-      <table className="sr-only">
-        <caption>{caption}</caption>
-        <thead>
-          <tr>
-            <th scope="col">Tipe minat</th>
-            {series.map((s) => (
-              <th key={s.label} scope="col">
-                {s.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {RIASEC.map((d) => (
-            <tr key={d.key}>
-              <th scope="row">{d.nama}</th>
+      {/* sr-only goes on a wrapper: tables ignore width/overflow, so a hidden table
+          would still be full width and stretch the page on phones. */}
+      <div className="sr-only">
+        <table>
+          <caption>{caption}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipe minat</th>
               {series.map((s) => (
-                <td key={s.label}>{Math.round((s.values[d.key] || 0) * 100)}%</td>
+                <th key={s.label} scope="col">
+                  {s.label}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {RIASEC.map((d) => (
+              <tr key={d.key}>
+                <th scope="row">{d.nama}</th>
+                {series.map((s) => (
+                  <td key={s.label}>{Math.round((s.values[d.key] || 0) * 100)}%</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </figure>
   );
 }

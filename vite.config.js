@@ -6,8 +6,9 @@ import { devApiServerPlugin } from "./vite-plugin-dev-api-server.js";
 export default defineConfig(({ command, mode, isSsrBuild }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
-    // GitHub Pages project path by default; set BASE_PATH=/ for a root deploy (e.g. Vercel).
-    base: env.BASE_PATH || "/react-sistemrekomendasijurusan/",
+    // GitHub Pages serves the site under /<repo>/; Vercel (which sets VERCEL=1 at
+    // build time) and custom domains serve it from the root. BASE_PATH overrides both.
+    base: env.BASE_PATH || (env.VERCEL ? "/" : "/react-sistemrekomendasijurusan/"),
     plugins: [react(), tailwindcss(), command === "serve" && devApiServerPlugin()],
     build: {
       target: "es2022",
