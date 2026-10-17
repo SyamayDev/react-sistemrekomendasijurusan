@@ -14,6 +14,7 @@ import MorphingQuestionCard from "../components/quiz/MorphingQuestionCard.jsx";
 import OwlMascot from "../components/ui/OwlMascot.jsx";
 import Logo from "../components/ui/Logo.jsx";
 import ThemeToggle from "../components/layout/ThemeToggle.jsx";
+import FullscreenButton from "../components/layout/FullscreenButton.jsx";
 import { getModel, questions } from "../lib/recommender.js";
 import { isAnswered } from "../lib/engine.js";
 import { CATEGORY_IDS } from "../lib/categories.js";
@@ -50,7 +51,10 @@ function QuizIntro({ saved, onStart, onResume }) {
       <div className="absolute inset-x-0 top-0">
         <div className="container-x flex h-[var(--header-h)] items-center justify-between">
           <Logo />
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <FullscreenButton />
+          </div>
         </div>
       </div>
       <div className="mx-auto w-full max-w-2xl text-center">
@@ -129,6 +133,7 @@ function QuizTopBar({ index, progress, bab, owlMood }) {
             </m.div>
           </div>
         </div>
+        <FullscreenButton />
         <Link to="/" className="btn btn-ghost btn-icon" aria-label="Keluar dari tes (progres tersimpan)">
           <X size={18} aria-hidden="true" />
         </Link>

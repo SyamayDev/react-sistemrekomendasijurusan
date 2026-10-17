@@ -1,5 +1,5 @@
 /**
- * App shell: persistent backdrop (CSS sky + lazy WebGL universe), header,
+ * App shell: loader screen (home), persistent backdrop (CSS sky + WebGL universe), header,
  * route transitions, footer, AI chat and the desktop soft cursor.
  *
  * Performance note: nothing on the landing page's critical path imports the
@@ -11,6 +11,7 @@ import { Route, Routes, useLocation } from "react-router";
 import Header from "./components/layout/Header.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import Backdrop from "./components/layout/Backdrop.jsx";
+import Preloader from "./components/layout/Preloader.jsx";
 import ChatLauncher from "./components/chat/ChatLauncher.jsx";
 import SoftCursor from "./components/ui/SoftCursor.jsx";
 import { PageSkeleton } from "./components/ui/Skeleton.jsx";
@@ -73,6 +74,7 @@ export default function App() {
       >
         Langsung ke konten
       </a>
+      {pathname === "/" && <Preloader />}
       <Backdrop />
       {!immersive && <Header />}
       <main id="konten" tabIndex={-1} className="outline-none">

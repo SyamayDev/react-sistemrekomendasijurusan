@@ -453,8 +453,9 @@ export function buildWorld({ tier = "mid" } = {}) {
     }
 
     // Intro: scan-materialise RAJU the first time the world appears.
-    if (st.introAt < 0) st.introAt = t;
-    const introK = clamp01((t - st.introAt - 0.15) / 1.6);
+    // (held back while the loader screen is still lifting)
+    if (st.introAt < 0 && !store.introHold) st.introAt = t;
+    const introK = st.introAt < 0 ? 0 : clamp01((t - st.introAt - 0.15) / 1.6);
     st.reveal = smooth(introK);
     raju.reveal.uReveal.value = st.reveal;
     if (introK >= 1 && !st.didIntroWave) {

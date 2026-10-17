@@ -68,7 +68,13 @@ tools/raju/             viewer dev untuk RAJU (pose, ekspresi, putar) — tidak 
 - `components/three/world/buildWorld.js` membaca `story` setiap frame: kamera & RAJU mengikuti *keyframe* per babak; 150 kartu jurusan (satu `InstancedMesh`) berubah formasi: halo → kekacauan → orbit → dinding data → gugus di 8 planet rumpun → bingkai gerbang.
 - Di tata letak bertumpuk (ponsel/tablet), panel teks tiap babak diukur dan dunia 3D dibingkai otomatis di ruang kosong di atasnya (jarak kamera + *lens shift*), sehingga RAJU tidak tertutup teks di ukuran layar apa pun.
 - Label HUD yang menempel di objek 3D bersifat dekoratif (`aria-hidden`); semua aksinya juga tersedia sebagai kontrol nyata (chip rumpun, tombol, tautan).
-- Tanpa WebGL, mode hemat data, perangkat lemah, atau *reduced motion*: dunia 3D tidak dimuat, babak menjadi halaman statis yang tetap lengkap dengan ilustrasi poster.
+- **Layar "Memuat Semesta"** (beranda): tampil sejak first paint dan baru terangkat setelah dunia 3D benar-benar tergambar, jadi pengunjung tidak pernah melihat adegan setengah jadi. Progresnya nyata — dua unduhan dihitung per byte (daftar chunk + ukuran disisipkan prerenderer di `<meta name="siraju:3d">`), lalu langkah model, pencahayaan, dan shader (`lib/loader3d.js`, `components/layout/Preloader.jsx`). Ada jalan pintas "Langsung mulai tes" dan "Lewati 3D"; bila gagal/timeout tampil "Coba lagi" / "Lanjut tanpa 3D".
+- Tanpa WebGL, mode hemat data, perangkat sangat lemah, WebGL berbasis software (SwiftShader/llvmpipe), atau *reduced motion*: dunia 3D tidak dimuat, layar muat tidak muncul, dan babak menjadi halaman statis yang tetap lengkap dengan ilustrasi poster.
+- **Tombol 3D** (kanan atas / menu) menyimpan preferensi di `localStorage["siraju:3d"]` (`on` memaksa 3D, `off` mematikan). Untuk dukungan/pengujian bisa juga lewat URL: `?3d=on`, `?3d=off`, `?3d=auto`.
+
+### Navigasi tanpa bilah atas
+
+Tidak ada top bar agar dunia 3D memakai seluruh layar: logo di pil kecil kiri atas, aksi di pil kanan atas (Mulai Tes · 3D · tema · layar penuh · Menu). Navigasi ada di **menu layar penuh** (`components/layout/Header.jsx`: halaman, tujuh bab cerita, pengaturan tampilan) yang menjebak fokus, menutup dengan Esc, dan membuat halaman di belakangnya `inert`. Tombol **layar penuh** memakai Fullscreen API (disembunyikan di peramban yang tidak mendukung, mis. Safari iPhone) dan juga ada di halaman tes. Di halaman konten, "kabut" gradasi di tepi atas membuat teks yang di-scroll memudar di bawah tombol; di cerita beranda kabut ini mati.
 
 ### RAJU 3D & pipeline aset
 
@@ -97,6 +103,6 @@ npm run raju:export  # render ulang poster src/assets/raju/*.webp + ekspor asset
 
 - Setiap halaman diprerender; CSS (~14 KB gzip) di-*inline* sehingga first paint hanya butuh HTML.
 - JavaScript dimuat **setelah first paint** dan dievaluasi bertahap (React DOM → aplikasi → hidrasi dalam transition).
-- Dunia 3D (lazy: three.js ~150 KB br + kode dunia ~63 KB br, chunk terpisah) dimuat setelah interaksi pertama — atau saat *idle* di desktop bertenaga — dan dilewati di perangkat lemah, mode hemat data, atau *reduced motion*. Penyiapannya dipecah ke beberapa *task* dan shader dikompilasi paralel (`KHR_parallel_shader_compile`), jadi halaman tidak membeku saat dunia dimuat. Render loop berhenti saat panggung cerita tidak terlihat.
+- Dunia 3D (three.js ~150 KB br + kode dunia ~63 KB br, chunk terpisah) dimuat langsung di beranda di balik layar "Memuat Semesta", dan setelah interaksi pertama di halaman tes/hasil; dilewati di perangkat lemah, WebGL software, mode hemat data, atau *reduced motion*. Penyiapannya dipecah ke beberapa *task* dan shader dikompilasi paralel (`KHR_parallel_shader_compile`), jadi halaman tidak membeku saat dunia dimuat. Render loop berhenti saat panggung cerita tidak terlihat.
 - Font judul (Bricolage Grotesque) dan isi (Plus Jakarta Sans) di-*preload* (subset latin); *fallback* lokal disetel ukurannya agar tidak terjadi pergeseran tata letak saat font masuk.
 - Animasi halaman utama memakai CSS; library Motion hanya dimuat di rute yang membutuhkannya.

@@ -2,12 +2,13 @@
  * Static site generation. Runs after `vite build` (client) and
  * `vite build --ssr` (server entry):
  *   1. renders every route to complete HTML with per-page <head> (SEO)
- *   2. preloads the web font and each route's JS chunk
+ *   2. preloads the web font and each route's JS chunk; lists the 3D chunks
+ *      (with sizes) on the home page for the loader screen's progress
  *   3. adds a Content-Security-Policy (hash-pinned inline theme script)
  *   4. writes sitemap.xml, robots.txt, 404.html and .nojekyll
  */
 import { createHash } from "node:crypto";
-import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -63,6 +64,17 @@ function routePreloads(p) {
   return files.length ? `<meta name="siraju:modules" content="${files.map((f) => base + f).join(" ")}">` : "";
 }
 
+/** Home page: the lazy 3D chunks and their sizes, so the "Memuat Semesta"
+ * screen can show real download progress (lib/loader3d.js → prefetch3D). */
+const stageKey = keyFor("src/components/three/Stage.jsx");
+const shellFiles = new Set([...entryFiles, ...SHELL.flatMap((k) => chunkFiles(k))]);
+const stageFiles = stageKey ? chunkFiles(stageKey).filter((f) => f.endsWith(".js") && !shellFiles.has(f)) : [];
+const stageList = await Promise.all(
+  stageFiles.map(async (f) => `${base}${f}|${(await stat(path.join(dist, f))).size}|${/(^|\/)three-/.test(f) ? "engine" : "world"}`)
+);
+const stageMeta = stageList.length ? `<meta name="siraju:3d" content="${stageList.join(" ")}">` : "";
+if (!stageList.length) console.warn("! 3D chunk list missing — the loader screen will estimate progress");
+
 /* ---------- inline CSS ----------
  * The whole stylesheet is ~14 KB gzipped: inlining it removes the only
  * render-blocking request, so first paint needs nothing but the HTML. */
@@ -108,7 +120,7 @@ for (const route of routes) {
   const page = lowPriorityScripts(inlineCss(template))
     .replace("<!--app-csp-->", cspTag)
     .replace(/<!--app-head-->[\s\S]*?<!--\/app-head-->/, head)
-    .replace("<!--app-preload-->", [fontPreload, routePreloads(route.path)].filter(Boolean).join("\n    "))
+    .replace("<!--app-preload-->", [fontPreload, routePreloads(route.path), route.path === "/" && stageMeta].filter(Boolean).join("\n    "))
     .replace("<!--app-html-->", html);
   const file = route.file ? path.join(dist, route.file) : path.join(dist, ...route.path.split("/").filter(Boolean), "index.html");
   await mkdir(path.dirname(file), { recursive: true });

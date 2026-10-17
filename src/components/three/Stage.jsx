@@ -4,6 +4,7 @@
  *  • DPR capped per device tier and lowered automatically if FPS drops
  *  • procedural studio lighting (softbox scene → PMREM), no external HDRs
  *  • if WebGL fails for any reason the CSS sky + posters stay (SilentBoundary)
+ *  • each set-up step reports to the loader screen (lib/loader3d.js)
  */
 import { Component, useEffect, useState, useSyncExternalStore } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -12,6 +13,7 @@ import { buildWorld } from "./world/buildWorld.js";
 import { bakeEnvironment, compileQuietly } from "./world/environment.js";
 import { isSceneActive, setScene, subscribeScene } from "../../lib/sceneStore.js";
 import { deviceTier } from "../../lib/device.js";
+import { failLoad, stepProgress } from "../../lib/loader3d.js";
 
 class SilentBoundary extends Component {
   state = { failed: false };
@@ -20,6 +22,7 @@ class SilentBoundary extends Component {
   }
   componentDidCatch() {
     setScene({ ready: false });
+    failLoad();
   }
   render() {
     return this.state.failed ? null : this.props.children;
@@ -32,8 +35,8 @@ function World({ tier }) {
 
   // Set-up is spread over several tasks (build → environment → shaders) and
   // shaders compile in parallel (KHR_parallel_shader_compile), so loading the
-  // world never freezes scrolling or input. Until it is ready the CSS sky and
-  // posters stay visible; if anything fails they simply remain.
+  // world never freezes scrolling or input. On the home page the loader screen
+  // covers this; elsewhere the CSS sky stays until the world fades in.
   useEffect(() => {
     let alive = true;
     let built = null;
@@ -43,6 +46,7 @@ function World({ tier }) {
       await nextTask();
       if (!alive) return;
       built = buildWorld({ tier });
+      stepProgress("model", 1);
       await nextTask();
       if (!alive) return;
       const baked = await bakeEnvironment(gl);
@@ -50,13 +54,15 @@ function World({ tier }) {
       env = baked;
       scene.environment = env.texture;
       scene.environmentIntensity = 0.5;
+      stepProgress("light", 1);
       await nextTask();
       if (!alive) return;
       await compileQuietly(gl, built.root, camera, scene);
       if (!alive) return;
+      stepProgress("shader", 1);
       scene.add(built.root);
       setWorld(built);
-    })().catch(() => {});
+    })().catch(failLoad);
     return () => {
       alive = false;
       if (built) {

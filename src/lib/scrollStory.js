@@ -100,7 +100,13 @@ export function startStory(root) {
   panels.forEach((p) => p && ro.observe(p)); // e.g. the Semesta panel grows when a field is chosen
 
   // Pause the world when the story is fully scrolled away (FAQ/footer).
-  const io = new IntersectionObserver(([e]) => setScene({ inView: e.isIntersecting }), { rootMargin: "0px 0px -15% 0px" });
+  const io = new IntersectionObserver(
+    ([e]) => {
+      setScene({ inView: e.isIntersecting });
+      document.documentElement.classList.toggle("story-out", !e.isIntersecting);
+    },
+    { rootMargin: "0px 0px -15% 0px" }
+  );
   io.observe(root);
 
   return () => {
@@ -110,6 +116,7 @@ export function startStory(root) {
     ro.disconnect();
     io.disconnect();
     delete document.documentElement.dataset.story;
+    document.documentElement.classList.remove("story-out");
     scene.story = 0;
     scene.steps = {};
     scene.bandBottom = [];

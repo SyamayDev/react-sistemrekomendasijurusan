@@ -36,6 +36,12 @@ export const scene = {
   highlight: -1,
   /** The WebGL world has drawn its first frame. */
   ready: false,
+  /** Loader screen state (lib/loader3d.js): { state: idle|loading|done|failed|skipped, pct, steps[] }. */
+  load: { state: "idle", pct: 0, steps: [0, 0, 0, 0, 0] },
+  /** Hold RAJU's entrance until the loader screen has lifted. */
+  introHold: false,
+  /** Visitor's 3D preference: "auto" | "on" | "off" (mirrors localStorage, see lib/device.js). */
+  pref3d: "auto",
 };
 
 export function setScene(patch) {
