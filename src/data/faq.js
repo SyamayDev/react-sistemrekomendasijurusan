@@ -1,4 +1,6 @@
 /** FAQ shown on the home page and emitted as FAQPage structured data. */
+import { TOTAL_MAJORS } from "../lib/categories.js";
+
 export const FAQ = [
   {
     q: "Apa itu SI-RAJU?",
@@ -10,7 +12,7 @@ export const FAQ = [
   },
   {
     q: "Bagaimana cara SI-RAJU menghitung rekomendasi?",
-    a: "Setiap jawaban menjadi bukti yang mendukung atau melemahkan kecocokan dengan 150 jurusan. Jawabanmu juga dibentuk menjadi profil minat RIASEC (Holland) — model yang dipakai konselor karier di seluruh dunia — lalu dibandingkan dengan profil tiap jurusan. Keduanya digabung menjadi persentase kecocokan.",
+    a: `Setiap jawaban menjadi bukti yang mendukung atau melemahkan kecocokan dengan ${TOTAL_MAJORS} jurusan. Jawabanmu juga dibentuk menjadi profil minat RIASEC (Holland) — model yang dipakai konselor karier di seluruh dunia — lalu dibandingkan dengan profil tiap jurusan. Keduanya digabung menjadi persentase kecocokan.`,
   },
   {
     q: "Apakah hasilnya bisa dipercaya?",

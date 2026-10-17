@@ -1,6 +1,6 @@
 /**
- * Catalogue of all majors, grouped by field. Fully prerendered (150 internal
- * links = great for SEO); search and field filters enhance it after hydration
+ * Catalogue of all majors, grouped by field. Fully prerendered (one internal
+ * link per major = great for SEO); search and field filters enhance it after hydration
  * and the field filter is shareable via ?rumpun=.
  */
 import { useDeferredValue, useMemo, useState } from "react";
@@ -12,12 +12,24 @@ import { CATEGORIES } from "../lib/categories.js";
 import { useSeo, ldBreadcrumbs } from "../lib/seo.jsx";
 import { useHydrated } from "../lib/useHydrated.js";
 
+/** Lowercase, letters and digits only — so "tataboga", "tata-boga" and "Tata Boga" all match. */
+const squash = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+function matches(m, q, qs) {
+  return (
+    m.nama_jurusan.toLowerCase().includes(q) ||
+    (qs && squash(m.nama_jurusan).includes(qs)) ||
+    m.karakter_cocok.some((k) => k.includes(q)) ||
+    m.deskripsi.toLowerCase().includes(q)
+  );
+}
+
 export default function Majors() {
   useSeo({
-    title: "Daftar 150 Jurusan Kuliah & Karakter yang Cocok",
+    title: `Daftar ${MAJORS.length} Jurusan Kuliah & Karakter yang Cocok`,
     path: "/jurusan/",
     description:
-      "Jelajahi 150 jurusan kuliah di 8 rumpun — STEM, kesehatan, bisnis, sosial, humaniora, seni, pendidikan, dan vokasi — lengkap dengan deskripsi dan karakter siswa yang cocok.",
+      `Jelajahi ${MAJORS.length} jurusan kuliah di 8 rumpun — STEM, kesehatan, bisnis, sosial, humaniora, seni, pendidikan, dan vokasi — lengkap dengan deskripsi dan karakter siswa yang cocok.`,
     jsonLd: [ldBreadcrumbs([{ name: "Beranda", path: "/" }, { name: "Jurusan", path: "/jurusan/" }])],
   });
 
@@ -39,11 +51,9 @@ export default function Majors() {
       CATEGORIES.filter((c) => rumpun === "Semua" || c.id === rumpun)
         .map((c) => ({
           ...c,
-          items: MAJORS.filter(
-            (m) =>
-              m.kategori === c.id &&
-              (!q || m.nama_jurusan.toLowerCase().includes(q) || m.karakter_cocok.some((k) => k.includes(q)) || m.deskripsi.toLowerCase().includes(q))
-          ).sort((a, b) => a.nama_jurusan.localeCompare(b.nama_jurusan, "id")),
+          items: MAJORS.filter((m) => m.kategori === c.id && (!q || matches(m, q, squash(q)))).sort((a, b) =>
+            a.nama_jurusan.localeCompare(b.nama_jurusan, "id")
+          ),
         }))
         .filter((g) => g.items.length),
     [rumpun, q]
@@ -131,7 +141,7 @@ export default function Majors() {
             </div>
             <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {g.items.map((m) => (
-                // 150 of these: a semantic class (see .major-card in index.css) keeps the HTML light.
+                // One per major: a semantic class (see .major-card in index.css) keeps the HTML light.
                 <li key={m.id} className="major-li">
                   <Link to={`/jurusan/${m.slug}/`} className="major-card">
                     <h3>{m.nama_jurusan}</h3>

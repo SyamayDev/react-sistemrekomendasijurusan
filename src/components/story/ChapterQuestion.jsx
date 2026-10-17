@@ -1,9 +1,10 @@
 /**
  * Chapter 1 — the problem. A statement lights up word by word as you scroll
- * while the 150 major tiles tumble around RAJU (confusion); then the tiles
+ * while the major tiles tumble around RAJU (confusion); then the tiles
  * settle into orbits as the answer appears (clarity).
  */
 import { Chapter, Kicker, ScrubText } from "./parts.jsx";
+import { TOTAL_MAJORS } from "../../lib/categories.js";
 import rajuCurious from "../../assets/raju/raju-curious.webp";
 
 export default function ChapterQuestion() {
@@ -14,7 +15,7 @@ export default function ChapterQuestion() {
           <div className="swap-a">
             <Kicker n={1}>Sebelum memilih</Kicker>
             <h2 id="pertanyaan-title" className="display mt-6 text-[clamp(2.1rem,4.8vw,3.9rem)] leading-[1.05]">
-              <ScrubText text="Ada 150 jurusan, ribuan kampus, dan satu pertanyaan yang terus muncul: aku cocoknya di mana?" />
+              <ScrubText text={`Ada ${TOTAL_MAJORS} jurusan, ribuan kampus, dan satu pertanyaan yang terus muncul: aku cocoknya di mana?`} />
             </h2>
           </div>
           <div className="swap-b">

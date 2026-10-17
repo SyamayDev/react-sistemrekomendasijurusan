@@ -1,5 +1,5 @@
 /**
- * One static, indexable page per major (150 in total). If the visitor has a
+ * One static, indexable page per major. If the visitor has a
  * saved result, the page personalises itself after hydration with their
  * match score for this major.
  */

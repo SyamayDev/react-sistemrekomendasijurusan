@@ -6,7 +6,7 @@ import { buildModel } from "./engine.js";
 export { questions, majors };
 
 let model;
-/** The model precomputes per-question evidence for 150 majors — build it on first use only. */
+/** The model precomputes per-question evidence for every major — build it on first use only. */
 export function getModel() {
   model ||= buildModel(questions, majors);
   return model;

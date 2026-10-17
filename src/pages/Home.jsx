@@ -17,6 +17,7 @@ import FaqSection from "../components/home/FaqSection.jsx";
 import { startStory } from "../lib/scrollStory.js";
 import { useSeo, ldOrganization, ldWebSite } from "../lib/seo.jsx";
 import { FAQ } from "../data/faq.js";
+import { TOTAL_MAJORS } from "../lib/categories.js";
 
 export default function Home() {
   const story = useRef(null);
@@ -25,7 +26,7 @@ export default function Home() {
   useSeo({
     path: "/",
     description:
-      "Kenali minatmu lewat tes 20 pertanyaan dan temukan rekomendasi dari 150 jurusan kuliah berbasis model RIASEC — gratis, tanpa akun, lengkap dengan alasannya. Dipandu RAJU si burung hantu.",
+      `Kenali minatmu lewat tes 20 pertanyaan dan temukan rekomendasi dari ${TOTAL_MAJORS} jurusan kuliah berbasis model RIASEC — gratis, tanpa akun, lengkap dengan alasannya. Dipandu RAJU si burung hantu.`,
     jsonLd: [
       ldWebSite(),
       ldOrganization(),

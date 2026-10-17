@@ -1,5 +1,5 @@
 /**
- * Deterministic layouts for the 150 "major tiles" and the supporting cast.
+ * Deterministic layouts for the "major tiles" (one per major) and the supporting cast.
  * Each layout is a Float32Array of xyz per tile, computed once.
  */
 import majors from "../../../data/majors.json";
@@ -8,6 +8,8 @@ import { RIASEC } from "../../../lib/riasec.js";
 
 export const OWL_CENTER = [0, 1.25, 0];
 export const N = majors.length;
+/** Tiles shrink a little as the catalogue grows, so the formations keep breathing room. */
+export const TILE_K = Math.min(1, (150 / N) ** 0.3);
 
 export function mulberry32(seed) {
   return () => {
@@ -90,11 +92,14 @@ export const ORBIT = layout((i) => {
   return [Math.cos(a) * r, 1.25 - Math.sin(a) * r * 0.2, Math.sin(a) * r * 0.55 - 0.7];
 });
 
-/** How-it-works: a "data wall" of all majors (15 × 10) to the right of RAJU. */
+/** How-it-works: a "data wall" of all majors to the right of RAJU. The grid
+ *  keeps a 3:2 shape and the same footprint (~5.1 × 3.4) whatever the count. */
+const WALL_COLS = Math.ceil(Math.sqrt(N * 1.5));
+const WALL_GAP = Math.min(0.34, 5.1 / WALL_COLS);
 export const WALL = layout((i) => {
-  const col = i % 15;
-  const row = Math.floor(i / 15);
-  return [1.9 + col * 0.34, 2.75 - row * 0.34, -0.6 - Math.abs(col - 7) * 0.03];
+  const col = i % WALL_COLS;
+  const row = Math.floor(i / WALL_COLS);
+  return [1.9 + col * WALL_GAP, 2.75 - row * WALL_GAP, -0.6 - Math.abs(col - (WALL_COLS - 1) / 2) * 0.03];
 });
 
 /** Rumpun planets on a tilted ring around RAJU. The ring can turn ("spin"),
@@ -114,7 +119,9 @@ export const PLANETS = CATEGORIES.map((c, k) => {
   return {
     id: c.id,
     color: c.warna,
-    radius: 0.24 + Math.sqrt(c.jumlah) * 0.055,
+    // Size follows the field's share of all majors (scaled to the original 150), so a
+    // bigger catalogue doesn't inflate every planet.
+    radius: 0.24 + Math.sqrt((c.jumlah * 150) / N) * 0.055,
     pos: [Math.cos(a) * PLANET_RING_R, 0.9 + Math.sin(a) * 0.55, Math.sin(a) * PLANET_RING_R * 0.62],
     ringed: k % 3 === 1,
   };
@@ -130,7 +137,7 @@ export const CLUSTERS = layout((i) => {
 /** Each tile's offset from its own planet, so the clusters travel with the turning ring. */
 export const CLUSTER_OFF = Float32Array.from(CLUSTERS, (v, j) => v - PLANETS[tileCategory[Math.floor(j / 3)]].pos[j % 3]);
 
-/** Finale: the 150 tiles become the rim of the portal. */
+/** Finale: all the tiles become the rim of the portal. */
 export const PORTAL_CENTER = [0, 2.2, -1.4];
 export const PORTAL_R = 2.85;
 export const RIM = layout((i) => {

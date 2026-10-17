@@ -1,9 +1,10 @@
 /**
  * Chapter 3 — how it works, as a visual process rather than three cards:
- * answers stream into RAJU → an interest profile forms → 150 majors light up
+ * answers stream into RAJU → an interest profile forms → every major lights up
  * by match on a data wall → one result steps forward, with its reasons.
  */
 import { Chapter, HudTag, Kicker } from "./parts.jsx";
+import { TOTAL_MAJORS } from "../../lib/categories.js";
 
 const STEPS = [
   {
@@ -17,7 +18,7 @@ const STEPS = [
     meta: "Tahap 2 · Profil RIASEC",
   },
   {
-    title: "Dicocokkan dengan 150 jurusan",
+    title: `Dicocokkan dengan ${TOTAL_MAJORS} jurusan`,
     body: "Jawabanmu menjadi bukti untuk atau melawan tiap jurusan, lalu dipadukan dengan kemiripan profil. Semuanya dihitung di perangkatmu.",
     meta: "Tahap 3 · Pencocokan",
   },

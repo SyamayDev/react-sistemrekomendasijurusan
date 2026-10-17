@@ -7,7 +7,7 @@
  *   quiz mode   → RAJU keeps the student company and reacts to answers
  *   result mode → RAJU celebrates; the student's top field glows
  *
- * The 150 major tiles are a single InstancedMesh whose layout morphs with the
+ * The major tiles (one per major) are a single InstancedMesh whose layout morphs with the
  * story: halo → chaos (confusion) → orbits (order) → data wall (matching) →
  * clusters around 8 field planets → the rim of the closing portal.
  */
@@ -61,6 +61,7 @@ import {
   PORTAL_R,
   RIM,
   SAMPLE_PROFILE,
+  TILE_K,
   WALL,
   frontSpin,
   haloAt,
@@ -230,8 +231,8 @@ export function buildWorld({ tier = "mid" } = {}) {
   owl.add(raju.root);
   root.add(owl);
 
-  /* 150 major tiles (instanced cards, coloured by rumpun, with per-tile glow). */
-  const tileGeo = track(new RoundedBoxGeometry(0.17, 0.23, 0.03, 2, 0.02));
+  /* Major tiles (instanced cards, coloured by rumpun, with per-tile glow). */
+  const tileGeo = track(new RoundedBoxGeometry(0.17 * TILE_K, 0.23 * TILE_K, 0.03, 2, 0.02 * TILE_K));
   const glowAttr = new InstancedBufferAttribute(new Float32Array(N), 1);
   glowAttr.setUsage(DynamicDrawUsage);
   tileGeo.setAttribute("aGlow", glowAttr);
@@ -311,7 +312,7 @@ export function buildWorld({ tier = "mid" } = {}) {
     g.add(halo);
     g.scale.setScalar(0.001);
     root.add(g);
-    return { ...p, group: g, body, mat: m, halo, cur: 0, sel: 0, at: new Vector3(...p.pos) };
+    return { ...p, group: g, body, mat: m, halo, cur: 0, sel: 0, clear: 0, at: new Vector3(...p.pos) };
   });
 
   /* Portal: 8 rumpun arcs + inner light. */
@@ -735,7 +736,11 @@ export function buildWorld({ tier = "mid" } = {}) {
       const isSel = (mode === "story" && selected === k) || (mode === "result" && resultTop >= 0 && tileCategory[resultTop] === k);
       p.sel = damp(p.sel, isSel ? 1 : 0, 6, dt);
       const dim = mode === "story" && selected >= 0 && !isSel ? 0.75 : 1;
-      p.group.scale.setScalar(Math.max(0.001, p.cur * (1 + p.sel * 0.35) * dim));
+      // A planet swinging past right in front of RAJU shrinks to make room, so
+      // the turning ring never hides him (the chosen planet stays full size).
+      const inFront = clamp01((p.at.z - 0.7) / 1.1) * clamp01(1 - Math.abs(p.at.x) / 2.4);
+      p.clear = damp(p.clear, isSel ? 0 : inFront, 6, dt);
+      p.group.scale.setScalar(Math.max(0.001, p.cur * (1 + p.sel * 0.35) * dim * (1 - p.clear * 0.6)));
       p.group.position.set(p.at.x, p.at.y + Math.sin(t * 0.6 + k) * 0.08, p.at.z);
       p.body.rotation.y += dt * 0.15;
       p.mat.emissiveIntensity = 0.12 + p.sel * 0.6;

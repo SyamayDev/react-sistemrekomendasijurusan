@@ -2,7 +2,7 @@
  * Loading the 3D world behind the "Memuat Semesta" screen (home page).
  *
  * The world is made of a few real assets — the three.js engine and the world
- * code (downloaded), then RAJU + the 150 major cards (built), the studio
+ * code (downloaded), then RAJU + one card per major (built), the studio
  * lighting (baked) and the shaders (compiled on the GPU). Each one reports its
  * progress here; the loader screen shows "n / 5 siap" and an overall
  * percentage, and only lifts once the world has drawn its first frame, so
@@ -13,11 +13,12 @@
  * first paint, then by this module), see .preloader in index.css.
  */
 import { scene, setScene } from "./sceneStore.js";
+import { TOTAL_MAJORS } from "./categories.js";
 
 export const LOAD_STEPS = [
   { id: "engine", label: "Mesin 3D (three.js)", weight: 0.42 },
   { id: "world", label: "Kode Semesta RAJU", weight: 0.14 },
-  { id: "model", label: "Model RAJU & 150 kartu jurusan", weight: 0.14 },
+  { id: "model", label: `Model RAJU & ${TOTAL_MAJORS} kartu jurusan`, weight: 0.14 },
   { id: "light", label: "Pencahayaan studio", weight: 0.1 },
   { id: "shader", label: "Shader & material", weight: 0.2 },
 ];

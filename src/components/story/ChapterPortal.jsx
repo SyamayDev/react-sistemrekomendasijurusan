@@ -1,5 +1,5 @@
 /**
- * Chapter 6 — the gate. The 150 tiles and eight field arcs assemble into a
+ * Chapter 6 — the gate. The major tiles and eight field arcs assemble into a
  * portal around RAJU, who turns to the call to action and waves you in.
  */
 import { Link } from "react-router";

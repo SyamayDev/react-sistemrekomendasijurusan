@@ -7,10 +7,11 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { Chapter, HudTag } from "./parts.jsx";
 import MagneticButton from "../ui/MagneticButton.jsx";
 import { rajuFlap } from "../../lib/sceneStore.js";
+import { TOTAL_MAJORS } from "../../lib/categories.js";
 import rajuHero from "../../assets/raju/raju-hero.webp";
 import rajuHeroSmall from "../../assets/raju/raju-hero-560.webp";
 
-const FACTS = ["20 pertanyaan", "±4 menit", "150 jurusan", "Gratis, tanpa akun"];
+const FACTS = ["20 pertanyaan", "±4 menit", `${TOTAL_MAJORS} jurusan`, "Gratis, tanpa akun"];
 
 export default function ChapterHero() {
   return (
@@ -38,7 +39,7 @@ export default function ChapterHero() {
             </span>
           </h1>
           <p className="fade-up mt-6 max-w-xl text-base leading-relaxed text-ink-muted max-sm:mt-4 sm:text-xl [@media(max-height:820px)]:mt-4 [@media(max-height:820px)]:text-lg" style={{ "--i": 3 }}>
-            Kenali minatmu lewat 20 pertanyaan santai. SI-RAJU mencocokkannya dengan 150 jurusan kuliah
+            Kenali minatmu lewat 20 pertanyaan santai. SI-RAJU mencocokkannya dengan {TOTAL_MAJORS} jurusan kuliah
             <span className="max-sm:hidden"> memakai model minat karier RIASEC</span> — lengkap dengan alasan kenapa jurusan itu
             cocok untukmu.
           </p>

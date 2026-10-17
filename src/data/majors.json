@@ -570,7 +570,7 @@
     "id": "m82",
     "nama_jurusan": "Tata Boga",
     "kategori": "Vokasi",
-    "deskripsi": "Seni mengolah dan menyajikan makanan dengan teknik dan estetika yang tinggi.",
+    "deskripsi": "Kuliner terapan: mengolah dan menyajikan makanan dengan teknik dan estetika yang tinggi, hingga mengelola usaha boga.",
     "karakter_cocok": ["kreatif", "detail-oriented", "suka memasak", "terampil", "sabar"]
   },
   {
@@ -1048,5 +1048,467 @@
     "kategori": "Vokasi",
     "deskripsi": "Manajemen operasional dan administrasi di rumah sakit dan fasilitas kesehatan.",
     "karakter_cocok": ["organisir", "teliti", "peduli", "komunikatif", "problem-solver"]
+  },
+  {
+    "id": "m151",
+    "nama_jurusan": "Sains Data",
+    "kategori": "STEM",
+    "deskripsi": "Mengolah data besar dengan statistika, pemrograman, dan machine learning untuk menemukan pola dan dasar keputusan.",
+    "karakter_cocok": ["analitis", "suka data", "suka angka", "logis", "penasaran"]
+  },
+  {
+    "id": "m152",
+    "nama_jurusan": "Teknologi Informasi",
+    "kategori": "STEM",
+    "deskripsi": "Merancang, membangun, dan mengelola infrastruktur TI: jaringan, server, cloud, dan keamanan sistem.",
+    "karakter_cocok": ["logis", "suka teknologi", "problem-solver", "praktis", "sistematis"]
+  },
+  {
+    "id": "m153",
+    "nama_jurusan": "Rekayasa Perangkat Lunak",
+    "kategori": "STEM",
+    "deskripsi": "Fokus pada proses membangun aplikasi berkualitas: analisis kebutuhan, desain, pemrograman, pengujian, hingga rilis.",
+    "karakter_cocok": ["logis", "sistematis", "problem-solver", "kreatif", "detail-oriented"]
+  },
+  {
+    "id": "m154",
+    "nama_jurusan": "Teknik Telekomunikasi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari sistem komunikasi nirkabel, jaringan seluler, serat optik, satelit, dan transmisi data.",
+    "karakter_cocok": ["logis", "analitis", "suka fisika", "suka teknologi", "problem-solver"]
+  },
+  {
+    "id": "m155",
+    "nama_jurusan": "Teknik Fisika",
+    "kategori": "STEM",
+    "deskripsi": "Menerapkan ilmu fisika untuk rekayasa instrumentasi, energi, akustik, optik, dan material.",
+    "karakter_cocok": ["suka fisika", "analitis", "suka eksperimen", "inovatif", "logis"]
+  },
+  {
+    "id": "m156",
+    "nama_jurusan": "Teknik Pertanian dan Biosistem",
+    "kategori": "STEM",
+    "deskripsi": "Rekayasa alat, mesin, dan sistem untuk pertanian modern: irigasi, pascapanen, energi, dan otomasi.",
+    "karakter_cocok": ["praktis", "problem-solver", "peduli lingkungan", "suka alam", "inovatif"]
+  },
+  {
+    "id": "m157",
+    "nama_jurusan": "Teknik Kelautan",
+    "kategori": "STEM",
+    "deskripsi": "Merancang bangunan lepas pantai, pelabuhan, dan struktur yang tahan terhadap gelombang dan arus laut.",
+    "karakter_cocok": ["logis", "suka air", "problem-solver", "tangguh", "suka fisika"]
+  },
+  {
+    "id": "m158",
+    "nama_jurusan": "Oseanografi",
+    "kategori": "STEM",
+    "deskripsi": "Meneliti fisika, kimia, dan dinamika laut: arus, gelombang, pasang surut, iklim, dan ekosistem pesisir.",
+    "karakter_cocok": ["suka air", "observasional", "analitis", "peneliti", "petualang"]
+  },
+  {
+    "id": "m159",
+    "nama_jurusan": "Mikrobiologi",
+    "kategori": "STEM",
+    "deskripsi": "Mempelajari bakteri, virus, dan jamur beserta pemanfaatannya di bidang kesehatan, pangan, dan industri.",
+    "karakter_cocok": ["suka biologi", "suka eksperimen", "teliti", "peneliti", "analitis"]
+  },
+  {
+    "id": "m160",
+    "nama_jurusan": "Biokimia",
+    "kategori": "STEM",
+    "deskripsi": "Mengungkap reaksi kimia di dalam makhluk hidup, dari enzim dan protein hingga metabolisme dan genetika.",
+    "karakter_cocok": ["suka biologi", "analitis", "suka eksperimen", "teliti", "peneliti"]
+  },
+  {
+    "id": "m161",
+    "nama_jurusan": "Teknologi Industri Pertanian",
+    "kategori": "STEM",
+    "deskripsi": "Mengelola agroindustri: mengubah hasil pertanian menjadi produk bernilai tinggi dengan proses yang efisien.",
+    "karakter_cocok": ["efisien", "analitis", "wirausaha", "problem-solver", "sistematis"]
+  },
+  {
+    "id": "m162",
+    "nama_jurusan": "Teknik Robotika dan Kecerdasan Buatan",
+    "kategori": "STEM",
+    "deskripsi": "Membangun robot dan sistem cerdas yang menggabungkan elektronika, mekanika, pemrograman, dan kecerdasan buatan.",
+    "karakter_cocok": ["inovatif", "logis", "suka bongkar pasang", "suka teknologi", "problem-solver"]
+  },
+  {
+    "id": "m163",
+    "nama_jurusan": "Teknologi Hasil Perikanan",
+    "kategori": "STEM",
+    "deskripsi": "Mengolah dan menjaga mutu hasil perikanan, dari ikan segar hingga produk olahan dan rumput laut.",
+    "karakter_cocok": ["suka air", "suka eksperimen", "teliti", "wirausaha", "praktis"]
+  },
+  {
+    "id": "m164",
+    "nama_jurusan": "Teknologi Laboratorium Medis",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 untuk menganalisis darah, urine, dan sampel lain di laboratorium klinik sebagai dasar diagnosis.",
+    "karakter_cocok": ["teliti", "suka biologi", "sistematis", "bertanggung jawab", "suka eksperimen"]
+  },
+  {
+    "id": "m165",
+    "nama_jurusan": "Radiologi",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 radiografer: mengoperasikan rontgen, CT scan, dan MRI dengan aman untuk membantu diagnosis.",
+    "karakter_cocok": ["teliti", "suka teknologi", "bertanggung jawab", "peduli", "suka fisika"]
+  },
+  {
+    "id": "m166",
+    "nama_jurusan": "Rekam Medis dan Informasi Kesehatan",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 untuk mengelola rekam medis, kode diagnosis, dan data kesehatan pasien di rumah sakit.",
+    "karakter_cocok": ["teliti", "organisir", "sistematis", "suka data", "bertanggung jawab"]
+  },
+  {
+    "id": "m167",
+    "nama_jurusan": "Terapi Wicara",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 untuk membantu anak dan dewasa yang mengalami gangguan bicara, bahasa, suara, dan menelan.",
+    "karakter_cocok": ["sabar", "empatik", "komunikatif", "pendengar yang baik", "suka anak-anak"]
+  },
+  {
+    "id": "m168",
+    "nama_jurusan": "Ortotik Prostetik",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 untuk merancang dan membuat kaki/tangan palsu serta alat penyangga tubuh bagi pasien.",
+    "karakter_cocok": ["terampil", "peduli", "problem-solver", "praktis", "detail-oriented"]
+  },
+  {
+    "id": "m169",
+    "nama_jurusan": "Keperawatan Anestesiologi",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program Sarjana Terapan untuk menyiapkan dan memantau pasien sebelum, selama, dan sesudah pembiusan.",
+    "karakter_cocok": ["teliti", "tangguh", "bertanggung jawab", "empatik", "cepat"]
+  },
+  {
+    "id": "m170",
+    "nama_jurusan": "Teknik Elektromedik",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/D4 untuk memasang, mengkalibrasi, dan memperbaiki alat-alat medis di fasilitas kesehatan.",
+    "karakter_cocok": ["suka bongkar pasang", "teliti", "suka teknologi", "praktis", "bertanggung jawab"]
+  },
+  {
+    "id": "m171",
+    "nama_jurusan": "Optometri",
+    "kategori": "Kesehatan",
+    "deskripsi": "Program D3/Sarjana Terapan untuk memeriksa penglihatan dan menyiapkan kacamata atau lensa kontak yang tepat.",
+    "karakter_cocok": ["teliti", "detail-oriented", "peduli", "komunikatif", "terampil"]
+  },
+  {
+    "id": "m172",
+    "nama_jurusan": "Perbankan Syariah",
+    "kategori": "Bisnis",
+    "deskripsi": "Mempelajari produk dan operasional bank berbasis prinsip syariah, dari pembiayaan hingga manajemen risiko.",
+    "karakter_cocok": ["etis", "teliti", "suka angka", "bertanggung jawab", "analitis"]
+  },
+  {
+    "id": "m173",
+    "nama_jurusan": "Akuntansi Syariah",
+    "kategori": "Bisnis",
+    "deskripsi": "Akuntansi untuk lembaga keuangan dan bisnis syariah: laporan keuangan, zakat, dan audit sesuai prinsip Islam.",
+    "karakter_cocok": ["teliti", "etis", "suka angka", "sistematis", "jujur"]
+  },
+  {
+    "id": "m174",
+    "nama_jurusan": "Manajemen Logistik",
+    "kategori": "Bisnis",
+    "deskripsi": "Mengatur aliran barang dari gudang hingga ke tangan pelanggan: rantai pasok, distribusi, dan transportasi.",
+    "karakter_cocok": ["organisir", "efisien", "strategis", "problem-solver", "sistematis"]
+  },
+  {
+    "id": "m175",
+    "nama_jurusan": "Ekonomi Sumberdaya dan Lingkungan",
+    "kategori": "Bisnis",
+    "deskripsi": "Menganalisis nilai ekonomi alam dan lingkungan untuk kebijakan pembangunan yang berkelanjutan.",
+    "karakter_cocok": ["analitis", "peduli lingkungan", "kritis", "suka data", "strategis"]
+  },
+  {
+    "id": "m176",
+    "nama_jurusan": "Hukum Ekonomi Syariah",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari hukum muamalah, kontrak bisnis syariah, dan penyelesaian sengketa ekonomi syariah.",
+    "karakter_cocok": ["analitis", "etis", "kritis", "logis", "agamis"]
+  },
+  {
+    "id": "m177",
+    "nama_jurusan": "Hukum Keluarga Islam",
+    "kategori": "Sosial",
+    "deskripsi": "Ahwal Syakhshiyyah: hukum perkawinan, waris, dan keluarga Islam, termasuk praktik di peradilan agama.",
+    "karakter_cocok": ["agamis", "analitis", "etis", "kritis", "pendengar yang baik"]
+  },
+  {
+    "id": "m178",
+    "nama_jurusan": "Komunikasi dan Penyiaran Islam",
+    "kategori": "Sosial",
+    "deskripsi": "Memadukan ilmu komunikasi, jurnalistik, dan media penyiaran dengan dakwah Islam.",
+    "karakter_cocok": ["komunikatif", "presenter", "agamis", "kreatif", "storyteller"]
+  },
+  {
+    "id": "m179",
+    "nama_jurusan": "Komunikasi dan Pengembangan Masyarakat",
+    "kategori": "Sosial",
+    "deskripsi": "Mempelajari penyuluhan, pemberdayaan, dan komunikasi pembangunan untuk desa dan komunitas.",
+    "karakter_cocok": ["sosial", "komunikatif", "peduli", "motivator", "suka bekerja di luar"]
+  },
+  {
+    "id": "m180",
+    "nama_jurusan": "Sastra Jawa",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, aksara, naskah kuno, dan kesusastraan Jawa beserta budayanya.",
+    "karakter_cocok": ["suka sejarah", "suka membaca", "penulis", "kreatif", "teliti"]
+  },
+  {
+    "id": "m181",
+    "nama_jurusan": "Sastra Sunda",
+    "kategori": "Humaniora",
+    "deskripsi": "Mendalami bahasa, sastra, dan budaya Sunda, dari naskah kuno hingga karya modern.",
+    "karakter_cocok": ["suka membaca", "penulis", "suka sejarah", "kreatif", "komunikatif"]
+  },
+  {
+    "id": "m182",
+    "nama_jurusan": "Sastra Bali",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, aksara, lontar, dan kesusastraan Bali yang hidup dalam adat dan budaya.",
+    "karakter_cocok": ["suka sejarah", "suka membaca", "teliti", "penulis", "observasional"]
+  },
+  {
+    "id": "m183",
+    "nama_jurusan": "Sastra Rusia",
+    "kategori": "Humaniora",
+    "deskripsi": "Mempelajari bahasa, sastra, dan budaya Rusia, termasuk karya klasik Tolstoy dan Dostoyevsky.",
+    "karakter_cocok": ["suka budaya asing", "suka membaca", "analitis", "penulis", "kritis"]
+  },
+  {
+    "id": "m184",
+    "nama_jurusan": "Ilmu Al-Qur'an dan Tafsir",
+    "kategori": "Humaniora",
+    "deskripsi": "Mendalami bacaan, kandungan, dan metode penafsiran Al-Qur'an secara ilmiah.",
+    "karakter_cocok": ["agamis", "suka membaca", "analitis", "reflektif", "teliti"]
+  },
+  {
+    "id": "m185",
+    "nama_jurusan": "Sejarah Peradaban Islam",
+    "kategori": "Humaniora",
+    "deskripsi": "Menelusuri sejarah, budaya, dan pemikiran dunia Islam, termasuk perkembangannya di Nusantara.",
+    "karakter_cocok": ["suka sejarah", "analitis", "suka membaca", "kritis", "agamis"]
+  },
+  {
+    "id": "m186",
+    "nama_jurusan": "Seni Teater",
+    "kategori": "Seni",
+    "deskripsi": "Mempelajari akting, penyutradaraan, penulisan naskah, dan tata panggung untuk pertunjukan.",
+    "karakter_cocok": ["ekspresif", "percaya diri", "kreatif", "storyteller", "komunikatif"]
+  },
+  {
+    "id": "m187",
+    "nama_jurusan": "Fotografi",
+    "kategori": "Seni",
+    "deskripsi": "Mengasah teknik dan bahasa visual fotografi untuk jurnalistik, komersial, dan karya seni.",
+    "karakter_cocok": ["visual", "kreatif", "observasional", "estetis", "mandiri"]
+  },
+  {
+    "id": "m188",
+    "nama_jurusan": "Seni Karawitan",
+    "kategori": "Seni",
+    "deskripsi": "Mempelajari, memainkan, dan menciptakan musik gamelan serta tradisi karawitan Nusantara.",
+    "karakter_cocok": ["musikal", "disiplin", "ekspresif", "kreatif", "sabar"]
+  },
+  {
+    "id": "m189",
+    "nama_jurusan": "Etnomusikologi",
+    "kategori": "Seni",
+    "deskripsi": "Meneliti musik dari berbagai budaya dan kaitannya dengan masyarakat, termasuk musik tradisi Nusantara.",
+    "karakter_cocok": ["musikal", "peneliti", "observasional", "penasaran", "analitis"]
+  },
+  {
+    "id": "m190",
+    "nama_jurusan": "Seni Pedalangan",
+    "kategori": "Seni",
+    "deskripsi": "Mempelajari seni dalang dan wayang: lakon, sabetan, suluk, iringan gamelan, hingga pertunjukan.",
+    "karakter_cocok": ["storyteller", "ekspresif", "musikal", "percaya diri", "suka sejarah"]
+  },
+  {
+    "id": "m191",
+    "nama_jurusan": "Arsitektur Lanskap",
+    "kategori": "Seni",
+    "deskripsi": "Merancang taman, ruang terbuka hijau, dan lanskap kota yang indah sekaligus ramah lingkungan.",
+    "karakter_cocok": ["visual", "kreatif", "peduli lingkungan", "suka alam", "estetis"]
+  },
+  {
+    "id": "m192",
+    "nama_jurusan": "Pendidikan Bahasa dan Sastra Indonesia",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru Bahasa Indonesia yang terampil mengajarkan membaca, menulis, berbicara, dan apresiasi sastra.",
+    "karakter_cocok": ["penulis", "suka membaca", "komunikatif", "sabar", "suka mengajar"]
+  },
+  {
+    "id": "m193",
+    "nama_jurusan": "Pendidikan Bahasa Arab",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru Bahasa Arab untuk madrasah, pesantren, dan sekolah umum.",
+    "karakter_cocok": ["agamis", "sabar", "komunikatif", "suka membaca", "suka mengajar"]
+  },
+  {
+    "id": "m194",
+    "nama_jurusan": "Pendidikan Ekonomi",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru ekonomi yang mampu menjelaskan konsep ekonomi, koperasi, dan kewirausahaan.",
+    "karakter_cocok": ["analitis", "komunikatif", "sabar", "suka angka", "suka mengajar"]
+  },
+  {
+    "id": "m195",
+    "nama_jurusan": "Pendidikan Teknik Otomotif",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru SMK otomotif yang menguasai mesin, kelistrikan kendaraan, dan cara mengajarkannya.",
+    "karakter_cocok": ["suka bongkar pasang", "praktis", "sabar", "terampil", "suka mengajar"]
+  },
+  {
+    "id": "m196",
+    "nama_jurusan": "Pendidikan Teknik Elektro",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru kelistrikan dan elektronika untuk SMK serta pelatihan di industri.",
+    "karakter_cocok": ["logis", "praktis", "sabar", "suka teknologi", "suka mengajar"]
+  },
+  {
+    "id": "m197",
+    "nama_jurusan": "Pendidikan Tata Boga",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru dan instruktur tata boga: teknik memasak, pastry, gizi, dan usaha kuliner.",
+    "karakter_cocok": ["suka memasak", "kreatif", "sabar", "terampil", "suka mengajar"]
+  },
+  {
+    "id": "m198",
+    "nama_jurusan": "Pendidikan Tata Busana",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru dan instruktur busana: desain pakaian, pembuatan pola, menjahit, dan bisnis fesyen.",
+    "karakter_cocok": ["kreatif", "terampil", "sabar", "visual", "suka mengajar"]
+  },
+  {
+    "id": "m199",
+    "nama_jurusan": "Pendidikan Bahasa Jawa",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru bahasa daerah yang menguasai bahasa, aksara, dan sastra Jawa.",
+    "karakter_cocok": ["suka sejarah", "sabar", "komunikatif", "suka membaca", "suka mengajar"]
+  },
+  {
+    "id": "m200",
+    "nama_jurusan": "Pendidikan IPA",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru IPA terpadu SMP yang menguasai fisika, kimia, dan biologi sekaligus.",
+    "karakter_cocok": ["suka eksperimen", "penasaran", "sabar", "komunikatif", "suka mengajar"]
+  },
+  {
+    "id": "m201",
+    "nama_jurusan": "Pendidikan IPS",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru IPS terpadu SMP: sejarah, geografi, ekonomi, dan sosiologi dalam satu mata pelajaran.",
+    "karakter_cocok": ["suka sejarah", "suka geografi", "komunikatif", "sabar", "suka mengajar"]
+  },
+  {
+    "id": "m202",
+    "nama_jurusan": "Pendidikan Guru Madrasah Ibtidaiyah (PGMI)",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru kelas madrasah ibtidaiyah yang memadukan pelajaran umum dan nilai-nilai Islam.",
+    "karakter_cocok": ["suka anak-anak", "sabar", "agamis", "kreatif", "komunikatif"]
+  },
+  {
+    "id": "m203",
+    "nama_jurusan": "Pendidikan Agama Kristen",
+    "kategori": "Pendidikan",
+    "deskripsi": "Menyiapkan guru Pendidikan Agama Kristen dan pembina rohani untuk sekolah, gereja, dan komunitas.",
+    "karakter_cocok": ["agamis", "sabar", "komunikatif", "panutan", "empatik"]
+  },
+  {
+    "id": "m204",
+    "nama_jurusan": "Pendidikan Luar Sekolah",
+    "kategori": "Pendidikan",
+    "deskripsi": "Mendidik di luar kelas formal: pelatihan kerja, kursus, pendidikan kesetaraan, dan pemberdayaan masyarakat.",
+    "karakter_cocok": ["sosial", "motivator", "komunikatif", "kreatif", "peduli"]
+  },
+  {
+    "id": "m205",
+    "nama_jurusan": "Seni Kuliner",
+    "kategori": "Vokasi",
+    "deskripsi": "Program vokasi (D3/D4) untuk menjadi chef profesional: masakan Nusantara dan kontinental serta manajemen dapur.",
+    "karakter_cocok": ["suka memasak", "kreatif", "terampil", "tahan banting", "cepat"]
+  },
+  {
+    "id": "m206",
+    "nama_jurusan": "Seni Pengolahan Patiseri",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3 pastry dan bakery: roti, kue, cokelat, dan dekorasi hidangan penutup.",
+    "karakter_cocok": ["suka memasak", "detail-oriented", "estetis", "terampil", "kreatif"]
+  },
+  {
+    "id": "m207",
+    "nama_jurusan": "Usaha Perjalanan Wisata",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3/D4 untuk merancang paket wisata, mengurus tiket dan perjalanan, serta memandu wisatawan.",
+    "karakter_cocok": ["suka jalan-jalan", "komunikatif", "organisir", "ramah", "adaptif"]
+  },
+  {
+    "id": "m208",
+    "nama_jurusan": "Pengelolaan Konvensi dan Acara",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D4 MICE: merencanakan dan mengelola konferensi, pameran, festival, dan acara besar.",
+    "karakter_cocok": ["organisir", "multitasking", "komunikatif", "kreatif", "kepemimpinan"]
+  },
+  {
+    "id": "m209",
+    "nama_jurusan": "Manajemen Informatika",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3 untuk membuat dan mengelola aplikasi, basis data, dan sistem informasi di perusahaan.",
+    "karakter_cocok": ["logis", "praktis", "suka teknologi", "sistematis", "problem-solver"]
+  },
+  {
+    "id": "m210",
+    "nama_jurusan": "Teknologi Rekayasa Otomotif",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D4 untuk merawat, mendiagnosis, dan merekayasa kendaraan, termasuk kendaraan listrik.",
+    "karakter_cocok": ["suka bongkar pasang", "praktis", "terampil", "problem-solver", "suka teknologi"]
+  },
+  {
+    "id": "m211",
+    "nama_jurusan": "Teknik Mekatronika",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3/D4 yang memadukan mesin, elektronika, dan pemrograman untuk otomasi industri dan robot.",
+    "karakter_cocok": ["suka bongkar pasang", "logis", "praktis", "inovatif", "suka teknologi"]
+  },
+  {
+    "id": "m212",
+    "nama_jurusan": "Nautika",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3/D4 pelayaran untuk menjadi perwira kapal yang bertugas di anjungan dan navigasi.",
+    "karakter_cocok": ["disiplin", "tangguh", "suka air", "kepemimpinan", "bertanggung jawab"]
+  },
+  {
+    "id": "m213",
+    "nama_jurusan": "Teknika",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3/D4 pelayaran untuk menjadi masinis yang mengoperasikan dan merawat mesin kapal.",
+    "karakter_cocok": ["suka bongkar pasang", "disiplin", "tangguh", "praktis", "suka air"]
+  },
+  {
+    "id": "m214",
+    "nama_jurusan": "Teknologi Game",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D4 untuk merancang dan memprogram game, dari game engine dan grafis hingga audio dan desain level.",
+    "karakter_cocok": ["kreatif", "logis", "suka teknologi", "storyteller", "inovatif"]
+  },
+  {
+    "id": "m215",
+    "nama_jurusan": "Analisis Kimia",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3 untuk menguji mutu bahan dan produk di laboratorium industri dengan instrumen kimia.",
+    "karakter_cocok": ["teliti", "suka eksperimen", "sistematis", "bertanggung jawab", "praktis"]
+  },
+  {
+    "id": "m216",
+    "nama_jurusan": "Teknik Pendingin dan Tata Udara",
+    "kategori": "Vokasi",
+    "deskripsi": "Program D3/D4 untuk memasang dan merawat sistem AC, pendingin, dan ventilasi gedung serta industri.",
+    "karakter_cocok": ["praktis", "suka bongkar pasang", "terampil", "problem-solver", "teliti"]
   }
 ]

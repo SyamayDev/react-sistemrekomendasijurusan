@@ -3,13 +3,14 @@
  * up in turn as the chapter scrolls (editorial list, not a card grid).
  */
 import { Chapter, Kicker } from "./parts.jsx";
+import { TOTAL_MAJORS } from "../../lib/categories.js";
 import rajuThinking from "../../assets/raju/raju-thinking.webp";
 
 const REASONS = [
   { t: "Gratis, tanpa akun", d: "Tidak perlu daftar, tidak ada iklan. Ulangi tesnya kapan saja." },
   { t: "Dihitung di perangkatmu", d: "Jawaban tes diproses di browser dan tidak dikirim ke server SI-RAJU." },
   { t: "Ada alasannya", d: "Setiap persentase dijelaskan dari jawabanmu sendiri — bukan ramalan." },
-  { t: "150 halaman jurusan", d: "Isi jurusan, karakter yang cocok, dan jurusan serumpun untuk dibandingkan." },
+  { t: `${TOTAL_MAJORS} halaman jurusan`, d: "Isi jurusan, karakter yang cocok, dan jurusan serumpun untuk dibandingkan." },
   {
     t: "Asisten AI, kalau perlu",
     d: "Tanya soal jurusan ke SI-RAJU AI. Pesan yang kamu ketik dikirim ke layanan Google Gemini untuk dijawab; hasil tesmu hanya ikut bila kamu memintanya.",

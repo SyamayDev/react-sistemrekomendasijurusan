@@ -168,6 +168,11 @@
   img, svg, canvas {
     display: block;
   }
+  /* Search fields bring their own clear button; hide the browser's second one. */
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
   button, [role="button"], a, label, summary {
     -webkit-tap-highlight-color: transparent;
   }
@@ -343,7 +348,7 @@
     border: 1px solid var(--line);
   }
 
-  /* Catalogue card (×150) — one class instead of a long utility string per card. */
+  /* Catalogue card (one per major) — one class instead of a long utility string per card. */
   .major-li {
     content-visibility: auto;
     contain-intrinsic-size: auto 12rem;

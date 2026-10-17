@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "../ui/Logo.jsx";
 import { FacebookIcon, GithubIcon, InstagramIcon, YoutubeIcon } from "../ui/BrandIcons.jsx";
 import { SITE } from "../../lib/site.js";
+import { TOTAL_MAJORS } from "../../lib/categories.js";
 
 const SOCIALS = [
   { href: "https://www.instagram.com/syahrilmaimubdymandai", label: "Instagram", Icon: InstagramIcon },
@@ -16,7 +17,7 @@ const COLUMNS = [
     title: "Jelajahi",
     links: [
       { to: "/tes/", label: "Tes Minat Bakat" },
-      { to: "/jurusan/", label: "Katalog 150 Jurusan" },
+      { to: "/jurusan/", label: `Katalog ${TOTAL_MAJORS} Jurusan` },
       { to: "/#cara-kerja", label: "Cara Kerja" },
       { to: "/#faq", label: "Pertanyaan Umum" },
     ],

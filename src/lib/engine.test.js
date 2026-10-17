@@ -7,10 +7,12 @@ import { encodeAnswers, decodeAnswers } from "./answerCodec.js";
 import { CATEGORIES } from "./categories.js";
 import { slugify } from "./slug.js";
 import { matchHobbies } from "./hobbies.js";
+import { TRAIT_MAP } from "./riasec.js";
 
 const load = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 const questions = load("../data/questions.json");
 const majors = load("../data/majors.json");
+const insights = load("../data/insights.json");
 const model = buildModel(questions, majors);
 const majorIds = new Set(majors.map((m) => m.id));
 const traitVocab = new Set(majors.flatMap((m) => m.karakter_cocok));
@@ -125,3 +127,40 @@ test("major slugs are unique", () => {
   const slugs = majors.map((m) => slugify(m.nama_jurusan));
   assert.equal(new Set(slugs).size, slugs.length);
 });
+
+test("every major has its own insight copy and RIASEC-mapped traits", () => {
+  const names = new Set(majors.map((m) => m.nama_jurusan));
+  for (const m of majors) {
+    assert.ok(insights[m.nama_jurusan], `insight for ${m.nama_jurusan}`);
+    for (const t of m.karakter_cocok) assert.ok(TRAIT_MAP[t], `${m.nama_jurusan}: trait "${t}" has no RIASEC mapping`);
+  }
+  for (const k of Object.keys(insights)) assert.ok(names.has(k), `orphan insight "${k}"`);
+});
+
+test("the static meta description states the real number of majors", () => {
+  const html = readFileSync(new URL("../../index.html", import.meta.url), "utf8");
+  assert.ok(html.includes(`dari ${majors.length} jurusan`), "index.html description is out of date");
+});
+
+// Programmes added later (vocational, regional, religious) must be reachable
+// by the students they are meant for, not buried under the original 150.
+const BASE = { q1: 2, q2: 2, q5: 2, q8: 2, q10: 1, q11: 2, q12: 2, q14: 1, q15: 2, q17: 1, q18: 2, q20: 2 };
+const NICHE = {
+  "cook / pastry": { top: ["Seni Pengolahan Patiseri", "Seni Kuliner"],
+    a: { q3: 0, q4: [2, 5, 3], q6: 0, q7: "suka memasak dan bikin kue", q8: 4, q9: 5, q11: 1, q13: [5, 1], q15: 4, q16: 2, q19: [4, 3], q20: 3 } },
+  "Javanese culture": { top: ["Sastra Jawa"],
+    a: { q3: 0, q4: [2, 3, 1], q6: 0, q7: "membaca naskah aksara jawa dan nonton wayang", q9: 5, q12: 1, q13: [3, 4], q15: 3, q16: 3 } },
+  "religious teacher": { top: ["Pendidikan Guru Madrasah Ibtidaiyah (PGMI)", "Pendidikan Bahasa Arab"],
+    a: { q2: 3, q3: 2, q4: [1, 4, 3], q6: 0, q7: "mengaji dan mengajar anak-anak di TPA", q9: 4, q12: 1, q13: [4, 3], q14: 0, q16: 4 } },
+  traveller: { top: ["Usaha Perjalanan Wisata", "Pengelolaan Konvensi dan Acara"],
+    a: { q2: 4, q3: 2, q4: [4, 6, 2], q5: 0, q6: 2, q7: "traveling dan jadi panitia event", q9: 2, q16: 0, q19: [2, 3], q20: 3 } },
+  mechanic: { top: ["Teknologi Rekayasa Otomotif", "Teknik Mekatronika"],
+    a: { q1: 3, q3: 4, q4: [5, 3, 0], q6: 2, q7: "bengkel motor dan otomotif", q9: 0, q12: 0, q13: [0, 5], q16: 2, q17: 0, q20: 0 } },
+};
+for (const [name, p] of Object.entries(NICHE)) {
+  test(`niche persona "${name}" finds ${p.top.join(" / ")}`, () => {
+    const top10 = model.recommend({ ...BASE, ...p.a }).ranked.slice(0, 10).map((m) => m.nama_jurusan);
+    assert.ok(p.top.every((n) => majors.some((m) => m.nama_jurusan === n)), "expected majors exist");
+    assert.ok(p.top.some((n) => top10.includes(n)), `expected one of ${p.top} in ${top10}`);
+  });
+}

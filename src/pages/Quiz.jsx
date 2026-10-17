@@ -17,7 +17,7 @@ import ThemeToggle from "../components/layout/ThemeToggle.jsx";
 import FullscreenButton from "../components/layout/FullscreenButton.jsx";
 import { getModel, questions } from "../lib/recommender.js";
 import { isAnswered } from "../lib/engine.js";
-import { CATEGORY_IDS } from "../lib/categories.js";
+import { CATEGORY_IDS, TOTAL_MAJORS } from "../lib/categories.js";
 import { storage, KEYS } from "../lib/storage.js";
 import { useStored, notifyStored } from "../lib/useStored.js";
 import { useSeo } from "../lib/seo.jsx";
@@ -147,7 +147,7 @@ function QuizPage() {
     title: "Tes Minat Bakat Jurusan Kuliah Gratis (20 Soal)",
     path: "/tes/",
     description:
-      "Kerjakan tes minat bakat 20 soal (±4 menit) dan dapatkan rekomendasi jurusan kuliah yang paling cocok dari 150 jurusan, lengkap dengan alasan dan profil RIASEC-mu.",
+      `Kerjakan tes minat bakat 20 soal (±4 menit) dan dapatkan rekomendasi jurusan kuliah yang paling cocok dari ${TOTAL_MAJORS} jurusan, lengkap dengan alasan dan profil RIASEC-mu.`,
   });
 
   const navigate = useNavigate();

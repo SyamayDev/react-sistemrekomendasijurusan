@@ -1,5 +1,5 @@
 /**
- * Chapter 4 — "Semesta Jurusan". The 150 tiles gather around eight field
+ * Chapter 4 — "Semesta Jurusan". The major tiles gather around eight field
  * planets. Choosing a field (chips here, or the floating planet labels)
  * flies the camera to that planet, lights its majors, and lists the real
  * majors from majors.json (lazy-loaded) with links to their pages.

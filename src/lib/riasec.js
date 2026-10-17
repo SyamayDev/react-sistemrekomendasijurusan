@@ -15,7 +15,7 @@ export const RIASEC = [
 export const RIASEC_KEYS = RIASEC.map((d) => d.key);
 
 /** How strongly each trait word in majors.json signals each RIASEC type. */
-const TRAIT_MAP = {
+export const TRAIT_MAP = {
   praktis: { R: 1 }, "suka bongkar pasang": { R: 1 }, terampil: { R: 0.8, A: 0.2 },
   "suka bekerja di luar": { R: 1 }, petualang: { R: 0.7, E: 0.3 }, tangguh: { R: 0.6 },
   aktif: { R: 0.6, S: 0.2 }, sportif: { R: 0.6, S: 0.3 }, "suka memasak": { R: 0.6, A: 0.4 },

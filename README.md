@@ -1,6 +1,6 @@
 # SI-RAJU — Sistem Rekomendasi Jurusan
 
-Tes minat bakat online gratis yang mencocokkan siswa SMA/SMK dengan **150 jurusan kuliah**, memakai model minat karier **RIASEC (Holland)**, lengkap dengan persentase kecocokan dan **alasan yang bisa dijelaskan**.
+Tes minat bakat online gratis yang mencocokkan siswa SMA/SMK dengan **216 jurusan kuliah** (program studi S1, D3/D4, dan Sarjana Terapan yang benar-benar ada di Indonesia), memakai model minat karier **RIASEC (Holland)**, lengkap dengan persentase kecocokan dan **alasan yang bisa dijelaskan**.
 
 **Live:** https://syamaydev.github.io/react-sistemrekomendasijurusan/
 
@@ -8,10 +8,10 @@ Tes minat bakat online gratis yang mencocokkan siswa SMA/SMK dengan **150 jurusa
 
 - **Rekomendasi yang jujur & transparan** — setiap jawaban menjadi bukti (sadar-opsi), dinormalisasi per jurusan dengan *shrinkage*, lalu dipadukan dengan kemiripan profil RIASEC. Tiap hasil menampilkan alasan terkuatnya.
 - **Privat** — seluruh perhitungan berjalan di browser; jawaban tidak dikirim ke server. Link hasil berupa kode ringkas (tanpa isian bebas).
-- **“Semesta RAJU” — cerita scroll 7 babak** di halaman utama: kebingungan → enam arah minat RIASEC → cara kerja (jawaban → profil → dicocokkan dengan 150 jurusan → hasil) → 8 planet rumpun yang bisa dijelajahi → alasan memakai SI-RAJU → gerbang untuk mulai tes. Satu dunia 3D persisten (React Three Fiber) yang bergerak sesuai progres scroll.
+- **“Semesta RAJU” — cerita scroll 7 babak** di halaman utama: kebingungan → enam arah minat RIASEC → cara kerja (jawaban → profil → dicocokkan dengan semua jurusan → hasil) → 8 planet rumpun yang bisa dijelajahi → alasan memakai SI-RAJU → gerbang untuk mulai tes. Satu dunia 3D persisten (React Three Fiber) yang bergerak sesuai progres scroll.
 - **RAJU 3D**, maskot burung hantu orisinal yang dibuat prosedural dengan rig sederhana: bernapas, berkedip, menoleh mengikuti kursor, ekspresi (senang/penasaran/berpikir/kaget), mengepakkan sayap saat CTA disentuh atau tes dimulai, dan melambai di gerbang. Tanpa WebGL atau dengan *reduced motion*, poster yang dirender dari model yang sama dipakai sebagai gantinya.
 - **SI-RAJU AI** — chat streaming (Google Gemini) yang bisa memakai konteks hasil tes.
-- **150 halaman jurusan** statis yang bisa diindeks mesin pencari + katalog dengan pencarian.
+- **216 halaman jurusan** statis yang bisa diindeks mesin pencari + katalog dengan pencarian (tidak peka spasi/tanda baca: “tataboga” menemukan Tata Boga).
 - Tema terang/gelap, aksesibel (keyboard, pembaca layar, *reduced motion*).
 
 ## Teknologi
@@ -65,7 +65,7 @@ tools/raju/             viewer dev untuk RAJU (pose, ekspresi, putar) — tidak 
 ### Cerita scroll & dunia 3D
 
 - `lib/scrollStory.js` mengukur tiap babak (`section[data-chapter]`, panggung *sticky*) sekali saat resize, lalu tiap scroll (satu rAF) menulis progres kontinu `story` (babak *i* = `[i, i+1)`) ke `sceneStore` dan variabel CSS `--enter`/`--p` + `data-step`. React tidak dirender ulang saat scroll.
-- `components/three/world/buildWorld.js` membaca `story` setiap frame: kamera & RAJU mengikuti *keyframe* per babak; 150 kartu jurusan (satu `InstancedMesh`) berubah formasi: halo → kekacauan → orbit → dinding data → gugus di 8 planet rumpun → bingkai gerbang.
+- `components/three/world/buildWorld.js` membaca `story` setiap frame: kamera & RAJU mengikuti *keyframe* per babak; satu kartu per jurusan (satu `InstancedMesh`; ukuran kartu & grid dinding data menyesuaikan jumlah jurusan) berubah formasi: halo → kekacauan → orbit → dinding data → gugus di 8 planet rumpun → bingkai gerbang.
 - Di tata letak bertumpuk (ponsel/tablet), panel teks tiap babak diukur dan dunia 3D dibingkai otomatis di ruang kosong di atasnya (jarak kamera + *lens shift*), sehingga RAJU tidak tertutup teks di ukuran layar apa pun.
 - Label HUD yang menempel di objek 3D bersifat dekoratif (`aria-hidden`); semua aksinya juga tersedia sebagai kontrol nyata (chip rumpun, tombol, tautan).
 - **Layar "Memuat Semesta"** (beranda): tampil sejak first paint dan baru terangkat setelah dunia 3D benar-benar tergambar, jadi pengunjung tidak pernah melihat adegan setengah jadi. Progresnya nyata — dua unduhan dihitung per byte (daftar chunk + ukuran disisipkan prerenderer di `<meta name="siraju:3d">`), lalu langkah model, pencahayaan, dan shader (`lib/loader3d.js`, `components/layout/Preloader.jsx`). Tes selalu bisa dimulai lewat "Langsung mulai tes"; bila gagal/timeout tampil "Coba lagi" / "Lanjut tanpa 3D" (hanya untuk kunjungan itu).
@@ -73,6 +73,17 @@ tools/raju/             viewer dev untuk RAJU (pose, ekspresi, putar) — tidak 
 - Untuk dukungan/pengujian: `?3d=on` memaksa 3D (juga di WebGL software), `?3d=off` melewatinya — berlaku per tab (`sessionStorage["siraju:3d"]`).
 - **Semesta jurusan:** cincin 8 planet berputar pelan; memilih rumpun memutar cincin lewat jalur terpendek sampai planet itu berada di depan (sedikit di kanan RAJU), jadi tidak pernah tertutup planet lain. Kartu jurusan tiap rumpun ikut bergerak bersama planetnya.
 - **Akhir cerita:** saat babak Gerbang bergulir keluar, dunia 3D memudar (`--story-out`) dan bagian atas FAQ bergradasi dari langit, tanpa garis batas.
+
+### Data jurusan
+
+Semua jurusan ada di `src/data/majors.json` (8 rumpun: STEM 50, Kesehatan 21, Bisnis 19, Sosial 21, Humaniora 20, Seni 19, Pendidikan 36, Vokasi 30). Menambah jurusan baru berarti mengisi:
+
+1. `majors.json` — tambahkan di akhir dengan `id` berikutnya (`m217`, …; id lama jangan diubah karena menjadi kunci bobot di `questions.json` dan `hobbies.js`), nama resmi program studi, rumpun, deskripsi singkat (sebut jenjang D3/D4 bila vokasi), dan 4–5 `karakter_cocok` dari kosakata `TRAIT_MAP` di `lib/riasec.js`.
+2. `insights.json` — paragraf “kenapa cocok”, dengan kunci = `nama_jurusan` persis.
+3. `questions.json` — bobot jurusan itu di soal skala/ya-tidak (`bobot_jurusan`) dan di opsi yang relevan (`efek.jurusan`); cara termudah: turunkan dari 1–3 jurusan lama yang paling mirip.
+4. Opsional: kata kunci hobi di `lib/hobbies.js`; lalu perbarui `jumlah` di `lib/categories.js` dan angka di deskripsi `index.html`.
+
+`npm test` menjaga semuanya tetap sinkron (jumlah per rumpun, insight tiap jurusan, trait yang terpetakan ke RIASEC, angka di meta deskripsi) dan memeriksa bahwa profil siswa tertentu — calon koki/pastry, pencinta budaya Jawa, calon guru agama, pencinta wisata, montir — benar-benar menemukan jurusan yang dimaksud.
 
 ### Navigasi tanpa bilah atas
 
