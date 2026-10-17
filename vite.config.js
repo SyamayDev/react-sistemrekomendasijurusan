@@ -18,6 +18,11 @@ export default defineConfig(({ command, mode, isSsrBuild }) => {
       assetsInlineLimit: (file) => (file.endsWith(".woff2") ? false : undefined),
       reportCompressedSize: false,
       chunkSizeWarningLimit: 900, // the lazy three.js chunk is intentionally large
+      // The 3D world is lazy; keep three.js core in its own long-cacheable chunk
+      // so a change to the world code doesn't re-download the engine.
+      rollupOptions: isSsrBuild
+        ? undefined
+        : { output: { manualChunks: (id) => (/node_modules[\\/]three[\\/]/.test(id) ? "three" : undefined) } },
     },
   };
 });

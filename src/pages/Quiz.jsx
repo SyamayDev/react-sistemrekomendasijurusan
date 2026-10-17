@@ -20,8 +20,7 @@ import { CATEGORY_IDS } from "../lib/categories.js";
 import { storage, KEYS } from "../lib/storage.js";
 import { useStored, notifyStored } from "../lib/useStored.js";
 import { useSeo } from "../lib/seo.jsx";
-import { useSceneMode } from "../lib/useScene.js";
-import { pulseScene, setScene } from "../lib/sceneStore.js";
+import { pulseScene, rajuFlap, setScene } from "../lib/sceneStore.js";
 import { prefersReducedMotion } from "../lib/device.js";
 import MotionProvider from "../components/MotionProvider.jsx";
 
@@ -139,7 +138,6 @@ function QuizTopBar({ index, progress, bab, owlMood }) {
 }
 
 function QuizPage() {
-  useSceneMode("quiz");
   useSeo({
     title: "Tes Minat Bakat Jurusan Kuliah Gratis (20 Soal)",
     path: "/tes/",
@@ -165,7 +163,13 @@ function QuizPage() {
   const answeredCount = useMemo(() => questions.filter((x) => x.tipe !== "text" && isAnswered(x, answers[x.id])).length, [answers]);
   const progress = (index + (valid ? 1 : 0)) / TOTAL;
 
-  useEffect(() => () => [timer, moodTimer].forEach((t) => clearTimeout(t.current)), []);
+  useEffect(
+    () => () => {
+      [timer, moodTimer].forEach((t) => clearTimeout(t.current));
+      setScene({ energy: 0, focus: [0, 0, 0, 0, 0, 0, 0, 0] });
+    },
+    []
+  );
 
   // Persist progress after every change.
   useEffect(() => {
@@ -188,6 +192,7 @@ function QuizPage() {
       setIndex(0);
     }
     setStarted(true);
+    rajuFlap(); // RAJU cheers the student on as the test begins
     window.scrollTo({ top: 0 });
   };
 

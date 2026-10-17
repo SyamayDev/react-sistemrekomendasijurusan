@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RAJU viewer (dev tool)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: transparent;
+      }
+      body.bg {
+        background: radial-gradient(60% 60% at 60% 30%, #1d2a6b, #070d24 70%);
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Dev-only tool (not part of the site build). Renders RAJU with the same
+      model code as the website. Query params:
+        size=900  pose=hero|curious|wave|happy|front|side|back  bg=1  perch=0  spin=1
+      Used by scripts/raju-export.mjs to create posters and raju.glb.
+    -->
+    <script type="module" src="./viewer.js"></script>
+  </body>
+</html>

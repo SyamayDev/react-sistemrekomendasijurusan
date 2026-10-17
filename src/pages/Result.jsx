@@ -28,7 +28,6 @@ import { storage, KEYS } from "../lib/storage.js";
 import { useStored, notifyStored } from "../lib/useStored.js";
 import { useHydrated } from "../lib/useHydrated.js";
 import { useSeo } from "../lib/seo.jsx";
-import { useSceneMode } from "../lib/useScene.js";
 import { setScene } from "../lib/sceneStore.js";
 import { openChat, resultContext } from "../lib/chatBridge.js";
 import { prefersReducedMotion } from "../lib/device.js";
@@ -73,7 +72,6 @@ function ResultSkeleton() {
 }
 
 function ResultPage({ shared = false }) {
-  useSceneMode("result");
   useSeo({
     title: shared ? "Hasil Tes Jurusan yang Dibagikan" : "Hasil Tes Minat Bakat Kamu",
     path: shared ? "/hasil/bagikan/" : "/hasil/",
@@ -132,6 +130,7 @@ function ResultPage({ shared = false }) {
   useEffect(() => {
     if (showContent) setScene({ highlight, focus, energy: 1 });
   }, [showContent, highlight, focus]);
+  useEffect(() => () => setScene({ highlight: -1, energy: 0, focus: [0, 0, 0, 0, 0, 0, 0, 0] }), []);
 
   if (!hydrated || answers === undefined) return <ResultSkeleton />;
   if (!result || Object.keys(answers).length < 5) return <EmptyState shared={shared} />;

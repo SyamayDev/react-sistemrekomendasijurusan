@@ -30,7 +30,10 @@ export default function MagneticButton({
 
   useEffect(() => {
     const el = wrap.current;
-    if (!el || !hasFinePointer() || prefersReducedMotion()) return;
+    // Captured now: refs are detached before passive-effect cleanup runs, so a
+    // frame that fires during navigation must not read label.current.
+    const lab = label.current;
+    if (!el || !lab || !hasFinePointer() || prefersReducedMotion()) return;
     let x = 0, y = 0, vx = 0, vy = 0, tx = 0, ty = 0, raf = 0;
 
     const step = () => {
@@ -39,7 +42,7 @@ export default function MagneticButton({
       x += vx;
       y += vy;
       el.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
-      label.current.style.transform = `translate3d(${(x * 0.45).toFixed(2)}px, ${(y * 0.45).toFixed(2)}px, 0)`;
+      lab.style.transform = `translate3d(${(x * 0.45).toFixed(2)}px, ${(y * 0.45).toFixed(2)}px, 0)`;
       const moving = Math.abs(vx) + Math.abs(vy) + Math.abs(tx - x) + Math.abs(ty - y) > 0.03;
       raf = moving ? requestAnimationFrame(step) : 0;
     };

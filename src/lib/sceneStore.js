@@ -1,29 +1,41 @@
 /**
- * Tiny external store shared by the DOM and the WebGL scene.
- * The scene reads it every frame inside useFrame (no React re-renders);
+ * Tiny external store shared by the DOM and the WebGL world.
+ * The world reads it every frame inside useFrame (no React re-renders);
  * React only subscribes to the few fields that change the render tree.
  */
 const listeners = new Set();
 
 export const scene = {
-  /** "hero" | "quiz" | "result" | "off" */
+  /** "story" (home) | "quiz" | "result" | "off" */
   mode: "off",
-  /** "night" (additive glow) | "dawn" (soft ink on light backgrounds) */
+  /** "night" (midnight world) | "dawn" (icy-light world) */
   palette: "night",
   /** Backdrop is showing (route has a sky). */
   visible: false,
-  /** Home hero is on screen (no point rendering stars hidden under sections). */
-  heroInView: true,
-  /** Per-category emphasis 0..1, in CATEGORY_IDS order. */
-  focus: [0, 0, 0, 0, 0, 0, 0, 0],
-  /** Index in majors.json of the star to spotlight, or -1. */
-  highlight: -1,
-  /** Overall liveliness 0..1 (quiz progress, result reveal). */
-  energy: 0,
-  /** performance.now() of the last answer ripple. */
+  /** Home: the story stage is on screen (pause rendering under FAQ/footer). */
+  inView: true,
+  /** Home scroll story — continuous, chapter i spans [i, i+1). Written by scrollStory.js. */
+  story: 0,
+  /** Active step per chapter index (written by scrollStory.js). */
+  steps: {},
+  /** Home, stacked layout (< lg): the free band above each chapter's text
+   *  panel, as viewport fractions — header bottom, and panel top per chapter. */
+  bandTop: 0.08,
+  bandBottom: [],
+  /** Semesta chapter: selected rumpun index (0–7) or -1. */
+  selectedRumpun: -1,
+  /** performance.now() of the last RAJU wing gesture request (CTA hover, test start). */
+  flapAt: -1,
+  /** performance.now() of the last answer ripple (quiz). */
   pulseAt: -1,
-  /** 0..1 scroll progress through the hero. */
-  heroScroll: 0,
+  /** Overall liveliness 0..1 (quiz progress, result). */
+  energy: 0,
+  /** Quiz: per-rumpun emphasis 0..1 in CATEGORY_IDS order. */
+  focus: [0, 0, 0, 0, 0, 0, 0, 0],
+  /** Result: index in majors.json of the #1 match, or -1. */
+  highlight: -1,
+  /** The WebGL world has drawn its first frame. */
+  ready: false,
 };
 
 export function setScene(patch) {
@@ -38,12 +50,12 @@ export function setScene(patch) {
 }
 
 /** Should the WebGL loop be running right now? */
-export const isSceneActive = () =>
-  scene.visible && scene.mode !== "off" && (scene.mode !== "hero" || scene.heroInView);
+export const isSceneActive = () => scene.visible && scene.mode !== "off" && (scene.mode !== "story" || scene.inView);
 
-export function pulseScene() {
-  scene.pulseAt = typeof performance !== "undefined" ? performance.now() : 0;
-}
+const now = () => (typeof performance !== "undefined" ? performance.now() : 0);
+export const pulseScene = () => (scene.pulseAt = now());
+/** Ask RAJU for a wing gesture (e.g. when a CTA is hovered or the test starts). */
+export const rajuFlap = () => (scene.flapAt = now());
 
 export function subscribeScene(listener) {
   listeners.add(listener);
@@ -51,13 +63,14 @@ export function subscribeScene(listener) {
 }
 
 /** Pointer in normalised device coords (-1..1), tracked once for everyone. */
-export const pointer = { x: 0, y: 0 };
+export const pointer = { x: 0, y: 0, active: false };
 if (typeof window !== "undefined") {
   window.addEventListener(
     "pointermove",
     (e) => {
       pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.y = -((e.clientY / window.innerHeight) * 2 - 1);
+      pointer.active = e.pointerType === "mouse";
     },
     { passive: true }
   );

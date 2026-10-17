@@ -23,8 +23,13 @@ const base = template.match(/<script type="module" crossorigin src="([^"]*?)asse
 
 /* ---------- preloads ---------- */
 const assets = await readdir(path.join(dist, "assets"));
-const font = assets.find((f) => /plus-jakarta-sans-latin-wght-normal.*\.woff2$/.test(f));
-const fontPreload = font ? `<link rel="preload" href="${base}assets/${font}" as="font" type="font/woff2" crossorigin>` : "";
+// Body text (Plus Jakarta Sans) and headlines (Bricolage Grotesque), latin subsets only.
+const fonts = [/plus-jakarta-sans-latin-wght-normal.*\.woff2$/, /bricolage-grotesque-latin-wght-normal.*\.woff2$/].map((re) => assets.find((f) => re.test(f)));
+const font = fonts.every(Boolean);
+const fontPreload = fonts
+  .filter(Boolean)
+  .map((f) => `<link rel="preload" href="${base}assets/${f}" as="font" type="font/woff2" crossorigin>`)
+  .join("\n    ");
 
 const entryKey = Object.keys(manifest).find((k) => manifest[k].isEntry);
 const entryFiles = new Set([manifest[entryKey].file, ...(manifest[entryKey].imports || []).map((i) => manifest[i].file)]);

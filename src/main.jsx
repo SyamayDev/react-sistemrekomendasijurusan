@@ -5,6 +5,7 @@
  * Links are real <a href>s, so the page is usable even before hydration.
  */
 import "@fontsource-variable/plus-jakarta-sans/wght.css";
+import "@fontsource-variable/bricolage-grotesque/wght.css";
 import "./styles/index.css";
 import { redirectLegacyHash } from "./lib/legacy.js";
 

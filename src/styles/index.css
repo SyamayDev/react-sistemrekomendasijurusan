@@ -7,6 +7,8 @@
 /* ---------- Design tokens ---------- */
 @theme inline {
   --font-sans: "Plus Jakarta Sans Variable", "Jakarta Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Display Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
 
   --color-bg: var(--bg);
   --color-bg-soft: var(--bg-soft);
@@ -24,6 +26,8 @@
   --color-sun-strong: var(--sun-strong);
   --color-sun-ink: var(--sun-ink);
   --color-on-sun: var(--on-sun);
+  --color-cyan: var(--cyan);
+  --color-lavender: var(--lavender);
 }
 
 @theme {
@@ -60,7 +64,15 @@
   --sun-ink: #8a5600;
   --on-sun: #1a1405;
   --focus: #2b48c8;
+  --cyan: #0e8fb3;
+  --lavender: #6f58e8;
+  --scrim: rgb(243 246 253 / 0.86);
   --header-h: 4.25rem;
+  /* Story sky (CSS fallback; mirrors the 3D sky). */
+  --sky-top: #f3f6fd;
+  --sky-mid: #e2e8f7;
+  --sky-bottom: #d6dcf3;
+  --sky-glow: rgb(255 255 255 / 0.9);
 }
 
 [data-theme="dark"] {
@@ -79,9 +91,26 @@
   --on-primary: #08102a;
   --sun-ink: #ffd36b;
   --focus: #ffc53d;
+  --cyan: #5ee7ff;
+  --lavender: #b9a7ff;
+  --scrim: rgb(5 9 28 / 0.8);
+  --sky-top: #03061a;
+  --sky-mid: #0a1236;
+  --sky-bottom: #14134a;
+  --sky-glow: rgb(61 79 214 / 0.45);
 }
 
-/* Metric-matched fallback keeps the hero from jumping when the web font swaps in. */
+/* Fallbacks tuned so headlines don't jump when the web fonts swap in. */
+@font-face {
+  font-family: "Display Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
+  /* Measured against Bricolage Grotesque 700 (width ×1.019, ascent .93, descent .27). */
+  size-adjust: 101.9%;
+  ascent-override: 91.3%;
+  descent-override: 26.5%;
+  line-gap-override: 0%;
+}
+
 @font-face {
   font-family: "Jakarta Fallback";
   src: local("Arial"), local("Helvetica Neue"), local("Helvetica");
@@ -94,12 +123,6 @@
 @property --angle {
   syntax: "<angle>";
   initial-value: 0deg;
-  inherits: false;
-}
-
-@property --num {
-  syntax: "<integer>";
-  initial-value: 0;
   inherits: false;
 }
 
@@ -170,16 +193,19 @@
   }
 
   .display {
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-weight: 700;
     letter-spacing: -0.035em;
-    line-height: 1.04;
+    line-height: 1;
+    font-variation-settings: "wdth" 100;
   }
-
-  .text-gradient-sun {
-    background: linear-gradient(100deg, #ffe08a 0%, #ffc53d 40%, #ff9f43 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  /* HUD-style mono label (chapter numbers, annotations). */
+  .hud-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
   .text-gradient-brand {
@@ -416,14 +442,6 @@
   }
 
   /* CSS-only count-up: the number animates from first paint, no JS needed. */
-  .count-87 {
-    animation: count-87 1.5s cubic-bezier(0.2, 0.7, 0.1, 1) 0.25s both;
-    counter-reset: num var(--num);
-  }
-  .count-87::before {
-    content: counter(num);
-  }
-
   .float-y {
     animation: float-y 6s ease-in-out infinite;
   }
@@ -442,18 +460,464 @@
 }
 
 /* ---------- Backdrops (CSS sky = instant paint + WebGL fallback) ---------- */
-.backdrop-night {
+/* ---------- Story: home scroll chapters ---------- */
+.sky {
   background:
-    radial-gradient(55% 45% at 78% 18%, rgb(86 112 255 / 0.32), transparent 70%),
-    radial-gradient(45% 40% at 12% 72%, rgb(126 92 255 / 0.2), transparent 70%),
-    radial-gradient(35% 30% at 88% 88%, rgb(255 176 64 / 0.12), transparent 70%),
-    linear-gradient(180deg, #040817 0%, #081230 55%, #0b1638 100%);
+    radial-gradient(55% 45% at 72% 30%, var(--sky-glow), transparent 70%),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, var(--sky-bottom) 100%);
 }
-.backdrop-dawn {
-  background:
-    radial-gradient(55% 45% at 85% 0%, rgb(170 186 255 / 0.55), transparent 70%),
-    radial-gradient(45% 40% at 0% 100%, rgb(255 222 160 / 0.45), transparent 70%),
-    linear-gradient(180deg, #f8f9fe 0%, #eef2fb 100%);
+/* Each chapter is tall; its stage pins while the 3D world animates. */
+.chapter {
+  position: relative;
+  height: var(--h, 240svh);
+}
+.chapter > .stage {
+  /* Bottom breathing room for the text panel; on phones it also clears the chat button. */
+  --stage-pb: 4.75rem;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 36rem;
+  display: grid;
+  /* A definite row, so h-full/max-h-full inside a chapter resolve to the stage. */
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  isolation: isolate;
+}
+/* Readability scrim between the world and the text. */
+.scrim-left::before,
+.scrim-right::before,
+.scrim-center::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.scrim-left::before {
+  background: linear-gradient(90deg, var(--scrim) 0%, color-mix(in oklab, var(--scrim) 55%, transparent) 40%, transparent 64%);
+}
+.scrim-right::before {
+  background: linear-gradient(270deg, var(--scrim) 0%, color-mix(in oklab, var(--scrim) 55%, transparent) 40%, transparent 64%);
+}
+.scrim-center::before {
+  background: radial-gradient(70% 55% at 50% 62%, color-mix(in oklab, var(--scrim) 70%, transparent), transparent 75%);
+}
+@media (max-width: 1023px) {
+  .scrim-left::before,
+  .scrim-right::before {
+    background: linear-gradient(0deg, var(--scrim) 0%, color-mix(in oklab, var(--scrim) 75%, transparent) 46%, transparent 72%);
+  }
+}
+
+/* Scroll-linked choreography. --enter/--p come from scrollStory.js; the
+   defaults (1 / 0) mean "fully shown", so content is visible without JS. */
+.enter-fx {
+  --k: clamp(0, (var(--enter, 1) - var(--o, 0.45)) * 2.6, 1);
+  opacity: var(--k);
+  transform: translate3d(0, calc((1 - var(--k)) * 42px), 0);
+}
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.mask-line > span {
+  --k: clamp(0, (var(--enter, 1) - var(--o, 0.45)) * 2.6, 1);
+  display: block;
+  transform: translate3d(0, calc((1 - var(--k)) * 108%), 0);
+}
+/* Hero lines reveal on load (CSS only, before hydration). */
+.intro-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.intro-line > span {
+  display: block;
+  animation: line-up 1.05s var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+}
+.hero-out {
+  opacity: clamp(0, 1 - var(--p, 0) * 1.7, 1);
+  transform: translate3d(0, calc(var(--p, 0) * -90px), 0);
+}
+/* Words that light up as you scroll through a statement. */
+.scrub-word {
+  opacity: clamp(0.14, calc(var(--p, 1) * var(--n, 10) * 2.2 - var(--w, 0)), 1);
+  transition: opacity 0.15s linear;
+}
+.swap-a {
+  opacity: clamp(0, (0.62 - var(--p, 0)) * 8, 1);
+}
+.swap-b {
+  --k: clamp(0, (var(--p, 1) - 0.6) * 6, 1);
+  opacity: var(--k);
+  transform: translate3d(0, calc((1 - var(--k)) * 30px), 0);
+}
+
+/* Step-by-step stories: all steps stay in the DOM (readable by AT), one is shown. */
+.steps {
+  display: grid;
+}
+.steps > li {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.45s ease,
+    transform 0.7s var(--ease-out-expo);
+  pointer-events: none;
+}
+.chapter:not([data-step]) .steps > [data-i="0"],
+.chapter[data-step="0"] .steps > [data-i="0"],
+.chapter[data-step="1"] .steps > [data-i="1"],
+.chapter[data-step="2"] .steps > [data-i="2"],
+.chapter[data-step="3"] .steps > [data-i="3"],
+.chapter[data-step="4"] .steps > [data-i="4"],
+.chapter[data-step="5"] .steps > [data-i="5"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.step-dots > * {
+  height: 3px;
+  flex: 1;
+  border-radius: 99px;
+  background: color-mix(in oklab, var(--ink) 18%, transparent);
+  transition: background-color 0.4s;
+}
+.chapter:not([data-step]) .step-dots > :first-child,
+.chapter[data-step="0"] .step-dots > :nth-child(-n + 1),
+.chapter[data-step="1"] .step-dots > :nth-child(-n + 2),
+.chapter[data-step="2"] .step-dots > :nth-child(-n + 3),
+.chapter[data-step="3"] .step-dots > :nth-child(-n + 4),
+.chapter[data-step="4"] .step-dots > :nth-child(-n + 5),
+.chapter[data-step="5"] .step-dots > :nth-child(-n + 6) {
+  background: var(--sun);
+}
+/* Fallback diagrams highlight the active node too. */
+[data-node] {
+  transition:
+    opacity 0.4s,
+    transform 0.6s var(--ease-out-expo);
+  opacity: 0.4;
+}
+.chapter:not([data-step]) [data-node="0"],
+.chapter[data-step="0"] [data-node="0"],
+.chapter[data-step="1"] [data-node="1"],
+.chapter[data-step="2"] [data-node="2"],
+.chapter[data-step="3"] [data-node="3"],
+.chapter[data-step="4"] [data-node="4"],
+.chapter[data-step="5"] [data-node="5"] {
+  opacity: 1;
+}
+
+/* Static art shown until (or instead of) the live 3D world. */
+.fallback-art {
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s;
+}
+html.has-3d .fallback-art {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* HUD: labels pinned to 3D objects by the world's projector. */
+.hud-anchor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 15;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+html:not(.has-3d) .hud-anchor {
+  display: none;
+}
+.hud-anchor[data-on="1"] .hud-tag {
+  pointer-events: auto;
+}
+.hud-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--cyan) 22%, transparent);
+}
+.hud-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 1px;
+  transform-origin: 0 0;
+  background: color-mix(in oklab, var(--ink) 50%, transparent);
+}
+.hud-tag {
+  position: absolute;
+  top: -42px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--ink) 22%, transparent);
+  border-radius: 0.4rem;
+  background: color-mix(in oklab, var(--bg) 72%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+}
+.hud-anchor[data-side="right"] .hud-line {
+  transform: rotate(-42deg);
+}
+.hud-anchor[data-side="right"] .hud-tag {
+  left: 32px;
+}
+.hud-anchor[data-side="left"] .hud-line {
+  transform: rotate(-138deg);
+}
+.hud-anchor[data-side="left"] .hud-tag {
+  right: 32px;
+}
+.hud-anchor[data-side="below"] .hud-line {
+  width: 16px;
+  transform: rotate(90deg);
+}
+.hud-anchor[data-side="below"] .hud-tag {
+  top: 18px;
+  left: 0;
+  transform: translateX(-50%);
+}
+/* Phones: orb labels sit under their orb; planet labels give way to the chips. */
+@media (max-width: 639px) {
+  .hud-anchor[data-hud^="orb-"]:not([data-hud="orb-S"]) .hud-line {
+    width: 14px;
+    transform: rotate(90deg);
+  }
+  .hud-anchor[data-hud^="orb-"]:not([data-hud="orb-S"]) .hud-tag {
+    top: 22px;
+    left: 0;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.45rem;
+    font-size: 0.6rem;
+  }
+  .hud-anchor[data-hud^="planet-"] {
+    display: none;
+  }
+}
+.hud-anchor[data-active="true"] .hud-tag,
+.hud-tag:hover {
+  background: var(--sun);
+  color: var(--on-sun);
+  border-color: transparent;
+}
+
+/* Chapter rail (desktop): jump to any chapter. */
+.story-rail {
+  position: fixed;
+  right: clamp(0.75rem, 1.6vw, 1.75rem);
+  top: 50%;
+  z-index: 30;
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  transform: translateY(-50%);
+}
+@media (min-width: 1024px) {
+  .story-rail {
+    display: flex;
+  }
+}
+.story-rail button {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.story-rail .tick {
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.55;
+  transition:
+    width 0.5s var(--ease-out-expo),
+    background-color 0.3s,
+    opacity 0.3s;
+}
+.story-rail .name {
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity 0.3s,
+    transform 0.4s var(--ease-out-expo);
+}
+.story-rail button:hover .name,
+.story-rail button:focus-visible .name {
+  opacity: 1;
+  transform: none;
+}
+html[data-story="0"] .story-rail [data-c="0"],
+html[data-story="1"] .story-rail [data-c="1"],
+html[data-story="2"] .story-rail [data-c="2"],
+html[data-story="3"] .story-rail [data-c="3"],
+html[data-story="4"] .story-rail [data-c="4"],
+html[data-story="5"] .story-rail [data-c="5"],
+html[data-story="6"] .story-rail [data-c="6"] {
+  color: var(--ink);
+}
+html[data-story="0"] .story-rail [data-c="0"] .tick,
+html[data-story="1"] .story-rail [data-c="1"] .tick,
+html[data-story="2"] .story-rail [data-c="2"] .tick,
+html[data-story="3"] .story-rail [data-c="3"] .tick,
+html[data-story="4"] .story-rail [data-c="4"] .tick,
+html[data-story="5"] .story-rail [data-c="5"] .tick,
+html[data-story="6"] .story-rail [data-c="6"] .tick {
+  width: 34px;
+  background: var(--sun);
+  opacity: 1;
+}
+
+/* Without JS or with reduced motion, chapters become a calm, readable page. */
+@media (prefers-reduced-motion: reduce) {
+  .chapter {
+    height: auto;
+  }
+  .chapter > .stage {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    padding-block: 7rem 4rem;
+  }
+  .steps {
+    gap: 1.5rem;
+  }
+  .steps > li {
+    grid-area: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .swap-a,
+  .swap-b,
+  .scrub-word,
+  .hero-out,
+  .enter-fx,
+  .mask-line > span {
+    opacity: 1;
+    transform: none;
+  }
+}
+html:not(.js) .chapter {
+  height: auto;
+}
+html:not(.js) .chapter > .stage {
+  position: relative;
+  height: auto;
+  padding-block: 7rem 4rem;
+}
+html:not(.js) .steps > li {
+  grid-area: auto;
+  opacity: 1;
+  transform: none;
+}
+/* Unpinned stages have no fixed height, so square illustrations size by width. */
+html:not(.js) .chapter .fallback-art > div {
+  height: auto;
+  width: min(100%, 24rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter .fallback-art > div {
+    height: auto;
+    width: min(100%, 24rem);
+  }
+}
+
+/* Story details */
+.accent-word {
+  background: linear-gradient(100deg, #c2410c 0%, #d97706 55%, #b45309 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="dark"] .accent-word {
+  background-image: linear-gradient(100deg, #ffe08a 0%, #ffc53d 45%, #ff9f43 100%);
+}
+.swap-wrap {
+  display: grid;
+}
+.swap-wrap > * {
+  grid-area: 1 / 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .swap-wrap {
+    display: block;
+  }
+  .swap-wrap > * + * {
+    margin-top: 3rem;
+  }
+}
+html:not(.js) .swap-wrap {
+  display: block;
+}
+/* Reasons light up one by one through the chapter. */
+.reason {
+  opacity: clamp(0.22, calc(var(--p, 1) * 6.5 - var(--i, 0)), 1);
+  transition: opacity 0.2s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reason {
+    opacity: 1;
+  }
+}
+.chapter[data-step="0"] .hud-anchor[data-i="0"] .hud-tag,
+.chapter[data-step="1"] .hud-anchor[data-i="1"] .hud-tag,
+.chapter[data-step="2"] .hud-anchor[data-i="2"] .hud-tag,
+.chapter[data-step="3"] .hud-anchor[data-i="3"] .hud-tag,
+.chapter[data-step="4"] .hud-anchor[data-i="4"] .hud-tag,
+.chapter[data-step="5"] .hud-anchor[data-i="5"] .hud-tag {
+  background: var(--sun);
+  color: var(--on-sun);
+  border-color: transparent;
+}
+/* Phones: only the orb being described keeps its label (the card names it too). */
+@media (max-width: 639px) {
+  .hud-anchor[data-hud^="orb-"] .hud-tag,
+  .hud-anchor[data-hud^="orb-"] .hud-line {
+    visibility: hidden;
+  }
+  .chapter[data-step="0"] .hud-anchor[data-i="0"] :is(.hud-tag, .hud-line),
+  .chapter[data-step="1"] .hud-anchor[data-i="1"] :is(.hud-tag, .hud-line),
+  .chapter[data-step="2"] .hud-anchor[data-i="2"] :is(.hud-tag, .hud-line),
+  .chapter[data-step="3"] .hud-anchor[data-i="3"] :is(.hud-tag, .hud-line),
+  .chapter[data-step="4"] .hud-anchor[data-i="4"] :is(.hud-tag, .hud-line),
+  .chapter[data-step="5"] .hud-anchor[data-i="5"] :is(.hud-tag, .hud-line) {
+    visibility: visible;
+  }
 }
 
 /* ---------- Keyframes ---------- */
@@ -474,6 +938,22 @@
     opacity: 0;
   }
 }
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+@keyframes line-up {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
 @keyframes fade-up {
   from {
     opacity: 0.01;
@@ -482,14 +962,6 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-@keyframes count-87 {
-  from {
-    --num: 0;
-  }
-  to {
-    --num: 87;
   }
 }
 @keyframes spin-angle {
@@ -629,9 +1101,6 @@
   .js .reveal.reveal-tilt {
     opacity: 1;
     transform: none;
-  }
-  .count-87 {
-    --num: 87;
   }
 }
 

@@ -33,7 +33,7 @@ export async function render(path) {
   const { prelude } = await prerenderToNodeStream(
     <StrictMode>
       <SeoContext.Provider value={seo}>
-        <StaticRouter location={location} basename={basename}>
+        <StaticRouter location={location} basename={import.meta.env.BASE_URL}>
           <App />
         </StaticRouter>
       </SeoContext.Provider>

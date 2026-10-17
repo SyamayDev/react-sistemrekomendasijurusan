@@ -20,7 +20,9 @@ export async function boot(container, loadApp) {
 
   const app = (
     <StrictMode>
-      <BrowserRouter basename={basename}>
+      {/* Router basename keeps its trailing slash so home links are "/repo/" —
+          the folder GitHub Pages serves — instead of "/repo" (a 301 away). */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <App />
       </BrowserRouter>
     </StrictMode>
