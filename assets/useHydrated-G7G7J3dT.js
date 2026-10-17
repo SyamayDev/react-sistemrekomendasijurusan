@@ -1,1 +1,0 @@
-import{c}from"./App-MzmMYdV2.js";import{a as o}from"./chunk-OB3PAWPO-XMIbmD95.js";const e={name:"search",size:24,node:[["path",{d:"m21 21-4.34-4.34",key:"14j7rj"}],["circle",{cx:"11",cy:"11",r:"8",key:"4ej97u"}]]};e.node;const s=c(e),r=()=>()=>{},n=()=>o.useSyncExternalStore(r,()=>!0,()=>!1);export{s as S,n as u};
