@@ -9,6 +9,7 @@
  * value straight into the scene store (no React renders), and exposes CSS
  * custom properties for DOM choreography:
  *   --enter  0..1 entering progress     --p  0..1 pinned progress
+ *   --exit   0..1 how far the next chapter has entered (outgoing fade)
  *   data-step="n" on chapters with data-steps (sticky step-by-step stories)
  *   html[data-story] = index of the chapter in view (for the HUD rail).
  * On the stacked (phone/tablet) layout it also measures where each chapter's
@@ -67,6 +68,11 @@ export function startStory(root) {
         current = i;
         story = i + (enter < 1 ? enter * SETTLE : SETTLE + p * (1 - SETTLE));
       }
+    });
+    metrics.forEach((m, i) => {
+      const next = metrics[i + 1];
+      const exit = next ? clamp01((y - (next.top - vh)) / vh) : 0;
+      m.el.style.setProperty("--exit", exit.toFixed(4));
     });
     // The very first chapter is already on screen at load.
     if (y < (metrics[0]?.top ?? 0)) story = SETTLE;

@@ -315,13 +315,15 @@ export function buildWorld({ tier = "mid" } = {}) {
   const portal = new Group();
   portal.position.set(...PORTAL_CENTER);
   root.add(portal);
-  const arcRand = mulberry32(8);
   const arcs = PLANETS.map((p, k) => {
     const arcLen = (Math.PI * 2) / 8;
     const m = track(new MeshPhysicalMaterial({ color: p.color, emissive: new Color(p.color), emissiveIntensity: 0.5, roughness: 0.25, clearcoat: 1 }));
     const mesh = new Mesh(track(new TorusGeometry(PORTAL_R, 0.15, 18, 40, arcLen - 0.07)), m);
     const home = new Euler(0, 0, k * arcLen + 0.035);
-    const scatter = { pos: new Vector3((arcRand() - 0.5) * 9, (arcRand() - 0.5) * 6, -2 - arcRand() * 5), rot: new Euler(arcRand() * 3, arcRand() * 3, arcRand() * 3) };
+    // Each arc starts pushed out and back along its own direction, turned a bit
+    // short of home, and spirals into place.
+    const mid = k * arcLen + arcLen / 2;
+    const scatter = { pos: new Vector3(Math.cos(mid) * 1.6, Math.sin(mid) * 1.6, -4.5), rot: new Euler(0, 0, home.z - 1.3) };
     portal.add(mesh);
     return { mesh, mat: m, home, scatter };
   });
@@ -732,12 +734,13 @@ export function buildWorld({ tier = "mid" } = {}) {
 
     /* --- portal --- */
     const portalP = mode === "story" ? presence(story, 6) : 0;
-    const assemble = smooth(clamp01((story - 6 + 0.02) / 0.5));
-    portal.visible = portalP > 0.01;
+    const assemble = smooth(clamp01((story - 6.04) / 0.36));
+    portal.visible = portalP > 0.01 && assemble > 0;
     arcs.forEach((a, k) => {
-      const f = smooth(clamp01(assemble * 1.4 - k * 0.05));
+      const f = smooth(clamp01(assemble * 1.6 - k * 0.075));
       a.mesh.position.lerpVectors(a.scatter.pos, tmpV2.set(0, 0, 0), f);
-      a.mesh.rotation.set(lerp(a.scatter.rot.x, a.home.x, f), lerp(a.scatter.rot.y, a.home.y, f), lerp(a.scatter.rot.z, a.home.z, f) + t * 0.05 * f);
+      a.mesh.rotation.set(0, 0, lerp(a.scatter.rot.z, a.home.z, f) + t * 0.05 * f);
+      a.mesh.scale.setScalar(Math.max(0.001, f));
       a.mat.emissiveIntensity = 0.35 + f * 0.5 + Math.sin(t * 2 + k) * 0.08;
     });
     portalLight.material.uniforms.uOpacity.value = assemble * 0.35 * portalP;
